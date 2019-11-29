@@ -1,0 +1,91 @@
+\documentclass[a4paper,12pt]{book}%{report}
+%
+\input{preamble}
+%
+\title{\huge Lecture Notes\\
+\large für Studierende der Studiengänge Embedded Systems Engineering, Mirkosystemtechnik und Sustainable Systems Engineering}
+\author{Andreas Greiner und Lars Pastewka \\Professur für Simulation\\Institut für Mikrosystemtechnik\\Universität Freiburg\\[1cm]
+  \includegraphics[width=0.4\textwidth]{fig/Uni_Logo-Grundversion_E1_A4_RGB}
+}
+\parindent0em
+\parskip1ex
+\pagestyle{headings}
+%
+\setboolean{showComments}{false}
+\setboolean{showErratum}{false}
+%
+%
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{cutwin}
+%
+\begin{document}
+\frontmatter
+\maketitle
+\part{Differentialgleichungen}
+\Erratum{Hier ist eine Fehlerbeschreibung.}
+Lernziele:
+\begin{itemize}
+\item Verständnis der Klassifizierung unterschiedlicher Differenzialgleichungen
+\item Benutzung unterschiedlicher Typen von Gleichungen zur Modellierung von Phä\-nomenen
+\item Analytische und numerische Lösungen und deren Visualisierung und Interpretationen
+\end{itemize}
+Die meisten Phänomene denen wir in den Ingenieurwissenschaften begegnen,
+werden sehr gut durch Differenzialgleichungen beschrieben. Wir erinnern uns an
+die LTI-Systeme im Zeitbereich, \Comment{ anderes Beispiel
+wählen!!!} sie werden durch ein System linearer gewöhnlicher
+Differentialgleichungen (ODE = ordinary differential equation) mit der Zeit als
+unabängiger Veränderlicher beschrieben. Wir erinnern uns an den
+Diffusionsprozess, wie z.B. den Wärmetransport in einem Bauteil auf einem
+Kühlkörper, das einer Wärmequelle ausgesetzt ist. Dieses Phänomen wird am
+Besten mit einer partiellen Differentialgleichung (PDE = partial differential
+equation) beschrieben.
+
+Literatur:
+\begin{itemize}
+  \item J. Brenner und P. Lesky, Mathematik für Ingenieure und
+    naturwissenschaftler I-IV. Dies ist ein sehr umfassendes Werk mit vielen
+    Beispielen. Band III enthält Kapitel über Differentialgleichungen, Band IV
+    übe Fourier- und Laplacetransformationen aber auch vieles mehr. Einer der
+    Autoren dieses Manuskripts (A.G.) hatte die Ehre die Vorlesungsreihe bei
+    Peter Albin Lesky\footnote{Peter Albin Lesky (* 6. Dezember 1926 in Graz; †
+    12. Februar 2008 in Innsbruck) war ein österreichischer Mathematiker
+    (https://de.wikipedia.org/wiki/Peter\_Albin\_Lesky). } hören zu dürfen und ist
+    heute noch von seiner didaktischen Kunst beeindruckt.
+  \item V. I. Arnol'd, Gewöhnliche Differentialgleichungen. Formal, kurze
+    Darstellung.
+  \item G. Baker, Differential equations as models in science and engineering.
+    Sehr viele anwendungsbezogene Beispiele.
+  \item Frank Ayres, Differentialgleichungen. 1900 ausführliche Lösungsbeispiele.
+  \item J. Jäckle, Einführung in die Transporttheorie. Dies wurde als Grundlage
+    für das Kapitel über die Theorie der linearen Antwort genommen.
+  \item H. Haken, Advanced Synergetics, 2nd printing, Springer 1987. Für das
+    Kapitel über die Adiabatische Elimination in Systemen nichtlinearer
+    Differentialgleichungen. Diese Buch geht weit über das hier dargestellte
+    hinaus und behandelt Anwendungen des von H. Haken entwickelten Formalismus
+    auf zahlreiche naturwissenschaftliche Phänomene. Besonders zu empfehlen.
+\end{itemize}
+Dies ist eine sehr eingeschränkte Sicht auf die Literatur. Diese Liste wird,
+wie das ganze Manuskript, ständig erweitert werden.
+\newpage
+\tableofcontents
+\newpage 
+\mainmatter
+\input{chapters/Introduction}
+\input{chapters/GDGL}
+\input{chapters/Integraltrafo}
+\input{chapters/LinearResponse}
+\input{chapters/NLDGL}
+\input{chapters/InterpolationIntegration}
+\input{chapters/PDGL}
+\input{chapters/Variationsrechnung}
+%\input{chapters/InterpolationIntegration}
+%
+\begin{appendices}
+\noappendicestocpagenum
+\renewcommand\appendixtocname{Anhang}
+\renewcommand\appendixpagename{Anhang}
+\input{chapters/Residuensatz}
+\input{chapters/VNOS}
+\end{appendices}
+\end{document}

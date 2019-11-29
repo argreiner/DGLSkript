@@ -1,0 +1,199 @@
+\chapter[Erinnerung an die \dots]{Erinnerung an die Integral- und
+Differentialrechnung und die Lineare Algebra}
+In diesem Kapitel wollen wir an die in den Grundvorlesungen der Mathematik für
+Ingenieurinnen und Informatiker behandelten Themen erinnern.
+\section{Sätze der Differential- und Integralrechnung}
+\begin{satz}{Hauptsatz der Differential- und Integralrechnung\label{theo:HSIntegralDiff}}
+Wenn für eine stetige Funktion $f(x)$ das Integral
+$F(x)=\int\limits_{x_0}^{x}f(\xi)d\xi$ existiert, dann ist
+\[
+  \frac{dF(x)}{dx}=\frac{d}{dx}\int\limits_{x_0}^{x}f(\xi)d\xi=f(x)
+\]
+\label{theo:HDI}
+\end{satz}
+Satz \ref{theo:HDI} in Worten:„Die Ableitung des Integrals ist gleich der
+Funktion im Integranden an der oberen Integrationsgrenze“.
+\begin{example}{Ableitung eines Integrals}
+\[
+ \frac{d F(x)}{dx}=\frac{d}{dx}\int\limits_{x_0}^{x}e^{-\xi}d\xi=
+ \frac{d}{dx} \left(-e^{-x}+e^{-x_0}\right)=e^{-x}
+\]
+\end{example}
+\begin{satz}{Mittelwertsatz der Integralrechnung}
+  Gegeben eine Funktion $f(x)$, die auf dem Interval $[a,b]$ stetig ist, sowie
+  eine Funktion $g(x)$ für die im Intervall $[a,b]$ entweder $g(x)\ge0$ oder
+  $g(x)\le0$ gelte. Dann gibt es mindestens eine Stelle $\xi\in[a,b]$, so dass
+  mit dem entsprechenden Funktionswert 
+  \begin{equation} 
+  \int\limits_a^bf(x)g(x)dx=f(\xi)\int\limits_a^bg(x)dx 
+  \label{eq:MittelwertInt2} 
+  \end{equation}
+  gilt.   
+\end{satz}
+Wenn wir $g(x)=1 $ setzen, dann wird dies wird gemeinhin als erster
+Mittelwertsatz der Integralrechnung bezeichnet. Es gilt also:
+\begin{equation} 
+  \int\limits_a^bf(x)dx=f(\xi)(b-a)
+  \label{eq:MittelwertInt1}
+\end{equation}
+%\begin{example}{Anwendung von Satz \ref{eq:MittelwertInt2}}
+%?
+%\end{example}
+\begin{satz}{Mittelwertsatz der Differentialrechnung}
+  Gegeben 2 Funktionen $f(x)$ und $g(x)$, die beide auf dem Interval $[a,b]$
+  stetig und differenzierbar seien. Dann existiert ein $x_0\in(a,b)$, so dass   
+  \begin{equation}
+    f'(x_0)\left(g(b)-g(a)\right)= g'(x_0)\left(f(b)-f(a)\right)
+  \label{eq:MittelwertDiff2}
+\end{equation}
+\end{satz}
+Wenn wir $g'(x)=1 $ setzen, dann wird dies wird gemeinhin als erster
+Mittelwertsatz der Differetialrechnung bezeichnet. Es gilt also:
+\begin{equation}
+  f'(x_0)=\frac{f(b)-f(a)}{b-a}
+  \label{eq:MittelwertDiff1}
+\end{equation}
+\section{Taylorreihe}
+%{\red Das könnte ein Beispiel für den Beweis eines Satzes sein}
+Die Taylorreihe ist zweifelsohne eines der wichtigen Instrumente. Sie dient zur
+Abschätzung des Verhaltens von Funktionen und findet in den numerischen
+Methoden Anwendung, wie z.B. den Finiten Differenzen.
+\begin{satz}{Der Taylorsche Satz\label{theo:Taylor}} Sei $f$ eine Funktion, die
+  eine $(n+1)$-te stetige Ableitung auf einem Intervall $J$ besitze. Es seien
+  $a,b\in J$. Dann ist 
+\[
+    f(b)=f(a)+\frac{b-a}{1!}f'(a)+\cdots +\frac{(b-a)^{n}}{(n)!}f^{(n)}(a)+R_n
+\]
+  mit
+\[
+    R_n=\int\limits_a^b\frac{(b-s)^{n}}{n!}f^{(n+1)}(s)ds
+\]
+Desweiteren merken wir an, dass eine Zahl $c\in[a,b]$ existiert, so dass
+\[
+    R_n=\frac{(b-a)^{n}}{n!}f^{(n+1)}(c)
+\]
+gilt.
+\end{satz}
+{\bf Beweis:} Wir wenden Satz 1 an und integrieren partiell
+\begin{align}
+  f(b)=&f(a)+\int\limits_a^bf'(s)ds=f(a)+\int\limits_a^b\frac{(b-s)^0}{0!}f'(s)ds\nonumber\\
+  =&f(a)-\left.\frac{(b-s)^1}{1!}f'(s)\right|_a^b+\int\limits_a^b\frac{(b-s)^1}{1!}f''(s)ds=\dots
+  \label{eq:TaylorProof1}
+\end{align}
+Vollständige Induktion liefert den Schluss des Beweises.
+\section{Lineare Algebra}
+In der Mathematik treffen wir auf verschiedene Arten von Objekten, die
+untereinander addiert und mit Zahlen multipliziert werden können. Eine
+Ansammlung von Objekten nennen wir eine Menge. Ein Beispiel ist die Menge von
+Vektoren ein und derselben Dimension. Wir wollen für all die
+Spezialfälle eine allgemeine Definition geben. 
+\subsection{Der Vektorraum}
+Ein {\bf Vektorraum} V ist eine Menge von Objekten, die addiert und mit Zahlen
+multipliziert werden können und zwar so, dass die Summe zweier Elemente aus V
+wieder ein Element aus V ist, das Produkt eines Elementes aus V mit einer Zahl
+ebenfalls wieder in V ist und folgende Eigenschaften erfüllt sind:.
+\begin{description}
+  \item[{\bf VR 1.}] Gegeben $u,v,w\in V$. Es soll Assoziativität gelten
+    \[ (u+v)+w = u+(v+w) \] 
+  \item[{\bf VR 2.}] Es gibt ein Element 0 in V, so dass gilt
+    \[ 0+u = u+0 =u \]
+    für alle $u\in V$. Wir nennen dieses Element den Nullvektor.
+  \item[{\bf VR 3.}] Für jedes $u\in V$ gibt es ein Elemt $(-1)u\in V$ für das 
+  \[ u+(-1)u=0 \]
+    D.h. jedes Element hat ein Inverses.
+  \item[{\bf VR 4.}] Für alle $u,v\in V$ soll Kommuntativität gelten
+    \[ u+v = v+u \]
+  \item[{\bf VR 5.}] Für eine Zahl $c$ gilt Distributivität $c(u+v)=cu+cv$ 
+  \item[{\bf VR 6.}] Für zwei Zahlen $a$, $b$ gilt Assoziativität bezüglich der Addition $(a+b)u=au+bu$
+  \item[{\bf VR 7.}] Für zwei Zahlen $a$, $b$ gilt Assoziativität bezüglich der Multiplikation $(ab)u=a(bu)$
+  \item[{\bf VR 8.}] Für alle $u\in V$ gilt $1\cdot u=u$
+\end{description}
+Als einen Unterraum $W$ von $V$ bezeichnen wir einen Raum für den gilt
+\begin{enumerate}
+  \item $\forall u,v\in W$ ist auch $u+v\in W$
+  \item $\forall u\in W$ und $c\in\mathbb{R}$ ist auch $cu\in W$
+  \item $0\in V$ ist auch Element von $W$ 
+\end{enumerate}
+\subsection{Lineare Unabhängigkeit, Basis}
+Eine Linearkombination von Vektoren $(v_1,\dots,v_m)\in V$ schreiben wir als
+$a_1v_1+\dots+a_mv_m$, wobei $a_1,\dots,a_m\in\mathbb{R}$ oder auch
+$a_1,\dots,a_m\in\mathbb{C}$. Alle möglichen Linearkombinationen der $v_i$
+nennen wir die lineare Hülle der $(v_1,\dots,v_m)\in V$ und schreiben dafür
+$span(v_1,\dots,v_m)$. Die $m$ Vektoren spannen einen Unteraum $W\subset V$
+auf.
+\begin{example}{Lineare Hülle}
+Es ist
+\[(7,2,9)=2(2,1,3)+3(1,0,1). \]
+Der Vektor $(7,2,9)$ ist also eine Linearkombination von $(2,1,3)$ und
+$(1,0,1)$.  Daher sagen wir auch $(7,2,9)\in span\left( (2,1,3),(1,0,1)
+\right)$ und damit nennen wir diesen Vektor auch linear abhängig.
+\end{example}
+Wir nennen Vektoren $(v_1,\dots,v_m)\in V$ linear unabhängig, wenn keiner der
+$m$ Vektoren als Linearkombination der restlichen $m-1$ Vektoren geschrieben
+werden kann. Eine Basis des Vektorraums $V$ ist gegeben durch die maximale
+Anzahl linear unabhängiger Vektoren, die ganz $V$ aufspannen. Diese muss nicht
+eindeutig sein.
+\begin{example}{Basen}
+  $(1,0,0)$, $(0,1,0)$ und $(0,0,1)$ spannen der $\mathbb{R}^3$ auf. Genauso
+  tut das aber auch die Basis
+  $(1/\sqrt{2},-1/\sqrt{2},0)$,$(-1/\sqrt{2},1/\sqrt{2},0)$ und $(0,0,1)$.
+\end{example}
+\Comment{Hier wäre es gut Beispiele für Vektorräume aufzuführen, wie sie z.B. im Buch von Sheldon Axler, Linear Algebra done right, gegeben sind.}
+\subsection{Der Rang einer Matrix}
+Gegeben die Matrix
+\begin{equation}
+  A_{mn}=
+  \begin{pmatrix}
+    a_{11}&a_{12}&\;\cdots\;&a_{1n}\\
+    a_{21}&a_{22}&\;\cdots\;&a_{2n}\\
+    & &\;\cdots\;&\\
+    a_{m1}&a_{m2}&\;\cdots\;&a_{mn}\\
+  \end{pmatrix}
+  \label{eq:Matrixmn}
+\end{equation}
+Wobei $s$ das Minimum der Anzahl der Zeilen und der Spalten $m$ und $n$
+bezeichne. Durch Streichen von Zeilen oder Spalten erhalten wir quadratische
+$s\times s$ Untermatrizen. Gehen wir davon aus, dass $A$ nicht Nullmatrix ist,
+dann finden wir sicherlich unter den $s\times s$ Untermatrizen solche, deren
+Determinanten von Null verschieden sind. Die Maximale Zahl $r$ an Reihen, bzw.
+Spalten, der von Null verschiedenen Determinanten, die bei dieser Operation
+entstehen, nennen wir den Rang der Matrix $A$.
+\begin{example}{Rang einer $5\times7$-Matrix}
+  Man bestimme den Rang der Matrix
+  \[
+    A=\begin{pmatrix}
+    7&1&0&2&-1&4&5\\
+    1&1&2&3& 0&1&2\\
+    0&1&-2&1&2&0&1\\
+    4&-1&-8&-6&1&1&0\\
+    0&1&2&1&4&0&1\\
+    \end{pmatrix}
+  \]
+  Wir wissen aus der linearen Algebra, dass der Wert einer Detrminante
+  unverändert bleibt, wenn zu einer Zeile bzw. einer Spalte ein beliebiges
+  Vielfaches einer Zeile bzw. einer Spalte addiert wird.
+
+  Dies machen wir uns zunutze und addieren Vielfache der Zeilen der obigen
+  Matrix sukzessive solange, bis folgende Matrix entsteht: 
+  \[
+    \begin{pmatrix}
+    1&0&0&0&0&0\\
+    0&1&0&0&0&0\\
+    0&0&1&-2&-2&1\\
+    0&0&0&13&11&-3\\
+    \end{pmatrix}
+  \]
+  Beachte: alle linear abhängigen Zeilen und Spalten können wir streichen. 
+  
+  Als letzte Umformung erhalten wir
+  \[
+     \begin{pmatrix}
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&1\\
+    \end{pmatrix}
+  \]
+  woraus wir den Rang $r=4$ ablesen.
+\end{example}
+\newpage

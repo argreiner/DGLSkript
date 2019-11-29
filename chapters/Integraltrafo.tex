@@ -1,0 +1,219 @@
+\chapter{Integraltransformationen}
+Eine Integraltransformation der Form
+\begin{equation}
+  \mathcal{F}(y)=\int\limits_a^bK(y,x)f(x)dx
+  \label{eq:IntTrafo}
+\end{equation}
+ist gegeben als ein linearer Operator $\int\limits_a^bK(y,x)\,.\,dx$, der auf
+eine Funktion $f(x)$ wirkt.
+\section{Die Fourierreihen}
+Erinnern wir uns zunächst an die Fourierreihe: Jede stückweise stetige und im
+Intervall $I=[-L/2,L/2]$ quadratintegrable Funktion $f(x)$ ist durch eine
+Fourierreihe darstellbar:
+\begin{equation}\label{eq:fourierreihe}
+f(x)=\sum_{n=-\infty}^{n=\infty}f_n e^{ik_n x}\mbox{, mit }k_n=\frac{2\pi n}{L}
+\end{equation}
+
+Die Funktionen $e^{ik_nx}$ sind auf dem Intervall $I=[-L/2,L/2]$ orthogonal zueinander, d.h.
+es gilt
+\[ \int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_nx}e^{ik_mx}dx=L\delta_{mn}\]
+Damit erhalten wir 
+\begin{equation}\label{eq:fm}
+f_m=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx=\frac{1}{L}
+\sum_{n=-\infty}^{n=\infty}f_n\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}e^{ik_nx}dx
+\end{equation}
+\begin{note}{Quadratintegrabel}
+Als quadratintegrabel wird eine reelle oder komplexwertige Funktion $f(x)$ auf
+einem Intervall $I=[a,b]$ dann bezeichnet, wenn das Integral des Quadrats des
+Absolutbetrags der Funktion über $I$ existiert und konvergiert, also
+\[\int_a^b |f(x)|^2dx<\infty\]
+\end{note}
+%
+\section{Die Fouriertransformation}
+Mit (\ref{eq:fm}) in (\ref{eq:fourierreihe}) erhalten wir
+\begin{equation}
+f(x)=\sum_{n=-\infty}^{n=\infty}f_n e^{ik_n x}=\frac{1}{L}\sum_{n=-\infty}^{n=\infty}
+e^{ik_nx}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x') e^{-ik_nx'}dx'
+\end{equation}
+Wir schreiben
+\[
+\Delta k_n=k_n-k_{n-1}=\frac{2\pi}{L}
+\]
+und erhalten damit
+\[
+f(x)=\frac{1}{2\pi}\sum_{n=-\infty}^{n=\infty}
+\underbrace{\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x') e^{-ik_nx'}dx'}_{\mbox{im Limes} (L\rightarrow\infty)\rightarrow F(k)}
+e^{ik_nx}\Delta k_n
+\]
+Wir machen den Grenzübergang $L\rightarrow\infty$ und erhalten damit
+\[
+f(x)=\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}F(k) e^{ikx}dk
+\]
+
+Damit erhalten wir die Fouriertransformation und ihre Inverse als
+\begin{eqnarray}\label{eq:fouriertrafo}
+{\cal F}\{f(x)\}=F(k)=\int_{-\infty}^{\infty}e^{-ikx}f(x)dx\label{eq:fourierhin}\\
+{\cal F}^{-1}\{F(k)\}=f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}F(k)dk\label{eq:fourierrueck}
+\end{eqnarray}
+\begin{note}{Verschiedene Formen der Fouriertransformation}
+	\begin{enumerate}
+		\item Frequenz $\nu$ (Hertz) und unitär
+		\begin{eqnarray*}
+			\hat{f}_1(\bs{\nu})\ &\stackrel{\mathrm{def}}{=}&\
+			\int_{\mathbb{R}^n} f(\mbf{x}) e^{-2 \pi i \bs{\nu}\cdot\mbf{x}}\, d^nx =
+			\hat{f}_2(2 \pi \bs{\nu})=(2 \pi)^{n/2}\hat{f}_3(2 \pi \bs{\nu})\\
+			f(\mbf{x}) &=& \int_{\mathbb{R}^n} \hat{f}_1(\bs{\nu}) e^{2 \pi i
+			\bs{\nu}\cdot\mbf{x}}\, d^n\nu 
+		\end{eqnarray*}
+		\item Kreisfrequenz $\omega$ (rad/s) und nicht unitär
+		\begin{eqnarray*}
+			\hat{f}_2(\bs{\omega}) \
+			&\stackrel{\mathrm{def}}{=}&\int_{\mathbb{R}^n} f(\mbf{x})
+			e^{-i\bs{\omega}\cdot \mbf{x}} \, d^nx \ = \hat{f}_1 \left (
+			\frac{\bs{\omega}}{2 \pi} \right ) = (2 \pi)^{n/2}\
+			\hat{f}_3(\bs{\omega})\\ 
+			f(\mbf{x}) &=& \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n}
+			\hat{f}_2(\bs{\omega}) e^{i \bs{\omega}\cdot \mbf{x}} \, d^n\omega 
+		\end{eqnarray*}
+		\item unitär
+		\begin{eqnarray*}
+			\hat{f}_3(\bs{\omega}) \ &\stackrel{\mathrm{def}}{=}&\
+			\frac{1}{(2 \pi)^{n/2}} \int_{\mathbb{R}^n} f(\mbf{x}) \
+			e^{-i \bs{\omega}\cdot \mbf{x}}\, d^nx = 
+			\frac{\hat{f}_1(\bs{\omega}/2\pi)}{(2 \pi)^{n/2}}
+			 =
+			\frac{\hat{f}_2(\bs{\omega})}{(2 \pi)^{n/2}} \\ 
+			f(\mbf{x}) &=& \frac{1}{(2 \pi)^{n/2}} \int_{\mathbb{R}^n}
+			\hat{f}_3(\bs{\omega})e^{i \bs{\omega}\cdot \mbf{x}}\, d^n\omega
+		\end{eqnarray*}
+	\end{enumerate}
+\end{note}
+Wir verwenden im folgenden die 2. Form der Fouriertransformation.
+
+An Unstetigkeiten muss die Funktion die Bedingungen 
+\[
+  \lim_{\varepsilon\rightarrow 0}\frac{f(t+\varepsilon)+f(t-\varepsilon)}{2}=
+  \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ik_nx}F(k)dk
+\]  
+erfüllen.
+\begin{example}{Rechteck}
+Gegeben die Funktion
+  \[  
+  f(t)=\left\{
+    	\begin{array}{ccl}
+    		1&\mbox{f\"ur}&0\le|t|<1\\ 
+    		\frac{1}{2}&\mbox{f\"ur}&|t|=1\\
+    		0&\mbox{f\"ur}&|t|>0 
+         \end{array}
+	\right.
+\]
+Dann ist die Fouriertransformierte
+\[
+  F(\omega)=\int_{-\infty}^{\infty}e^{-i\omega t}f(t)dt=
+  2\int_{0}^{1}f(t)\cos(\omega t)dt=\frac{\sin(\omega)}{\omega}
+\]
+\end{example}
+\section{Die Laplacetransformation}
+Wir betrachten die Fouriertransformation der auf einem Halbraum definierten
+Funktion $f(t)\mbox{, }t\in[0,\infty)$. Voraussetzung ist, dass $f(t)$ im
+Intervall $[0,\infty)$ quadratintegrabel ist. Dann ist das die Funktion
+$f(t)\cdot e^{-tx}$ in diesem Intervall erst recht. Also ist deren
+Fouriertransformation
+\begin{equation}\label{eq:prelaplacetrafo}
+{\cal F}\{e^{-xt}f(t)\}=F(y)=\int_0^\infty e^{-iyt}e^{-xt}f(t)dt
+\end{equation}
+Setzen wir $s=x+iy$ und beschränken wir uns auf $\Re(s)>0$ dann können wir für die 
+Funktion $f(t)$ folgende Integraltransformatin definieren 
+\begin{equation}\label{eq:Laplacetrafo}
+  {\cal L}\{f(t)\}=F(s)=\int_0^\infty f(t) e^{-st}dt
+\end{equation}
+Aufgrund des positiven Realteils von $s$ konvergiert das Integral für $t>0$
+und wir nennen $F(s)$ die {\bf Laplacetransformierte} von $f(t)$.
+
+Die Umkehrung der Laplacetransformation erhalten wir aus der komplexen
+Inversionsformel
+\begin{equation}\label{eq:Laplaceinverse}
+  {\cal L}^{-1}\{F(s)\}=f(t)=\frac{1}{2\pi i}\lim_{\eta\rightarrow\infty}
+\int_{\gamma-i\eta}^{\gamma+i\eta} F(s) e^{st}ds
+\end{equation}
+%
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[thick,-{Latex[scale=1.5]}] (-5.5,0) -- (5.5,0);
+\node at (5.8,0) {\large\bf x};
+\draw[thick,-{Latex[scale=1.5]}] (0,-5.5) -- (0,5.5);
+\node at (0,5.8) {\large\bf y};
+\draw[thick,-{Latex[scale=2.0]}] (3,-4) -- (3,2);
+\draw[thick] (3,2) -- (3,4);
+\draw[fill=black] (3,-4) circle (0.1);
+\node (A) at (4.5,-4) {\large $\boldsymbol{\gamma}-i\boldsymbol{\eta}$};
+\node (A) at (3,-4.6) {\large\bf A};
+\draw[fill=black] (3,4) circle (0.1);
+\node (B) at (4.5,4) {\large $\boldsymbol{\gamma}+i\boldsymbol{\eta}$};
+\node (B) at (3,4.5) {\large\bf B};
+\node (G) at (-5,1.5) {\large $\boldsymbol{\Gamma}$};
+\draw[thick] (0,0) -- (3,4);
+\node (R) at (1.3,2.5) {\large\bf R};
+ \draw[thick,-{Latex[scale=2.0]}] (3, 4) arc(53.13:135:5);
+ \draw[thick,-{Latex[scale=2.0]}]  (-3.536,3.536) arc(135:225:5);
+ \draw[thick]  (-3.536,-3.536) arc(225:306.87:5);
+\end{tikzpicture}
+%\includegraphics[width=0.5\textwidth]{Figures/Bromwich.pdf}
+\caption{\label{fig:Bromwich}Die Bromwich-Kurve}
+\end{figure}
+wobei wir $f(t)=0$ für $t<0$ verlangen und $\gamma$ so wählen, dass alle
+Singularitäten links davon liegen. Wir integrieren also entlang der Geraden
+$s=\gamma+iy$ von $y=-\eta$ bis $y=+\eta$ und machen den Gernzübergang für
+$\eta\rightarrow\infty$. Die Berechnung des Integrals lässt sich wesentlich
+einfacher gestalten mit der sogenannten Bromwich-Kurve Die Motivation hierfür
+ist, dass man den Residuensatz ausnutzen kann. Denn wenn wir die in Abbildung
+\ref{fig:Bromwich} anschauen, dann sehen wir dort den Integrationsweg, der in
+(\ref{eq:Laplaceinverse}) benutzt wurde. Diesen ergänzen wir mit dem
+Integrationsweg $\Gamma$ und erhalten eine geschlossene positiv orientierte
+Kurve $\cal C$ bestehend aus der Strecke von A nach B und dem Kreisausschnitt
+$\Gamma$, über welche wir die Funktion $F(s)$ integrieren können
+\begin{equation}\label{eq:Kreisintegral}
+c(t)=\frac{1}{2\pi i}\oint_{\cal C}e^{st}F(s)ds
+\end{equation}
+Dieses Integral kann mit Hilfe des Residuensatzes (siehe Anhang \ref{sec:Residuensatz}) ausgewertet werden.  
+%(siehe Anhang \ref{chap:Residuensatz}).
+Nun haben wir aber einen Fehler gemacht, den wir korrigiren müssen, das Integral
+über den Weg $\Gamma$ muss wieder abgezogen werden, damit wir die inverse
+Laplacatransformation, wie in (\ref{eq:Laplaceinverse}) rekonstruieren
+\begin{equation}\label{eq:Laplaceinverse2}
+f(t)=\frac{1}{2\pi i}\lim_{R\rightarrow\infty}\left[
+\underbrace{\oint_{\cal C}e^{st}F(s)ds}_{\text{Residuensatz}}
+-\underbrace{\int_{\Gamma} F(s) e^{st}ds}_{\rightarrow 0}\right]
+\end{equation}
+Das zweite Integral geht aber unter bestimmten Bedingungen gegen Null. 
+Dies ist immer der Fall, wenn auf $\Gamma$
+\[|F(s)|<\frac{M}{R^k}\]
+gilt, wobei $M>0$ und $k>0$ ist.
+
+\begin{example}{Anwendung}
+Wir wenden die Laplacetransformation auf das Anfangswertproblem
+  \begin{equation}
+    \frac{d^2y(t)}{dt^2}+ \frac{dy(t)}{dt}+2y(t)=g(t), 
+    \label{eq:LTexample1}
+  \end{equation}
+  \[\mbox{ mit } y(0)=y_0\mbox{ und } \left.\frac{dy(t)}{dt}\right|_{t=0}=\dot{y}_0\mbox{ an.}\]
+Durch partielle Integration können wir zeigen, dass gilt
+\[\int_{t_0}^\infty\frac{dy(t)}{dt}e^{-st}dt=
+\left.y(t)e^{-st}\right|_0^\infty+s\int_{t_0}^\infty y(t)e^{-st}dt=-y_0+sY(s)\]
+Durch zweimalige partielle Integration zeigen wir, dass gilt
+\[\int_{t_0}^\infty\frac{d^2y(t)}{dt^2}e^{-st}dt=-\dot{y}_0-sy_0+s^2Y(s)\]
+Des weiteren gilt ${\cal L}(g(t))=G(s)$. Damit erhalten wir bei Anwendung der
+Laplacetransformation auf sämtliche Terme von (\ref{eq:LTexample1})
+\[
+\underbrace{s^2Y(s)+sY(s)+2Y(s)}_{\text{Differentialoperator}}
+\underbrace{-y_0-\dot{y}_0-sy_0}_{\text{Anfangsedingungen}}=
+\underbrace{G(s)}_{\text{Inhomogenität}}
+\]  
+oder
+\begin{equation}
+  Y(s)=\underbrace{\frac{G(s)}{s^2+s+2}}_{\mbox{inhom. Lösung}}
+  +\underbrace{\frac{(s+1)y_0+\dot{y}_0}{s^2+s+2}}_{\mbox{hom. Lösung+Anfangsb.}}
+\end{equation}
+\end{example}
+\newpage

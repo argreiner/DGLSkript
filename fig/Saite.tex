@@ -1,0 +1,14 @@
+\documentclass[10pt,a4]{article}
+\include{preamble}
+\begin{document}
+\begin{tikzpicture}%[domain=0:4]
+    \draw (0,0) -- (4,0);
+    \begin{axis}[domain=0:180,
+        hide x axis,
+        hide y axis,
+        samples=400]
+	\addplot+[mark=none] {(0.1*cos(x))};
+    \end{axis}
+   \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,283 @@
+\chapter{Nichtlineare gewöhnliche Differentialgleichungen}
+Dieser Abschnitt behandelt Beispiele nichtlinearer gewöhnlicher
+Differentialgleichungen und deren Lösung mit verschiedenen Zugängen. Zuerst
+sollen nichtlineare System erster Ordnung und ersten grades behandelt werden,
+die eine eindeutige Zeitskalentrennung der abhängigen veränderlichen aufweisen
+und bei denen es möglich ist, das qualitative Lösungsverhalten durch wenige
+instabile Freiheitsgrade auszudrücken ({\red H.Haken, Advanced Synergetics,
+Kapitel 7}). Dies führt auf die sogenannten Ordnungsparametergleichungen.
+Danach wird auf die numerische Lösung von Differentialgleichungen eingegangen.
+\section{Einleitung}
+Die Differentialgleichung $\dot q=\alpha q$ ist linear und von erster Ordnung,
+während die Gleichung $\ddot q+\omega^2 q=0$ eine lineare Differentialgleichung
+2. Ordnung ist, die wir auf ein System von zwei Differentialgleichungen erster
+Ordnung und ersten Grades zurückführen können. Wir schreiben
+\[
+  \begin{matrix}\dot q_1&=q_2\\ \dot q_2&= -\omega^2 q_1 \end{matrix} 
+  \quad\text{ oder allgemein }\quad\dot{\mathbf{q}}=L\cdot\mathbf{q}
+\]
+$L$ bezeichnet hierbei die Koeffizientenmatrix, wir haben es mit einem linearen
+System von Diffeentialgleichungen zu tun.
+
+Jetzt erweitern wir das Konzept auf nichtlineare Differentialgleichungen,
+genauer auf ein System nichtliearer Differentialgleichungen erster Ordnung und
+ersten Grades
+\begin{align*}
+\dot q_1 =& \alpha q_1 + \beta q_1q_2\\
+\dot q_1 =&\dots
+\end{align*}
+Hierbei ist $\beta$ ein Kontrollparameter, der die nichtlineare Kopplung
+zwischen den Freiheitsgraden $q_1$ und $q_2$ kontrolliert. Allgemein schreiben
+wir so etwas als
+\begin{equation}
+  \quad\dot{\mathbf{q}}=N(\mathbf{q})
+  \label{eq:NLDGLSystem}
+\end{equation}
+\begin{example}{Nichtlineare Differentialgleichungen}
+  \begin{enumerate}
+   \item Der van der Pol Oszillator
+    \[\ddot x(t)+\mu(x(t)^2-1)\dot x(t)+\omega^2x(t)=0 \]
+    den wir wiederum umschreiben zu 1. Ordnung
+    \begin{align*}
+     \dot x_1=&x_2\\
+     \dot x_2=&\mu(1-x(t)^2)\dot x(t)-\omega^2x_1(t)
+    \end{align*}
+    Wie sieht das Phasenraumbild aus?
+   \item Der Lorenz Attraktor
+     \begin{align*}
+       \dot x=&\sigma(y-x)\\
+       \dot y=&x(\rho-z)-y\\
+     \dot z=&xy-\beta z
+    \end{align*}
+     In Wikipedia steht zu lesen:
+     ``Formuliert wurde das System um 1963 von dem Meteorologen Edward N. Lorenz
+     (1917–2008), der es als Idealisierung eines hydrodynamischen Systems
+     entwickelte. Basierend auf einer Arbeit von Barry Saltzman (1931–2001)
+     ging es Lorenz dabei um eine Modellierung der Zustände in der
+     Erdatmosphäre zum Zweck einer Langzeitvorhersage. Allerdings betonte
+     Lorenz, dass das von ihm entwickelte System allenfalls für sehr begrenzte
+     Parameterbereiche von a, b und c realistische
+      Resultate liefert.'' (siehe https://de.wikipedia.org/wiki/Lorenz-Attraktor).
+   \item Das Volterra-Lotka System der Populationsdynamik
+     \begin{align*}
+       \dot x=&x-xy\\
+       \dot y=&-y+xy
+     \end{align*}
+  \end{enumerate}
+\end{example}
+Finden Sie ein Darstellung der Phasenraumbilder der drei Systeme aus obigen
+Beispiel!
+\section{Ordnungsparametergleichungen}
+Wir betrachten folgendes System gewöhnlicher Differentialgleichungen erster
+Ordnung und ersten grades in den Variablen $u(t)$ und $s(s)$.
+\begin{align} 
+  \dot{u}&=\alpha u-us
+  \label{eq:unstable}\\
+  \dot{s}&=-\beta s+u^2
+  \label{eq:stable}
+\end{align}
+Wir nehmen an $\alpha\ge0$ und $\beta>0$. Wir nennen $u$ die instabile und $s$
+die stabile Mode - das erklären wir später genauer. Erstmal wollen wir die $s$
+durch die $u$ ausdrücken, indem wir so tun, als wären letztere bekannt. Dann
+erhalten wir - Variation der Konstanten anwenden - folgende Lösung
+\begin{equation}
+  s(t)=\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}u(\tau)^2d\tau
+  \label{eq:stabelsolu}
+\end{equation}
+mit der Anfangsbedingung $\lim\limits_{t\rightarrow -\infty}s(t)=0$.
+\subsection{Adiabatische Näherung}
+Wenn wir (\ref{eq:stabelsolu}) partiell integrieren, erhalten wir
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t)-\frac{1}{\beta}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  2(u(\tau)\dot u(\tau))d\tau
+  \label{eq:sofueliminated}
+\end{equation}
+Nehmen wir nun an, dass $u(t)$ sich wenig ändere, so daß $\dot u$ als sehr
+klein angenommen werden kann, dann liegt es nahe das Integral in
+(\ref{eq:sofueliminated}) zu vernachlässigen. Damit erhalten wir
+
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t),
+  \label{eq:sapprox}
+\end{equation}
+was wir auh sofort aus (\ref{eq:stable}) erhalten würden, wenn wir $\dot s=0$
+setzten.
+
+Unter welchen Bedingungen sich das  Integral in (\ref{eq:sofueliminated})
+vernachlässigen lässt, müssen wir hier noch genauer untersuchen. Wir betrachten
+das maximum des Ausdrucks $Max(u(\tau)\dot u(\tau))=(|u||\dot u|)_{max}$ in
+(\ref{eq:sofueliminated}) und schreiben dieses vor das Integral anstatt
+$(u(\tau)\dot u(\tau))$ und integrieren. Dann ist unsere Näherung sicherlich
+gut, wenn gilt
+\begin{equation}
+\frac{(|u||\dot u|)_{max}}{\beta^2}<<\frac{|u|^2}{\beta}
+  \label{eq:BedElim}
+\end{equation}<++>
+oder $ |\dot u|_{max}<<\beta|u|$. Dies bedeutet, dass $u$ sich langsam ändert
+im Vergleich zur durch die Diffusionskonstante $\beta$ vorgeschriebenen
+Änderung. Dies ist die Interpretation der adiabatischen Näherung.
+\subsection{Exakte Eliminationsprozedur}
+Um die wesentlichen Merkmale diese Prozedur heraus zu arbeiten, wählen wir das
+Beispiel $\alpha=0$, so dass (\ref{eq:stable}) ersetzt wird durch $\dot u=-us$.
+Wir nutzen jetzt die immer noch exakte Gleichung (\ref{eq:sofueliminated}) und
+substituieren darin $\dot u$ mit $-us$ und erhalten
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  (u(\tau)^2 s(\tau))d\tau
+  \label{eq:soluelimexact}
+\end{equation}
+(\ref{eq:soluelimexact}) ist eine Integralgleichung für $s(t)$, die wir durch
+Iteration lösen. In niedrigster Ordnung drücken wir $s(t)$ durch die Näherung
+in (\ref{eq:sapprox}) aus und erhalten
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  \frac{1}{\beta}u(\tau)^4d\tau .
+  \label{eq:soluelim1st}
+\end{equation}
+Um den nächsten Iterationsschritt zu erhalten, integrieren wir
+(\ref{eq:soluelim1st}) partiell und erhalten 
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4-
+  \frac{8}{\beta^3}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  (u(\tau)\dot u(\tau))d\tau .
+  \label{eq:soluelim2nd}
+\end{equation}
+Unter dem Integral ersetzen wir wieder $\dot u$ wie oben und ersetzen $s$ durch
+den zweiten Iterationsschritt (\ref{eq:soluelim2nd}) in dem wir das Integral
+vernachlässigt haben und erhalten
+\begin{equation}
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4-
+  \underbrace{
+  \frac{8}{\beta^3}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  \left(\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4\right)d\tau .
+  }_{I}
+  \label{eq:soluelim2ndrep}
+\end{equation}
+Wir behalten vom Integral $I$ aus (\ref{eq:soluelim2ndrep}) zunächst nur die
+Terme 6-ter Ordnung
+\[ 
+  I=\frac{8}{\beta^4}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
+  u^6(t)d\tau+\text{ h.O.}
+\]
+Eine erneute partielle Inegration führt auf
+\[ 
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4+\frac{8}{\beta^5}u(\tau)^6+\dots
+\]
+Es ist offensichtlich, dass wir diese Iteration immer weiter betreiben und
+somit $s(t)$ als eine Potenzreihe in $u$ ausdrücken können. Wenn $u$ klein
+genug ist, können wir erwarten für $s$ durch wenige Termin in $u$ annähern zu
+können.
+
+Dieses Verfahren können wir auch für allgemeinere Gleichungen als $\dot u=-us$,
+wie in unserem Beispiel verwendet, anwenden. Für diese Diskussion sei auf die
+Literatur verwiesen. Was wir hier festhalten wollen, ist die Tatsache, dass
+unter der oben genannten Bedingung (\ref{eq:BedElim}), eine adiabatische
+Elimination der stabilen Moden eines Systems durchgeführt werden kann. 
+
+Noch einmal: warum nennen wir $s$ eine stabile Mode? $\beta$ ist sehr groß und
+daher relaxiert $s$ sehr schnell auf den stationären Wert, der nun aber durch
+$u$ vorgegeben wird. Das ist eine sehr vage Behauptung und diese muss daher
+durch eine genaue Untersuchung der Konvergenz der Potenzreihenentwicklung
+geklärt werden.
+\section{Numerische Verfahren}
+Nichtlineare Differentialgleichungen sind im Allgemeinen nicht analytisch
+lösbar. D.h.\ es ist nicht möglich eine geschlossene Lösung anzugeben. Daher
+ist es sinnvoll, sich mit numerischen Lösungsmethoden zu beschäftigen.  Wir
+wollen hier nur eine begrenzte auswahl ansprechen. Für ingneieurstechnische
+Anwendungen steht ganz klar das Verhältnis zwischen Aufwand für deren
+Erarbeitung und Genauigkeit der Ergebnisse im Vordergrund. Deshalb gibt es
+keine absolute Aussage, welche Methode die beste ist.
+
+Wir gehen von einem Anfangswertproblem einer Differentialgleichung 1. Ordnung
+und 1. Grades aus, wobei hierin auch System erster Ordnung eingeschlossen
+seien. Wir schreiben das Anfangswertproblem eines Systems, wie es in
+(\ref{eq:NLDGLSystem}) dargestellt ist als
+\begin{align}
+  \dot{\mathbf{y}}(t) =& \mathbf{f}(\mathbf{y}(t),t) \label{eq:yNLSystem}\\
+  \mathbf{y}(0)       =& \mathbf{y}_{0}\nonumber
+\end{align}
+\subsection{Die Eulersche Methode}
+Wir nehmen an $y(t)$ sei gekannt, dann können wir $y(t+\Delta t)$ in eine
+Potenzreihe entwickeln und erhalten bei Vernachlässigung aller Terme 2. und
+höherer Potenzen in $\Delta t$ 
+\begin{equation}
+  y(t+\Delta t) = y(t)+\Delta t f(y(t),t)+O(\Delta t^2),
+  \label{eq:Euler}
+\end{equation}
+wobei $O(\Delta t^2)$ für quadratische und höhere Terme steht.
+
+\begin{note}{Fehler}
+  Keine Angabe eines Algorithmus zur Lösung einer DGL ist sinnvoll, wenn nicht
+  gleichzeitig auch zumindest die Fehlerordnung, wenn nicht gar der lokale
+  Dikretisisierungsfehler angegeben ist.
+\end{note}
+Wie groß ist der Fehler, den wir bei der Lösung machen, wenn wir
+(\ref{eq:Euler}) für gleiche Zeitabstände zu diskreten Zeitpunkten
+$t_i$ anwenden? Zumindest in einem Zeitschritt gelingt uns sofort eine Aussage.
+Angenommen $Y_i$ sei die exakte Lösung der Differentialgleichung zum Zeitpunkt
+$t_i$. Dann können wir $Y_{i+1}$ ebenfalls durch eine Taylorreihe darstellen
+\begin{equation}
+  Y_{i+1}=Y_{i}
+  +\underbrace{\Delta t \left(\frac{dY}{dt}\right)_i}_{f(Y_i,t_i)}
+  +\underbrace{\frac{\Delta t^2}{2}\left(\frac{d^2Y}{dt^2}\right)_i}_{\dot{f}(Y_i,t_i)}+\dots
+  \label{eq:TaylorExact}
+\end{equation}
+Wobei wir jetzt auf der rechten Seite von (\ref{eq:TaylorExact}) $Y_i$ durch
+$y_i$ ersetzen und von (\ref{eq:Euler}) die Potenzreihe (\ref{eq:TaylorExact})
+abziehen. Damit erhalten wir für den Fehler
+\begin{equation}
+  y_{i+1}-Y_{i+1}=E_{i+1}=-\frac{\Delta t^2}{2}\dot{f}(Y_i,t_i)O(\Delta t^3)
+  \label{eq:LokalerFehler}
+\end{equation}
+Dies ist der Fehler pro Zeitschritt, auch lokaler Diskretisierungfehler genannt.
+\subsection{Runge Kutta Methode}
+Wir gehen von einer zentralen finiten Differenzenformel aus. Das bedeutet, dass
+die finite Differenz die Ableitung zum Zeitpunkt $t_i+\frac{\Delta t}{2}$
+nähert. Wir erhalten
+\begin{equation}
+  \frac{y_{i+1}- y_i}{\Delta}=\dot{y}_{i+1/2}= f(y_{i+1/2},t_{i+1/2})
+  \label{eq:Midpoint}
+\end{equation}
+wobei aber $y_{i+1/2}$ unbekannt ist. Dies beschaffen wir uns durch
+Vorwärtsintegration um einen halben Zeitschritt $\frac{\Delta t}{2}$, somit
+\begin{align*}
+  \hat{y}_{i+1/2}=&y_i+\frac{\Delta t}{2}f(y_{i},t_{i})\\
+  t_{i+1/2} =& t_i+\frac{\Delta t}{2}\\
+  y_{i+1} =& y_{i}+\Delta t f(\hat{y}_{i+1/2},t_{i+1/2})
+\end{align*}
+Dies ist das sogenannte Runge-Kutta-Schema 2. Ordnung. Wir sehen, dass wir
+hier, im Gegensatz zum Euler-Methode die Funktion $f$ zweimal auswerten müssen.
+
+Ein verbessertes Schema ist die Runge-Kutta-Methode 4. Ordnung. Wie der name
+sagt, müssen wir hier die  Funktion $f$ viermal auswerten. Wir erhalten
+\begin{align}\label{eq:RK4order}
+  y_{i+1} =& y_{i}+\frac{\Delta t}{6}\left( 
+    f(y_i,t_i)+2f(\hat{y}_{i+1/2},t_{i+1/2})+2f(\hat{\hat{y}}_{i+1/2},t_{i+1/2})
+  +f(\hat{y}_{i+1},t_{i+1})\right)\\
+  \hat{y}_{i+1/2}=&y_i+\frac{\Delta t}{2}f(y_{i},t_{i})\nonumber\\
+  \hat{\hat{y}}_{i+1/2}=&y_i+\frac{\Delta t}{2}f(y_{i+1/2},t_{i+1/2})\nonumber\\
+  \hat{y}_{i+1}=&y_i+\Delta tf(\hat{\hat{y}}_{i+1/2},t_{i+1/2})\nonumber
+\end{align}
+
+\subsection{Mehrschrittmethoden}
+Die Idee hinter den Mehrschrittmethoden ist, (\ref{eq:NLDGLSystem}) zwischen
+$t$ und $t+\Delta t$ zu integrieren
+\begin{equation*}
+y(t_{n+s})=y(t_{n+s-1})+\int\limits_{t_{n+s}}^{t_{n+s-1}}f(y(t'),t')dt'
+\end{equation*}
+Das Integral gilt es nun zu nähern. Wir haben ja bereits Werte für $y(t_i)$ zu
+den Zeitpunkten $t_n$  bis $t_{n+s-1}$ berechnet. Wir nehmen  diese um eine
+Interpolationsfunktion aufzustellen, die wir nun in den Grenzen von $t_{n+s-1}$
+bis $t_{n+s}$ integrieren können. Wir nähern $f(y(t),t)$ z.B. durch ein
+Polynom $p(t)$ der Ordnung $s-1$, das wir dergestalt konstruiert haben, dass es an
+den Interpolationspunkten mit $f(y(t),t)$ übereinstimmt
+
+Das Interpolationspolynom ist analytisch integrierbar.  Explizit schreiben wir
+das folgendermaßen
+\[ p(t)=\sum\limits_{m=0}^{s-1}p_m(t)f(y(t_{n+m},t_{n+m}). \]
+Hierbei bezeichne $p_m(t)$ ein Polynom, das zum Zeitpunkt $t_{n+m}$ gleich 1
+ist und zu allen anderen Zeitpunkten 0. Damit nutzen wir $s$ vorhergehende
+Zeitschritte aus. Daher auch der Name Mehrschrittverfahren und hier im
+speziellen beschrieben ist die Methode von Adams.
+%\subsection{Predictor-Corrector Methode}
+%\subsection{Shooting- und Matrixmethode für Randwertprobleme}

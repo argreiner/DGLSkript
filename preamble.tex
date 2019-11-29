@@ -1,0 +1,109 @@
+\usepackage{a4wide}
+\usepackage[amssymb]{SIunits}
+\usepackage{units}
+\usepackage{pslatex}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage[fleqn]{amsmath}
+\usepackage{bbm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[many]{tcolorbox} %Achtung! Reihenfolge beachten
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} % needs: sudo apt-get install texlive-lang-german
+\usepackage[figurename=Abb.]{caption}
+\usepackage{calrsfs}
+\usepackage[titletoc]{appendix}
+\usepackage{thumbpdf}
+\usepackage[colorlinks,
+pdfpagelabels,
+pdfstartview = FitH,
+bookmarksopen = true,
+bookmarksnumbered = true,
+linkcolor = black,
+plainpages = false,
+hypertexnames = false,
+citecolor = black]{hyperref}
+% Define the headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL]{\leftmark}
+\fancyhead[OR]{\rightmark}
+\fancyfoot[OR]{\thepage}
+\fancyfoot[EL]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+% This is to have text flow around figures
+\usepackage{wrapfig}
+% Use tikz and pgfplot thru gnuplot
+\usepackage[miktex]{gnuplottex}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{decorations.pathreplacing,decorations.markings} %,snakes}
+\usetikzlibrary{shapes,arrows,chains,matrix,positioning,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\tikzset{darkstyle/.style={circle,draw,fill=gray!40}}
+%colours
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\newcommand{\dgreen}{\color{darkgreen}}
+\newcommand{\red}{\color{red}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\cyan}{\color{cyan}}
+\newcommand{\green}{\color{green}}
+\newcommand{\mbs}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}}
+% New command and renewcommand settings
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bs}{\boldsymbol}
+%\renewcommand{\thepage}{{\thepart}.\arabic{page}}
+%\addto\captionsgerman{\renewcommand{\figurename}{Abb.}}
+\newtheorem{theorem}{Satz}
+% New environment settings
+%
+\definecolor{myblue}{RGB}{0,163,243}
+\tcbset{mystyle/.style={ 
+%  breakable, 
+  enhanced, 
+  outer arc=0pt, 
+  arc=0pt, 
+  colframe=gray, 
+  colback=white, 
+  boxed title style={ 
+    colback=gray,
+    coltitle=black,
+    colbacktitle=gray,
+  }, 
+  outer arc=5pt,
+  title=Boxhead~\thetcbcounter, 
+  fonttitle=\sffamily 
+  } 
+}
+%
+\newtcolorbox[auto counter]{satz}[1]{mystyle, title=Satz~\thetcbcounter: #1}
+\newtcolorbox[auto counter]{exercise}[1]{mystyle, title=Aufgabe~\thetcbcounter: #1}
+\newtcolorbox[auto counter]{example}[1]{breakable,mystyle, title=Beispiel~\thetcbcounter: #1}
+\newtcolorbox{note}[1]{ enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm},
+  title={N.B.: #1},fonttitle=\bfseries,
+  boxed title style={size=small}}
+%
+\newboolean{showComments} %Textblöcke anzeigen
+\newcommand\Comment[1]{\ifthenelse{\boolean{showComments}}{\leavevmode\newline{\blue #1}\newline}{}}
+%
+\newboolean{showErratum} %Textblöcke anzeigen
+\newcommand\Erratum[1]{\ifthenelse{\boolean{showErratum}}{\leavevmode\newline{\red #1}\newline}{}} 
+%
+\title{\huge Lecture Notes\\
+\large für Studierende der Studiengänge Embedded Systems Engineering, Mirkosystemtechnik und Sustainable Systems Engineering}
+\author{Andreas Greiner und Lars Pastewka \\Professur für Simulation\\Institut für Mikrosystemtechnik\\Universität Freiburg}
+\parindent0em
+\parskip1ex
+\pagestyle{headings}
+\setcounter{secnumdepth}{3}
+% The following is better placed in the main document
+%\setboolean{showComments}{true}
+%\setboolean{showErratum}{true}
+%

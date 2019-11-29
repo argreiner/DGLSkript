@@ -1,0 +1,301 @@
+\chapter{Partielle Differentialgleichungen}
+Partielle Differentialgleichungen sind Differentialgleichungen mit mehr als
+einer unabhängigen Variablen.  Als Beispiel stellen wir uns ein zeitabhängiges
+Wärmetransportproblem in einer Dimension vor. Dieses wird mit einer
+Diffusionsgleichung für die lokale Temperatur des Systems dargestellt. Die
+Temperatur wird daher als Funktion zweier unabhängiger Variablen, der Zeit $t$
+und der räumlichen Position $x$ dargestellt
+\[\frac{\partial T(x,t)}{\partial t}=\kappa\frac{\partial^2 T(x,t)}{\partial x^2}\]
+dabei bezeichnet $\kappa$ den Wärmeleitungskoefizienten.
+\section{PDEs erster Ordnung}
+\Comment{Diesen Abschnitt ausbauen. Wir sollten uns damit beschäftigen, denn man
+kann auf die Maxwellschen Gleichungen und die Lösung mit der FDTD-Methode in
+der Simulation zurückkommen.}
+
+Wir werden uns nicht mit der Lösung von PDEs erster Ordnung beschäftigen,
+da beliebige Systeme von PDEs erster Ordnung, welche komplexität oder
+nichtlinearität sie auch aufweisen mögen, systematisch auf ein System
+gekoppelter ODEs erster Ordnung zurückgeführt werden können.
+Dies bedeutet: Gegeben eine beliebige Gleichung vom Typ $F(x,y;u,u_x,u_y)=0$
+(Beachte, dass wir in der Liste die unabhängigen und abhängigen Variablen
+durch ein Semikolon trennen), wobei $u_x$ ($u_y$) die partielle Ableitung der
+gesuchten Funktion $u(x,y)$ nach der unabhängigen Variablen $x$ ($y$)
+bezeichne. Diese Gleichung können wir auf ein System von ODEs transformieren.
+
+Dies bedeutet nicht, dass das Resultierende System von ODEs analytisch lösbar
+ist. In jedem Falle werden wir hier den Vorteil haben, dass der Formalismus zur
+Lösung eines Systems von ODEs angewandt werden kann, entweder die Analytik
+oder die Numerik.
+\section{PDEs zweiter Ordnung}
+Beispiele von PDEs zweiter Ordnung:\\
+Wellengleichung
+\begin{equation}
+	\frac{\partial^2 u}{\partial x^2}-\frac{\partial^2 u}{\partial t^2}=0
+\end{equation}
+Diffusionsgleichung
+\begin{equation}
+	\frac{\partial^2 u}{\partial x^2}-\frac{\partial u}{\partial t}=0
+\end{equation}
+Laplacegleichung
+\begin{equation}
+	\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0
+\end{equation}
+
+Allgemeine Form linearer PDEs zweiter Ordnung.
+\begin{equation}
+	a(x,y) \frac{\partial^2 u}{\partial x^2}+
+	b(x,y)\frac{\partial^2 u}{\partial x\partial y}+
+	c(x,y)\frac{\partial^2 u}{\partial y^2}=F(x,y;u,u_x,u_y)
+\end{equation}
+Nimm an, dass $F=0$ und $a$, $b$, $c$ konstant seien.
+\begin{equation}
+        a\frac{\partial^2 u}{\partial x^2}+b\frac{\partial^2 u}{\partial x\partial y}+
+        c\frac{\partial^2 u}{\partial y^2}=0
+	\label{eqn2ndoconst}
+\end{equation}
+Mache den Ansatz $u(x,y)=f(mx+y)$ und setze in (\ref{eqn2ndoconst}) ein. Dies führt zu
+\begin{eqnarray}
+	\frac{\partial^2 u}{\partial x^2}&=&m^2f''\label{eqn2oxx}\\
+	\frac{\partial^2 u}{\partial x\partial y}&=&mf''\label{eqn2oxy}\\
+	\frac{\partial^2 u}{\partial y^2}&=&f'' \label{eqn2oyy}
+\end{eqnarray}
+Einsetzen von (\ref{eqn2oxx}-\ref{eqn2oyy}) in (\ref{eqn2ndoconst}) ergibt
+\begin{equation}
+	(am^2+bm+c)f''=0\label{eqndiscr}
+\end{equation}
+(\ref{eqndiscr}) hat zwei Faktoren, die Null sein können damit eine Lösung gefunden werden kann.
+Diese zwei Fälle sind:
+\begin{enumerate}
+	\item $f''=0$ was $f(mx+y)=f_0+mx+y$ ergibt. Das ist nicht die allgemeinste Lösung.
+	\item $am^2+bm+c=0$ ergibt zwei Lösungen für $m$
+	\begin{equation}
+		m_{1/2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+		\label{eqnsol4m}
+	\end{equation}
+\end{enumerate}
+Für (\ref{eqnsol4m}) haben wir drei Fälle zu unterscheiden:
+\begin{description}
+	\item[Der Fall $b^2-4ac>0$:] ergibt die so genannte hyperbolische PDE.\\ Es
+		gibt nach (\ref{eqnsol4m}) zwei reelle Lösungen für $m$ in
+		diesem Fall. Daher können wir die Lösung für
+		$u(x,y)=F(m_1x+y)+G(m_2x+y)=F(\xi)+G(\eta)$ bestimmen. Mit
+		$\xi=m_1x+y$ und $\eta=m_2x+y$ bekommen wir
+		\begin{eqnarray}
+			a\frac{\partial^2 u}{\partial x^2}&=&a\frac{\partial}{\partial x}\left(
+			\frac{\partial u}{\partial\xi}\frac{\partial\xi}{\partial x}+
+			\frac{\partial u}{\partial\eta}\frac{\partial\eta}{\partial x}\right)
+			=a\frac{\partial}{\partial x}\left(
+                        \frac{\partial u}{\partial\xi}m_1+\frac{\partial u}{\partial\eta}m_2\right)=\nonumber\\
+			&=&a\left(\frac{\partial^2 u}{\partial\xi^2}m_1^2+
+			2\frac{\partial^2 u}{\partial\xi\partial\eta}m_1m_2+
+			\frac{\partial^2 u}{\partial\eta^2}m_2^2\right)\nonumber\\
+			a\frac{\partial^2 u}{\partial x^2}&=&a\left(m_1\frac{\partial}{\partial\xi}+
+			m_2\frac{\partial}{\partial\eta}\right)^2u\label{eqnad2udx2}
+		\end{eqnarray}
+	    	Für das gemischte Glied zweiter Ordnung erhalten wir
+		\begin{eqnarray}
+			b\frac{\partial^2 u}{\partial x\partial y}&=&b\left[
+			\left(\frac{\partial^2 u}{\partial\xi^2}+
+			      \frac{\partial^2 u}{\partial\xi\partial\eta}\right) m_1+
+			\left(\frac{\partial^2 u}{\partial\eta^2}+
+                              \frac{\partial^2 u}{\partial\xi\partial\eta}\right) m_2\right]\nonumber\\
+			&=&-\frac{b^2}{a}\frac{\partial^2 u}{\partial\xi\partial\eta}+
+			   bm_1\frac{\partial^2 u}{\partial\xi^2}+
+			   bm_2\frac{\partial^2 u}{\partial\eta^2}\label{eqnd2udxdy}
+		\end{eqnarray}
+		Die zweite Ableitung nach $y$ lautet in den neuen Variablen $\xi$ und $\eta$
+		\begin{equation}
+			c\frac{\partial^2 u}{\partial y^2}=c\left[\frac{\partial}{\partial y}
+			\left(\frac{\partial u}{\partial\xi}+\frac{\partial u}{\partial\eta}\right)\right]
+			=c\left(\frac{\partial}{\partial\xi}+\frac{\partial}{\partial\eta}\right)^2u
+			\label{eqnd2udy2}
+		\end{equation}
+		Eingesetzt in (\ref{eqn2ndoconst}) ergibt
+		\begin{eqnarray}
+			\lefteqn{
+			\underbrace{\left(am_1^2+bm_1+c\right)}_{=0}
+			\frac{\partial^2 u}{\partial\xi^2}+
+			\underbrace{\left(am_2^2+bm_2+c\right)}_{=0}
+			\frac{\partial^2 u}{\partial\eta^2}+
+			}\nonumber\\[1ex]
+			&&\left(2m_1m_2+bm_1+bm_2+2c\right)\frac{\partial^2 u}{\partial\xi\partial\eta}=0
+			\label{eqn2ndoxieta}
+		\end{eqnarray}
+		Die ersten zwei Klammern in (\ref{eqn2ndoxieta}) verschwinden
+		nach (\ref{eqndiscr}) und daher bleibt die Gleichung
+		\begin{equation}
+			\frac{\partial^2 u}{\partial\xi\partial\eta}=0
+			\label{eqnd2udxideta0}
+		\end{equation}
+		Diese Gleichung ist äquivalent zu (\ref{eqn2ndoconst}) in den neuen Variablen
+		$\xi$ und $\eta$. Integration von (\ref{eqnd2udxideta0}) nach $\xi$ und $\eta$ ergibt
+		die Lösung $u(\xi,\eta)=F(\xi)+G(\eta)$, wobei $F$ und $G$
+		beliebige Funktionen sind, die durch die Randbedingungen
+		bestimmt sind und nur der Bedingung unterliegen, dass sie zwei
+		mal differenzierbar sein müssen.
+	\item[Der Fall $b^2-4ac=0$ mit $b\ne 0$ und $a\ne 0$:] führt zu einer parabolischen PDE.\\
+		Es gibt nur eine Lösung für (\ref{eqndiscr}) und wir erhalten
+		$m=-b/(2a)$. Wir unterziehen (\ref{eqn2ndoconst}) der folgenden
+		Variablentransformation $\xi=m x + y$ and $\eta=y$ und erhalten
+		\begin{equation}
+			\left(am^2+bm+c\right)\frac{\partial^2 u}{\partial\xi^2}+
+			(bm+2c)\frac{\partial^2 u}{\partial\xi\partial\eta}+
+			c\frac{\partial^2 u}{\partial\eta^2}=0
+			\label{eqntranfparab}
+		\end{equation}
+		Für $c\ne 0$ bekommen wir
+		\begin{equation}
+			\frac{\partial^2 u(\xi,\eta)}{\partial\eta^2}=0
+			\label{eqnparab}
+		\end{equation}
+		Durch Integration bezüglich der Variablen $\eta$ erhalten
+		wir die allgemeine Lösung von (\ref{eqnparab}) gegeben durch
+		$u(\xi,\eta)=F(\xi)+\eta G(\xi)$ und welche in den ursprünglichen
+		Variablen lautet:
+		\begin{equation}
+			u(x,y)=F(mx+y)+yG(mx+y)
+			\label{eqnsolgenparab}
+		\end{equation}
+		Die eindimensionale Diffusionsgleichung ist ein Beispiel für
+		eine parabolische PDE. Sie ist gegeben durch
+		$a=b=0$. Beachte: die Diffusionsgleichung ist nicht in unserer
+		Liste der Spezialfälle enthalten, da sie auch noch eine erste
+		Ableitung enthält.
+	\item[Der Fall $b^2-4ac<0$:] führt zu einer elliptischen PDE.\\
+		Hier haben wir $m_2=m_1^*$ vorliegen. Die allgemeine Lösung
+		ist damit gegeben als
+		\begin{equation}
+			u(x,y)=F(m_1x+y)+G(m_2x+y)=F(\xi)+G(\xi^*)
+			\label{eqnsolell}
+		\end{equation}
+		Mit $\xi=v_1+iv_2$ erhalten wir die Gleichung
+		\begin{equation}
+			\frac{\partial^2 u}{\partial v_1^2}+\frac{\partial^2 u}{\partial v_2^2}=0
+			\label{eqnelliptic}
+		\end{equation}
+		Eine Beispiel für eine elliptische Gleichung im
+		Zweidimensionalen wie (\ref{eqnelliptic}) ist die
+		Laplacegleichung.
+\end{description}
+Diese drei Typen linearer PDEs 2.\ Ordnung lassen sich für manche
+Problemstellungen auch analytisch lösen. Wir geben im Folgenden ein
+Beispiel hierzu.
+
+\begin{example}{Wellengleichung}
+Wir lösen die eindimensionale Wellengleichung.
+\begin{equation}
+	\frac{\partial^2 u}{\partial x^2}-\frac{1}{c^2}\frac{\partial^2 u}{\partial t^2}=0
+	\label{eqn1Dwaveeqn}
+\end{equation}
+durch separation der Variablen. Dafür machen wir den Ansatz $u(x,t)=X(x)T(t)$, was zu
+\begin{equation}
+	\frac{1}{X}\frac{\partial^2 X}{\partial x^2}=\frac{1}{c^2}\frac{1}{T}\frac{\partial^2 T}{\partial t^2}
+	\label{eqnseparate}
+\end{equation}
+führt.  In (\ref{eqnseparate}) hängt die linke Seite nur von der Variablen $x$ ab, während
+die rechte Seite nur von $t$ abhängt. Für beliebige $x$ und $t$ kann diese
+Gleichung nur erfüllt werden, wenn beide Seiten gleich einer Konstanten sind
+und wir erhalten somit
+\begin{equation}
+        \frac{1}{X}\frac{\partial^2 X}{\partial x^2}=-k^2=\frac{1}{c^2}\frac{1}{T}\frac{\partial^2 T}{\partial t^2}
+\end{equation}
+Dies ergibt die folgenden zwei Gleichungen
+\[\frac{\partial^2 X}{\partial x^2}+k^2X=0\]
+mit der Lösung $X(x)=e^{\pm ikx}$ und
+\[\frac{\partial^2 T}{\partial t^2}+\omega^2T=0\]
+mit der Lösung $T(t)=e^{\pm i\omega t}$, wobei wir $\omega^2=c^2k^2$ gesetzt
+haben.  Dieses Beispiel braucht zur Ergänzung Anfangsbedingungen, damit wir
+eine Lösung finden können.
+\end{example}
+\subsection{Die Fundamentallösung oder Green'sche Funktion}
+Die Idee hinter der Fundamentallösung stammt aus der linearen Antwortheorie
+
+\begin{example}{Fundamentallösung der Diffusionsgleichung.}
+Wir wenden uns im zweiten Beispiel der Untersuchung der eindimensionalen
+Diffusionsgleichung zu. Wir wollen die Herleitung ihrer Fundamentallösung
+etwas genauer betrachten und uns einige Anwendung anschauen.
+
+Gegeben die Diffusionsgleichung in der Form
+\begin{equation} 
+	\frac{\partial u}{\partial t}-D\frac{\partial^2 u}{\partial x^2}=h(x,t)
+	\label{eqndiffusion}
+\end{equation}
+wobei $D$ die Diffusionskonstante bezeichne und die Inhomogenität $h(x,t)$ eine bekannte Funktion sei. Man denke sich diese als raumzeitliche Quelle für $u(x,t)$.
+
+Zunächst wollen wir $h(x,t)=0$ annehmen und die Anfangsbedingungen
+$u(x,0)=f(x)$ festlegen. Nun wenden wir eine Fouriertransformation bezüglich
+der Varaiablen $x$ an, der Raum sei unbegrenzt.  Bezüglich der Zeit $t$
+wenden wir eine Laplacetransformation an, da wir ein Anfangswertproblem
+vorliegen haben. Wir erhalten
+\begin{equation}
+	sU(k,s)-F(k)+k^2U(k,s)=0
+	\label{eqntransfdiff}
+\end{equation}
+In transformierten Variablen erhalten wir die Lösung 
+\[U(k,s)=\frac{F(k)}{s+k^2}\]
+Die Funktion $G(k,s)=(s+k^2)^{-1}$ ist die Antwortfunktion des Systems im
+Wellenzahlraum und im Frequenzbereich.
+Die inverse Laplacetransformation ergibt
+\[U(k,t)=e^{-k^2t}F(k)\]
+Wir nennen $G(k,t)=e^{-k^2t}$ die Antwortfunktion im Raum der Wellenzahlen und
+im Zeitbereich.  Um die Antwortfunktion zu bekommen, haben wir $F(k)=1$
+gewählt, was äquivalent dazu ist, dass wir $f(x)=\delta(x)$ setzen. Der
+letzte Schritt verlangt eine inverse Fouriertransformation und führt zu
+\begin{equation}
+	u(x,t)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{-k^2t}e^{ikx}dk
+	\label{eqninvfourierdiff}
+\end{equation}
+Quadratische Ergänzung im Exponenten führt zu
+\begin{equation}
+	-k^2t+ikx=-\left(k\sqrt{t}+\frac{ix}{2\sqrt{t}}\right)^2-\frac{x^2}{4t}
+	\label{eqncomplsquare}
+\end{equation}
+Daher erhalten wir
+\[
+u(x,t)=\frac{e^{-\frac{x^2}{4t}}}{2\pi}\int_{-\infty}^\infty e^{-\left(k\sqrt{t}+\frac{ix}{2\sqrt{t}}\right)^2}dk=\frac{e^{-\frac{x^2}{4t}}}{\sqrt{4\pi t}}
+\]
+Die Antwortfunktion oder Greensche Funktion oder Fundamentallösung der Diffusionsgleichung ist daher
+\begin{equation}
+	g(x,t)=\frac{1}{\sqrt{4\pi t}}e^{-\frac{x^2}{4t}}
+	\label{eqngreendiff}
+\end{equation}
+\end{example}
+
+\begin{example}{Fundamentallösung der Wellengleichung}
+Wir üben diese Vorgehensweise auch mit der Wellengleichung
+\begin{equation}
+	\frac{\partial^2 u}{\partial t^2}-\frac{\partial^2 u}{\partial x^2}=q(x,t)
+	\label{eqnwave}
+\end{equation}
+Die benötigten Anfangsbedingungen lauten $u(x,0)=f(x)$ und $\left.\frac{\partial
+u(x,t)}{\partial t}\right|_{t=0}=g(x)$. Die Fourier- und Laplacetransformierte
+ergeben die Lösung im Frequenzbereich und dem Raum der Wellenzahlvektoren 
+\begin{equation}
+	U(k,s)=\frac{Q(k,s)}{s^2+k^2}+\frac{G(k)+sF(k)}{s^2-k^2}
+	\label{eqnuofkands}
+\end{equation}
+Wir wählen $g(x)=f(x)=0$ und $q(x,t)=\delta(x-x')\delta(t-t')$. Die
+Transformierte der Deltafunktionen lautet
+\[ Q(k,s)=e^{ikx'-st'}\]
+{\bf Achtung:} was bedeutet diese Wahl der Anfangsbedingungen und der Inhomogenität?
+
+Nun müssen wir die inverse Fouriertransformation und die inverse Laplacetransformation anwenden, um die 
+Greensche Funktion $G(x,t;x',t')$ zu bekommen und wir erhalten
+\begin{equation}
+	G(x,t;x',t')=\frac{1}{2}H\left(t-t'-(x-x')\right)H\left(t-t'+(x-x')\right)=G(x-x',t-t')
+	\label{eq:GFwave}
+\end{equation}
+\end{example}
+
+\begin{example}{Fundamentallösung der Poissongleichung}
+Verifiziere durch Anwendung der Fouriertransformation auf die Poissongleichung
+\begin{equation}
+	\nabla^2 V(\mbf{x})=-4\pi\rho(\mbf{x})
+	\label{eq:Poisson}
+\end{equation}
+dass deren Fundamentallösung gegeben ist durch 
+\begin{equation}
+	G_0(\mbf{x},\mbf{x}')=\frac{1}{|\mbf{x}-\mbf{x}'|}
+	\label{eq:FSPoisson}
+\end{equation}
+\end{example}
