@@ -357,13 +357,13 @@ Any interval $[a,b]$ can be mapped to the unit interval $[0,1]$ by the transform
 \]
 The Bernstein basis polynomials are defined on the unit interval as
 \begin{equation}
-	 b_{\nu,n}(x) = {n \choose \nu} x^{\nu} (1-x)^{n-\nu}, \qquad \nu=0,\ldots,n. 
+	 b_{\nu,n}(x) = \binom{n}{\nu} x^{\nu} (1-x)^{n-\nu}, \qquad \nu=0,\ldots,n. 
 	\label{eq:Bernsteinbasis}
 \end{equation}
 They show important properties that will be used for B\'ezier splines. The
 Berstein basis polynomials of same order $n$ add up to unity. This can be seen
 very easily. Look at the following term
-\[ 1=\left(x+(1-x)\right)^n=\sum_{i=0}^n{n\choose i}x^i(1-x)^{n-i}\]
+\[ 1=\left(x+(1-x)\right)^n=\sum_{i=0}^n \binom{n}{i} x^i(1-x)^{n-i}\]
 The right hand side is the sum over the Bernstein basis polynomials of the same
 order $n$.
 \begin{figure}[!ht]
@@ -381,7 +381,7 @@ line, a so called linear B'ezier curve, to read
 A cubic B\'ezier spline reads
 \[     \mathbf{B}(t)=(1-t)^3\mathbf{P}_0+3(1-t)^2t\mathbf{P}_1+3(1-t)t^2\mathbf{P}_2+t^3\mathbf{P}_3 \mbox{ , } t \in [0,1]\]
 A B\'ezier curve of degree $n$ reads
-\[ \mathbf{B}(t)=\sum_{i=0}^n {n\choose i}(1-t)^{n-i}t^i\mathbf{P}_i =(1-t)^n\mathbf{P}_0+{n\choose 1}(1-t)^{n-1}t\mathbf{P}_1+\cdots+t^n\mathbf{P}_n \mbox{ , } t \in [0,1]\]
+\[ \mathbf{B}(t)=\sum_{i=0}^n \binom{n}{i}(1-t)^{n-i}t^i\mathbf{P}_i =(1-t)^n\mathbf{P}_0+\binom{n}{1}(1-t)^{n-1}t\mathbf{P}_1+\cdots+t^n\mathbf{P}_n \mbox{ , } t \in [0,1]\]
 Observe that in order to adjust the path the curve must follow you have to move
 the control points. The extension to surfaces is straight forward
 \[ x(s,t)=\sum_{i=0}^n \sum_{j=0}^m B_i^n(s) \; B_j^m(t) \; \mathbf{k}_{i,j}\]
@@ -389,13 +389,13 @@ where the $B_i^n(\nu)$ are the Bernstein polynomials and the $\mathbf{k}_{i,j}$ 
 \subsection{Legendre Polynomials}
 Legendre polynomials are defined as
 \begin{equation}
-	    P_n(x) = {1 \over 2^n n!} {d^n \over dx^n } \left[ (x^2 -1)^n \right]
+	    P_n(x) = \frac{1}{2^n n!}\frac{d^n}{dx^n } \left[ (x^2 -1)^n \right]
 	\label{eq:legendre}
 \end{equation}
 They derive from the solution of the following differential equation
-\[     {d \over dx} \left[ (1-x^2) {d \over dx} P_n(x) \right] + n(n+1)P_n(x) = 0\]
+\[\frac{d}{dx} \left[ (1-x^2)\frac{d}{dx} P_n(x) \right] + n(n+1)P_n(x) = 0\]
 Legendre polynomials are orthogonal on the interval $[-1,1]$, i.e.
-\[     \int_{-1}^{1} P_m(x) P_n(x)\,dx = {2 \over {2n + 1}} \delta_{mn} \]
+\[     \int_{-1}^{1} P_m(x) P_n(x)\,dx = \frac{2}{2n + 1} \delta_{mn} \]
 holds.
 
 The first six Legendre polynomials read
@@ -476,8 +476,9 @@ It is
 The integral over the interval between $x_{i-1}$ and $x_{i+1}$ can now be written as
 \[ A_i =I(x_{i+1})-I(x_{i-1})\]
 If we do this for all intervals and sum, we get
-\[\int_a^bf(x)dx=\frac{\Delta x}{3}\left[f(a)+f(b)+4\sum_{ {i=1}\atop {odd}}^{n-1}
-A_i+2 \sum_{ {i=2}\atop {even}}^{n-2}A_i\right]+{\cal O}(\Delta x^4)\]
+\[\int_a^bf(x)dx=\frac{\Delta x}{3} \left[
+f(a)+f(b)+4 \sum_{\substack{i=1\\ odd}}^{n-1} 
+A_i+2 \sum_{\substack{i=2 \\ even}}^{n-2}A_i\right]+{\cal O}(\Delta x^4)\]
 
 \subsection{Gau{\ss} quadrature}
 This very precise method uses non uniformly distributed discretization points,
@@ -538,8 +539,8 @@ from the quadrature formula
 Now, the interpolation quadrature
 formula of $x_k$ has accuracy of $2n-1$, and delivers the exact value for the
 polynomial $L_k(x)^2$. Therefore we have
-\[ w_k=\int_{-1}^1L_k(x)^2dx=\int_{-1}^1\prod_{j=1\atop j\neq
-k}\left(\frac{x-x_j}{x_k-x_j}\right)^2=\sum_{\mu=1}^nw_\mu L_k(x_\mu)^2\]
+\[ w_k=\int_{-1}^1L_k(x)^2dx=\int_{-1}^1\prod_{\substack{j=1\\ j\neq
+k}}\left(\frac{x-x_j}{x_k-x_j}\right)^2=\sum_{\mu=1}^nw_\mu L_k(x_\mu)^2\]
 
 This gives a recipe how the $x_k$ and the $w_k$ must be chosen to get the
 desired accuracy.

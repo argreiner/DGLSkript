@@ -42,6 +42,7 @@ citecolor = black]{hyperref}
 \usepackage{gnuplot-lua-tikz}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 \usetikzlibrary{decorations.pathreplacing,decorations.markings} %,snakes}
 \usetikzlibrary{shapes,arrows,chains,matrix,positioning,scopes}
 \usetikzlibrary{positioning}
@@ -96,9 +97,9 @@ citecolor = black]{hyperref}
 \newboolean{showErratum} %Textblöcke anzeigen
 \newcommand\Erratum[1]{\ifthenelse{\boolean{showErratum}}{\leavevmode\newline{\red #1}\newline}{}} 
 %
-\title{\huge Lecture Notes\\
-\large für Studierende der Studiengänge Embedded Systems Engineering, Mirkosystemtechnik und Sustainable Systems Engineering}
-\author{Andreas Greiner und Lars Pastewka \\Professur für Simulation\\Institut für Mikrosystemtechnik\\Universität Freiburg}
+%\title{\huge Lecture Notes\\
+%\large für Studierende der Studiengänge Embedded Systems %Engineering, Mirkosystemtechnik und Sustainable Systems %Engineering}
+%\author{Andreas Greiner und Lars Pastewka \\Professur für %Simulation\\Institut für Mikrosystemtechnik\\Universität %Freiburg}
 \parindent0em
 \parskip1ex
 \pagestyle{headings}
@@ -106,4 +107,6 @@ citecolor = black]{hyperref}
 % The following is better placed in the main document
 %\setboolean{showComments}{true}
 %\setboolean{showErratum}{true}
-%
+\parindent0em
+\parskip1ex
+\pagestyle{headings}
