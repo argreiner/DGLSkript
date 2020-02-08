@@ -17,11 +17,21 @@ f(x)=\sum_{n=-\infty}^{n=\infty}f_n e^{ik_n x}\mbox{, mit }k_n=\frac{2\pi n}{L}
 Die Funktionen $e^{ik_nx}$ sind auf dem Intervall $I=[-L/2,L/2]$ orthogonal zueinander, d.h.
 es gilt
 \[ \int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_nx}e^{ik_mx}dx=L\delta_{mn}\]
-Damit erhalten wir 
+Indem wir in
+\begin{equation}\label{eq:fm}
+f_m=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx
+\end{equation}
+(\ref{eq:fourierreihe}) einsetzen erhalten wir 
 \begin{equation}\label{eq:fm}
 f_m=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx=\frac{1}{L}
 \sum_{n=-\infty}^{n=\infty}f_n\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}e^{ik_nx}dx
+=L\delta_{mn}f_n
 \end{equation}
+Es gehören also die beiden Darstellungen im Raum der Wellenzahlen und dem Ortsraum zusammen
+\begin{align}
+  f(x)&=\sum_{n=-\infty}^{n=\infty}f_n e^{ik_n x}\\
+f_m&=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx
+\end{align}
 \begin{note}{Quadratintegrabel}
 Als quadratintegrabel wird eine reelle oder komplexwertige Funktion $f(x)$ auf
 einem Intervall $I=[a,b]$ dann bezeichnet, wenn das Integral des Quadrats des
@@ -115,10 +125,9 @@ Dann ist die Fouriertransformierte
 \end{example}
 \section{Die Laplacetransformation}
 Wir betrachten die Fouriertransformation der auf einem Halbraum definierten
-Funktion $f(t)\mbox{, }t\in[0,\infty)$. Voraussetzung ist, dass $f(t)$ im
-Intervall $[0,\infty)$ quadratintegrabel ist. Dann ist das die Funktion
-$f(t)\cdot e^{-tx}$ in diesem Intervall erst recht. Also ist deren
-Fouriertransformation
+Funktion $f(t)\mbox{, }t\in[0,\infty)$. Voraussetzung ist, dass $f(t)\cdot
+e^{-tx}$, für $x>0$ im Intervall $[0,\infty)$ quadratintegrabel ist. Also ist
+deren Fouriertransformation
 \begin{equation}\label{eq:prelaplacetrafo}
 {\cal F}\{e^{-xt}f(t)\}=F(y)=\int_0^\infty e^{-iyt}e^{-xt}f(t)dt
 \end{equation}
@@ -166,7 +175,7 @@ wobei wir $f(t)=0$ für $t<0$ verlangen und $\gamma$ so wählen, dass alle
 Singularitäten links davon liegen. Wir integrieren also entlang der Geraden
 $s=\gamma+iy$ von $y=-\eta$ bis $y=+\eta$ und machen den Gernzübergang für
 $\eta\rightarrow\infty$. Die Berechnung des Integrals lässt sich wesentlich
-einfacher gestalten mit der sogenannten Bromwich-Kurve Die Motivation hierfür
+einfacher gestalten mit der sogenannten Bromwich-Kurve. Die Motivation hierfür
 ist, dass man den Residuensatz ausnutzen kann. Denn wenn wir die in Abbildung
 \ref{fig:Bromwich} anschauen, dann sehen wir dort den Integrationsweg, der in
 (\ref{eq:Laplaceinverse}) benutzt wurde. Diesen ergänzen wir mit dem
@@ -193,11 +202,11 @@ gilt, wobei $M>0$ und $k>0$ ist.
 
 \begin{example}{Anwendung}
 Wir wenden die Laplacetransformation auf das Anfangswertproblem
-  \begin{equation}
-    \frac{d^2y(t)}{dt^2}+ \frac{dy(t)}{dt}+2y(t)=g(t), 
-    \label{eq:LTexample1}
-  \end{equation}
-  \[\mbox{ mit } y(0)=y_0\mbox{ und } \left.\frac{dy(t)}{dt}\right|_{t=0}=\dot{y}_0\mbox{ an.}\]
+\begin{equation}
+  \frac{d^2y(t)}{dt^2}+ \frac{dy(t)}{dt}+2y(t)=g(t), 
+  \label{eq:LTexample1}
+\end{equation}
+\[\mbox{ mit } y(0)=y_0\mbox{ und } \left.\frac{dy(t)}{dt}\right|_{t=0}=\dot{y}_0\mbox{ an.}\]
 Durch partielle Integration können wir zeigen, dass gilt
 \[\int_{t_0}^\infty\frac{dy(t)}{dt}e^{-st}dt=
 \left.y(t)e^{-st}\right|_0^\infty+s\int_{t_0}^\infty y(t)e^{-st}dt=-y_0+sY(s)\]

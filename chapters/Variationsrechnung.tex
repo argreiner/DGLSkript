@@ -177,20 +177,28 @@ als
   \lim_{dx_0\rightarrow 0}\lim_{\Delta\varphi\rightarrow 0}
       \frac{F[\varphi+\varepsilon(x_0,dx_0)\Delta\varphi]-F[\varphi]}{\Delta\varphi dx_0}
     =\frac{\delta F[\varphi]}{\delta\varphi(x_0)}
-\end{equation}
+\end{equation} 
 Diese Funktionalableitung oder Variation von $F$ ist die Varallgemeinerung der
 partiellen Ableitung $\frac{\partial F[\varphi]}{\partial\varphi_k}$.
 %
 \begin{figure}[!h] 
  \begin{center}
   \includegraphics[height=0.4\textwidth]{fig/Variation.jpeg}
-  \caption{Die Variation eines Funktionals der Funktion $\varphi(x)$. Wie ändert sich das Funktional, wenn 
-  die gesamte Funktion $\varphi(x)$ variiert wird?\label{fig:variation}}
+  \caption{Die Variation eines Funktionals der Funktion $\varphi(x)$. Wie
+    ändert sich das Funktional, wenn die gesamte Funktion $\varphi(x)$ variiert
+    wird? $F[\phi]$ ist der Wert den Funktionals,
+    $F[\phi+\varepsilon(x_0,dx_0)\Delta\varphi]$ ist der Wert des Funktionals
+    wenn wir in einer $\varepsilon$-Umgebung von $x_0$ die Funktion $\varphi$
+    um $\Delta\varphi$ ändern. Somit ist die Änderung des Funktionals $\Delta
+    F=F[\phi+\varepsilon(x_0,dx_0)\Delta\varphi]-F[\phi]$, wenn wir in einer
+    $\varepsilon$-Umgebung von $x_0$ die Funktion $\varphi$ um $\Delta\varphi$
+    ändern. Die gesamte Änderung ergibt sich nun durch das Integral über $\Delta
+    F$.\label{fig:variation}}
  \end{center}
 \end{figure}
 %
-Das Differential $\Delta F$ zu einer beliebigen differentiellen Veränderung $\delta\varphi$ erhalten wir
-durch Integration über alle $x_0$
+Das Differential $\Delta F$ zu einer beliebigen differentiellen Veränderung
+$\delta\varphi$ erhalten wir durch Integration über alle $x_0$
 \begin{equation}\label{eq:DifferentialVariation}
   \Delta F = \int\frac{\delta F[\varphi]}{\delta\varphi(x_0)}\Delta\varphi(x_0)dx_0,
 \end{equation}
@@ -202,47 +210,47 @@ wissen, folgendermaßen definiert ist
 %
 \subsection{Liste wichtiger Funktionalableitungen}\label{sec:WichtigeAbleitungen}
 \begin{itemize}
-  \item Sei $F[\varphi]=\varphi(y)$ dann erhalten wir
+  \item Sei $F[\varphi]=\varphi(\tilde{x})$ dann erhalten wir
     \[
-      \frac{\delta\varphi(y)}{\delta\varphi(x)}=\lim_{dx_0\rightarrow 0}\lim_{\Delta\varphi\rightarrow 0}
-      \frac{\varphi(y)+\varepsilon(y,x,dx_0)\Delta\varphi-\varphi(y)}{\Delta\varphi dx_0}=\lim_{dx_0\rightarrow 0}\frac{\varepsilon(y,x,dx_0)}{dx_0}=\delta(y-x)
+      \frac{\delta\varphi(\tilde{x})}{\delta\varphi(x)}=\lim_{dx_0\rightarrow 0}\lim_{\Delta\varphi\rightarrow 0}
+      \frac{\varphi(\tilde{x})+\varepsilon(\tilde{x},x,dx_0)\Delta\varphi-\varphi(\tilde{x})}{\Delta\varphi dx_0}=\lim_{dx_0\rightarrow 0}\frac{\varepsilon(\tilde{x},x,dx_0)}{dx_0}=\delta(\tilde{x}-x)
     \]
-  \item Mit der obigen Überlegung und $F[\varphi]=\varphi'(y)$ erhalten wir analog
+  \item Mit der obigen Überlegung und $F[\varphi]=\varphi'(\tilde{x})$ erhalten wir analog
     \[
-      \frac{\delta\varphi'(y)}{\delta\varphi(x)}=\frac{d}{dy} \frac{\delta\varphi(y)}{\delta\varphi(x)}=\frac{d}{dy}\delta(y-x)=-\frac{d}{dx}\delta(y-x)
+      \frac{\delta\varphi'(\tilde{x})}{\delta\varphi(x)}=\frac{d}{d\tilde{x}} \frac{\delta\varphi(\tilde{x})}{\delta\varphi(x)}=\frac{d}{d\tilde{x}}\delta(\tilde{x}-x)=-\frac{d}{dx}\delta(\tilde{x}-x)
     \]
     wobei hier wieder Vorsicht geboten ist mit der Wirkung der Ableitung einer
     Deltafunktion (siehe Abschnitt \ref{sec:Deltafunktion}).
-  \item Für $F[\varphi]=f(\varphi(y))$ erhalten wir mit Hilfe der Kettenregel
+  \item Für $F[\varphi]=f(\varphi(\tilde{x}))$ erhalten wir mit Hilfe der Kettenregel
     \[
-      \frac{\delta f(\varphi(y))}{\delta\varphi(x)}=\frac{df}{d\varphi}\delta(y-x).
+      \frac{\delta f(\varphi(\tilde{x}))}{\delta\varphi(x)}=\frac{df}{d\varphi}\delta(\tilde{x}-x).
     \]
-    Deshalb haben wir im Fall  $F[\varphi]=f(\varphi(y),\varphi'(y))$
+    Deshalb haben wir im Fall  $F[\varphi]=f(\varphi(\tilde{x}),\varphi'(\tilde{x}))$
       \[
-	\frac{\delta f(\varphi(y),\varphi'(y))}{\delta\varphi(x)}=
-	\frac{\partial f(\varphi(y),\varphi'(y)}{\partial\varphi(y)}\delta(y-x)-
-	  \frac{\partial f(\varphi(y),\varphi'(y)}{\partial\varphi'(y)}\frac{d}{dx}\delta(y-x).
+	\frac{\delta f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\delta\varphi(x)}=
+	\frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x})}{\partial\varphi(\tilde{x})}\delta(\tilde{x}-x)-
+	  \frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x})}{\partial\varphi'(\tilde{x})}\frac{d}{dx}\delta(\tilde{x}-x).
     \]
-  \item Setzen wir $F[\varphi]=\int f(\varphi(y))dy$ dann erhalten  wir 
+  \item Setzen wir $F[\varphi]=\int f(\varphi(\tilde{x}))d\tilde{x}$ dann erhalten  wir 
     \[
-      \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\partial f(\varphi(y))}{\partial\varphi(x)}dy=
-      \int\frac{\partial f(\varphi(y))}{\partial\varphi(y)}\frac{\partial\varphi(y)}{\partial\varphi(x)}dy=
-      \int\frac{\partial f(\varphi(y))}{\partial\varphi(y)}\delta(y-x)dy=\frac{\partial f}{\partial\varphi}
+      \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\partial f(\varphi(\tilde{x}))}{\partial\varphi(x)}d\tilde{x}=
+      \int\frac{\partial f(\varphi(\tilde{x}))}{\partial\varphi(\tilde{x})}\frac{\partial\varphi(\tilde{x})}{\partial\varphi(x)}d\tilde{x}=
+      \int\frac{\partial f(\varphi(\tilde{x}))}{\partial\varphi(\tilde{x})}\delta(\tilde{x}-x)d\tilde{x}=\frac{\partial f}{\partial\varphi}
     \]
 \end{itemize}
 
 Wir wenden die obigen Fälle auf das Funktional $F[\varphi]=\int
-f(\varphi(y),\varphi'(y))dy$ an und erhalten
+f(\varphi(\tilde{x}),\varphi'(\tilde{x}))d\tilde{x}$ an und erhalten
  \[
-   \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\delta f(\varphi(y),\varphi'(y))}{\delta\varphi(x)}dy=
-   \int\left(\frac{\partial f(\varphi(y),\varphi'(y))}{\partial\varphi(y))}\delta(y-x)-
- \frac{\partial f(\varphi(y),\varphi'(y))}{\partial\varphi'(y)}\frac{d}{dx}\delta(y-x)\right)dy.
+   \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\delta f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\delta\varphi(x)}d\tilde{x}=
+   \int\left(\frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\partial\varphi(\tilde{x}))}\delta(\tilde{x}-x)-
+ \frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\partial\varphi'(\tilde{x})}\frac{d}{dx}\delta(\tilde{x}-x)\right)d\tilde{x}.
     \]
 Die Ableitung nach „x“ unter dem Integral können wir vor das Produkt ziehen, so dass wir
 \[
-   \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\delta f(\varphi(y),\varphi'(y))}{\delta\varphi(x)}dy=
-   \int\left(\frac{\partial f(\varphi(y),\varphi'(y))}{\partial\varphi(y)}-\frac{d}{dx}
-       \frac{\partial f(\varphi(y),\varphi'(y))}{\partial\varphi'(y)}\right)\delta(y-x)dy.
+   \frac{\delta F[\varphi]}{\delta\varphi(x)}=\int \frac{\delta f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\delta\varphi(x)}d\tilde{x}=
+   \int\left(\frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\partial\varphi(\tilde{x})}-\frac{d}{dx}
+       \frac{\partial f(\varphi(\tilde{x}),\varphi'(\tilde{x}))}{\partial\varphi'(\tilde{x})}\right)\delta(\tilde{x}-x)d\tilde{x}.
 \]
 erhalten. Nach dem Ausführen der Integration bleibt
 \[
@@ -313,14 +321,14 @@ Wir fügen ein weiteres Beispiel allgemeinerer Natur an.
   wir nun formulieren wollen. Wir gehen von Energieerhaltung aus, d.h. die
   Lageenergie am Einstiegspunkt wird bis zum momentanen Punkt auf der Rutsche
   in kinetische Energie umgewandelt, oder 
-  \[ mgy_0=\frac{1}{2}m\dot{y}^2+mgy\]
+  \[ mgy_0=\frac{1}{2}m(\dot{y}^2+\dot{x}^2)+mgy \]
   oder
   \begin{equation}
   g(y_0-y)=\frac{1}{2}\left[\left(\frac{dx}{dt}\right)^2
     +\left(\frac{dy}{dt}\right)^2\right]
     \label{eq:Rutschenergie}
   \end{equation}
- Wie wir sehen kürzt sich die Masse raus. D.h. schwere und leichte Passagiere
+  Wie wir sehen, kürzt sich die Masse raus. D.h. schwere und leichte Passagiere
  rutschen gleich schnell. Ist das Modell vollständig?
  
  Wir schreiben (\ref{eq:Rutschenergie}) um
