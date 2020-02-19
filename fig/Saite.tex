@@ -1,13 +1,35 @@
 \documentclass[10pt,a4]{article}
 \include{preamble}
+\usepackage{pgffor}
 \begin{document}
-\begin{tikzpicture}%[domain=0:4]
-    \draw (0,0) -- (4,0);
-    \begin{axis}[domain=0:180,
+\begin{tikzpicture} %[domain=0:4]
+    \begin{axis}[%width=\textwidth,height=0.5\textwidth, 
+	width=12cm,
+	height=6cm,
         hide x axis,
         hide y axis,
         samples=400]
-	\addplot+[mark=none] {(0.1*cos(x))};
+	\addplot+[domain=0:180,mark=none,ultra thick] {(cos(x))};
+	\draw[thick,decoration={aspect=0.41, segment length=2.3mm, 
+	amplitude=2.2mm,coil},decorate] (0.0,200.0) -- (0.0,100.0);
+	\draw[thick,decoration={aspect=0.41, segment length=2.3mm, 
+	amplitude=2.2mm,coil},decorate] (180,0.0) -- (180,100.0);
+	\draw[-Latex,thick] (-10,-20) -- (-10,200);
+	\node[above] at (-10,200) {u};
+	\draw[-Latex,thick] (-10,100) -- (190,100);
+	\node[right] at (190,100) {x};
+	\draw[thick, dashed] (0,100) -- (0,200);
+	\draw[thick, dashed] (180,0) -- (180,100);
+	\node at (10,80) {$x=0$};
+	\node at (170,120) {$x=\ell$};
+	\draw[thick] (130,100) -- (130,95);
+	\draw[thick] (150,100) -- (150,95);
+	\node [above] at (140,40) {$\Delta x$};
+	\node [right] at (150,25) {$\Delta u$};
+	\node [left] at (145,15) {$\sqrt{\Delta x^2+\Delta u^2}=\Delta s$};
+	\addplot+[domain=130:150,mark=none,ultra thick] {(cos(130))};
+	\addplot[color=red,mark=none,ultra thick] coordinates { (150,{cos(130)}) (150,{cos(150)}) };
+	\addplot[color=red,mark=none,ultra thick] coordinates { (130,{cos(130)}) (150,{cos(150)}) };
     \end{axis}
    \end{tikzpicture}
 

@@ -41,9 +41,10 @@ citecolor = black]{hyperref}
 \usepackage[miktex]{gnuplottex}
 \usepackage{gnuplot-lua-tikz}
 \usepackage{tikz}
+\usepackage{circuitikz}
 \usepackage{pgfplots}
 %\pgfplotsset{compat=1.14}
-\usetikzlibrary{decorations.pathreplacing,decorations.markings} %,snakes}
+\usetikzlibrary{decorations.pathmorphing,decorations.pathreplacing,decorations.markings,patterns} %,snakes}
 \usetikzlibrary{shapes,arrows,chains,matrix,positioning,scopes}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
@@ -110,3 +111,5 @@ citecolor = black]{hyperref}
 \parindent0em
 \parskip1ex
 \pagestyle{headings}
+% We want the mathindent to be zero.
+%\setlength{\mathindent}{0cm}

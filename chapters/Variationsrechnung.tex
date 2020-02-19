@@ -276,9 +276,9 @@ Diese Variation haben wir aber bereits im vorigen Abschnitt als Beispiel angegeb
   \frac{\delta S[q]}{\delta q}=\frac{\partial L(q(t),\dot q(t)}{\partial q(t)}
     -\frac{d}{dt} \frac{\partial L(q(t),\dot q(t))}{\partial \dot q(t)}=0
 \]
-\begin{example}{Der harmonische Oszillator}
-Wenn wir nun $L(q(t),\dot q(t))=\frac{1}{2}m\dot
-q(t)^2-\frac{1}{2}k q(t)^2$ setzen, erhalten wir
+\begin{note}{Der harmonische Oszillator}
+Wir setzen $L(q(t),\dot q(t))=\frac{1}{2}m\dot
+q(t)^2-\frac{1}{2}k q(t)^2$ und erhalten
 \[ \frac{\partial L(q(t),\dot q(t)}{\partial q(t)}
     -\frac{d}{dt} \frac{\partial L(q(t),\dot q(t))}{\partial \dot q(t)}=
    -kq(t)-\frac{d}{dt}m\dot q(t)
@@ -286,8 +286,22 @@ q(t)^2-\frac{1}{2}k q(t)^2$ setzen, erhalten wir
  \]
  Dies ist die wohlbekannte Bewegungsgleichung des harmonischen Oszillators\newline 
  \[m\ddot q(t)+kq(t)=0.\]
-\end{example}
-Wir fügen ein weiteres Beispiel allgemeinerer Natur an.
+
+Hieraus folgern wir, ohne dass wir hier den Beweis antreten, dass die
+Lagrangefunktion $L=T^*-V$ eines mechanischen Systems aus der Differenz
+ziwschen kinetischer Koenergie\footnote{Die Unterscheidung zwischen kinetischer
+  Energie $T=\frac{p^2}{2m}$ und kinetischer Koenergie $T=\frac{mv^2}{2}$ ist
+  nur wichtig im Falle, dass der Impuls nicht mehr als $p=m\cdot v$ geschrieben
+werden kann. Dies ist z.B. der Fall, wenn relativistische Effekte wichtig
+werden. Wir nehmen an, dass dies im Folgenden nicht der Fall sei und machen
+fortan diese Unterscheidung nicht.} 
+%
+und potentieller Energie gebildet wird. Indem wir fordern, dass die
+Variation des Integrals über die Lagrangefunktion verschwindet, erhalten wir
+die Bewergungsgleichungen, der entsprechenden mechanischen Systeme. Diese
+Gleichungen nennen wir die Euler-Lagrange-Gleichungen.
+\end{note}
+Wir fügen ein Beispiel allgemeinerer Natur an.
 \begin{example}{Das Brachistochronenproblem}
   \begin{wrapfigure}{l}{0.5\textwidth}
   \centering
@@ -378,9 +392,10 @@ sei gegeben als n-dimensionales Integral
     \varphi(x_\mu),\partial_{\nu}\varphi(x_\mu),
     \partial_{\nu\kappa}\varphi(x_\mu)\dots ;\, x_\mu\right)d^nx_\mu
 \end{equation}
-wobei wir für $\frac{\partial}{\partial x_{\nu}}=\partial_{\nu}$ gechrieben
-haben. Variieren wir nun die Funktion $\varphi(x_\mu)$ um einen Wert 
-$\psi(x_\mu)$, wie bereits in Abschnitt \ref{sec:Funktionalableitung}
+wobei wir für $\frac{\partial}{\partial x_{\nu}}=\partial_{\nu}$,
+$\frac{\partial^2}{\partial x_{\mu}\partial x_{\nu}} =\partial_{\mu\nu}$
+geschrieben haben. Variieren wir nun die Funktion $\varphi(x_\mu)$ um einen
+Wert $\psi(x_\mu)$, wie bereits in Abschnitt \ref{sec:Funktionalableitung}
 beschrieben, dann erhalten wir für die Variation des Integrals in
 (\ref{eq:nDFunktional})
 \begin{align} \label{eq:VariationFeld}
@@ -413,11 +428,146 @@ partielle Inegration von (\ref{eq:VariationTaylor1})
 Für beliebige $\psi$ folgen daraus die Bewegungsgleichungen für das Feld $\varphi(x_\mu)$ zu
 \begin{equation}
   \frac{\partial\mathcal{L}}{\partial\varphi}
-    -\partial_{\mu}\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\varphi)}
-    +\partial_{\mu\nu}\frac{\partial\mathcal{L}}{\partial(\partial_{\mu\nu}\varphi)}
-  -\cdots=0
+  -\partial_{\mu}\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\varphi)}
+  +\partial_{\mu\nu}\frac{\partial\mathcal{L}}{\partial(\partial_{\mu\nu}\varphi)}
+  -\partial_{\mu\nu\gamma}\frac{\partial\mathcal{L}}{\partial(\partial_{\mu\nu\gamma}\varphi)}
+  \cdots=0
   \label{eq:EulerLagrangeFeld}
 \end{equation}
-\begin{example}{Die schwingende Saite}
+\subsection{Die schwingende Saite, ein ausführliches Beispiel}
+\begin{tikzpicture} %[domain=0:4]
+    \begin{axis}[%width=\textwidth,height=0.5\textwidth, 
+	width=16cm,
+	height=8cm,
+        hide x axis,
+        hide y axis,
+        samples=400]
+	\addplot+[domain=0:180,mark=none,ultra thick] {(cos(x))};
+	\draw[thick,decoration={aspect=0.41, segment length=2.3mm, 
+	amplitude=2.2mm,coil},decorate] (0.0,200.0) -- (0.0,100.0);
+	\node at (10,150) {$k$};
+	\node at (170,50) {$k$};
+	\draw[thick,decoration={aspect=0.41, segment length=2.3mm, 
+	amplitude=2.2mm,coil},decorate] (180,0.0) -- (180,100.0);
+	\draw[-Latex,thick] (-10,-20) -- (-10,200);
+	\node[above] at (-10,200) {u};
+	\draw[-Latex,thick] (-10,100) -- (190,100);
+	\node[right] at (190,100) {x};
+	\draw[thick, dashed] (0,100) -- (0,200);
+	\draw[thick, dashed] (180,0) -- (180,100);
+	\node at (10,80) {$x=0$};
+	\node at (170,120) {$x=\ell$};
+	\draw[thick] (130,100) -- (130,95);
+	\draw[thick] (150,100) -- (150,95);
+	\node [above] at (140,40) {$\Delta x$};
+	\node [right] at (150,25) {$\Delta u$};
+	\node [left] at (145,15) {$\sqrt{\Delta x^2+\Delta u^2}=\Delta s$};
+	\addplot+[domain=130:150,mark=none,ultra thick] {(cos(130))};
+	\addplot[color=red,mark=none,ultra thick] coordinates { (150,{cos(130)}) (150,{cos(150)}) };
+	\addplot[color=red,mark=none,ultra thick] coordinates { (130,{cos(130)}) (150,{cos(150)}) };
+    \end{axis}
+   \end{tikzpicture}
 
-\end{example}
+Eine Seite der Länge $\ell$ sei bei $x=0$ und $x=\ell$ jeweils über eine Feder
+elastisch aufgehängt. Die Aufhängepunkte sollen sich nur senkrecht zur
+x-Richtung bewegen können (siehe Zeichung). Die Saite habe eine Massendichte
+$\rho$ pro Längeneinheit und eine Spannung $\tau$. Die Federn der Aufhängung
+haben eine Fedekonstante $k$.
+   
+Die kinetische Energie eines Abschnitts $\Delta x$ der Saite ist 
+\[
+  \Delta T^*=\frac{1}{2}\Delta m\cdot v^2 =
+  \frac{1}{2}\rho\Delta x\left(\frac{\partial
+  u(x,t)}{\partial t}\right)^2,
+\] 
+wobei wir kleine Relativauslenkungen $\Delta u$ angenommen haben. Die gesamte
+kinetische Energie ist die Summer aller Beiträge der Abschnitte $\Delta x$. Im
+Grenzübergang $\Delta x\rightarrow 0$ wird hieraus ein Integral 
+\begin{equation}\label{eq:Ekin}
+  T^*=\frac{1}{2}\rho\int_0^\ell\left(\frac{\partial
+  U(x,t)}{\partial t}\right)^2dx
+\end{equation}
+
+Dasselbe machen wir nun mit der potentiellen Energie. Aus der Grafik erkennen
+wir, dass die elastische Energie gleich der Saitenspannung $\tau$ multipliziert
+mit der Steckung $\Delta x$ ist. Ohne auslenkung können wir so die gesamte
+elastische Energie ausrechnen. Wenn aber lokal eine Verschiebung $\Delta u$
+vorliegt, dann wir die Saite gedehn auf die neue Länge $\sqrt{\Delta x^2+\Delta
+u^2}=\Delta s$. Die elastische Energie, die die Saite zusätlich durch die
+Dehnung aufnimmt ist gerade die Differenz $\Delta V=\tau\cdot(\sqrt{\Delta
+x^2+\Delta u^2}-\Delta x)$. Dies können wir auch schreiben als $\Delta
+V=\tau\cdot\left(\sqrt{1+\left(\frac{\Delta u}{\Delta
+x}\right)^2}-1\right)\Delta x$. Für klein Dehnungen $\left(\frac{\Delta u}{\Delta
+x}\right)$ entwickeln wir den Term unter der Wurzel und erhalten näherungsweise
+\[
+  V=\tau\cdot\left(1+\left(\frac{\Delta u}{\Delta x}\right)^2-1\right)\Delta x
+  =\tau\cdot\left(\frac{\Delta u}{\Delta x}\right)^2\Delta x
+\]
+Im Grenzübergang wird hieraus
+\begin{equation}
+  V=\frac{1}{2}\tau\int_0^\ell\left(\frac{\partial u}{\partial x}\right)^2dx.
+  \label{eq:Epot}
+\end{equation}
+Wir müssen noch die zwei potentiellen Energieterme an den Aufhängepunkten
+berücksichtigen, diese sind
+\begin{equation}
+  V_k=\frac{1}{2}k\cdot u(0,t)^2 +\frac{1}{2}k\cdot u(\ell,t)^2.
+  \label{eq:EpotSprings}
+\end{equation}
+Damit erhalten wir folgende Lagrangefunktion
+\begin{equation}
+  L=\int_0^\ell\left[
+    \frac{\rho}{2}\left(\frac{\partial u(x,t)}{\partial t}\right)^2
+   -\frac{\tau}{2}\left(\frac{\partial u(x,t)}{\partial x}\right)^2
+ \right]dx-\frac{1}{2}k\left(u(0,t)^2 + u(\ell,t)^2\right).
+  \label{eq:LagrangianSaite}
+\end{equation}
+
+Das Funktional $J[u]=\int_{t_0}^{t_1}L(u(x,t))dt$ nennen wir das
+Wirkungsintegral. Wir berechnen die Variation des Wirkungsintegrals
+\begin{flalign}\label{eq:VariationAction}
+  \delta &J[u]=J[u+\varepsilon\psi]-J[u]\\
+  &=\varepsilon\int_{t_0}^{t_1}\left\{\int_0^\ell\left[
+    \rho\frac{\partial u(x,t)}{\partial t}\frac{\partial\psi(x,t)}{\partial t}
+  -\tau\frac{\partial u(x,t)}{\partial x}\frac{\partial\psi(x,t)}{\partial x}
+   \right]dx
+ - k\left[u(0,t)\psi(0,t)+u(\ell,t)\psi(\ell,t)\right]\right\}dt\nonumber\\
+  &=\varepsilon\int_{t_0}^{t_1}\int_0^\ell\left[
+    -\rho\frac{\partial^2u(x,t)}{\partial t^2}
+ +\tau\frac{\partial^2u(x,t)}{\partial x^2}\right]\psi(x,t)dxdt
+ -\varepsilon\int_0^\ell k\left[u(0,t)\psi(0,t)+u(\ell,t)\psi(\ell,t)\right]dt\nonumber\\
+ &+\varepsilon\int_{t_0}^{t_1}\tau\left[\frac{\partial u(\ell,t)}{\partial x}\psi(\ell,t)-
+ \frac{\partial u(0,t)}{\partial x}\psi(0,t)\right]dt
+ +\varepsilon\int_0^\ell\rho\left[\frac{\partial u(x,t_0)}{\partial t}\psi(x,t_0)-
+   \frac{\partial u(x,t)}{\partial t}\psi(x,t_1)\right]dx\nonumber
+\end{flalign}
+Assume that for $t=t_0$ and $t=t_1$ we do not vary the path $u$, so the last
+term in (\ref{eq:VariationAction}) vanishes and therefore we get to first order
+in $\varepsilon$
+\begin{align}\label{eq:VariationActionFinal}
+\delta &J[u]=\varepsilon\int_{t_0}^{t_1}\int_0^\ell\left[
+    -\rho\frac{\partial^2u(x,t)}{\partial t^2}
+ +\tau\frac{\partial^2u(x,t)}{\partial x^2}\right]\psi(x,t)dxdt\nonumber\\
+ &-\int_{t_0}^{t_1}\left(\tau\frac{\partial u(0,t)}{\partial x}+ku(0,t)\right)\psi(0,t)dt
+ -\int_{t_0}^{t_1}\left(-\tau\frac{\partial u(\ell,t)}{\partial x}+ku(\ell,t)\right)\psi(\ell,t)dt
+\end{align}
+$J[u]$ nimmt ein Extermum an, wenn $\delta J[u]=0$ gilt und zwar für beliebige
+Variationen $\psi(x,t)$ des Pfades $u(x,t)$. Also setzen wir zunächst einmal
+eine Variation mit $\psi(0,t)=\psi(\ell,t)=0$ an. Dies führt auf die Bewegungsgleichung
+\begin{equation}
+   -\rho\frac{\partial^2u(x,t)}{\partial t^2}
+ +\tau\frac{\partial^2u(x,t)}{\partial x^2}=0
+  \label{eq:MotionString}
+\end{equation}
+Wenn $u(x,t)$ (\ref{eq:MotionString}) genügt, dann ist der erste Term in
+(\ref{eq:VariationActionFinal}) immer null. Setzen wir abwechselnd
+$\psi(0,t)=0$ und $\psi(\ell,t)\ne 0$ und umgekehrt, dann erhalten wir zwei
+zusätzliche Gleichungen
+\begin{align}
+  \tau\frac{\partial u(0,t)}{\partial x}+ku(0,t)&=0\label{eq:BCStringLeft}\\
+  \tau\frac{\partial u(\ell,t)}{\partial x}+ku(\ell,t)&=0\label{eq:BCStringRight}
+\end{align}
+(\ref{eq:BCStringLeft}) und (\ref{eq:BCStringRight}) sind die zu
+(\ref{eq:MotionString}) gehörigen Randbedingungen. Diese Beispiel zeigt, wie
+mit Hilfe der Variationsrechnung die Bewegungsgleichungen für ein System
+ageleitet werden kann.
