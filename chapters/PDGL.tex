@@ -282,7 +282,7 @@ Transformierte der Deltafunktionen lautet
 Nun müssen wir die inverse Fouriertransformation und die inverse Laplacetransformation anwenden, um die 
 Greensche Funktion $G(x,t;x',t')$ zu bekommen und wir erhalten
 \begin{equation}
-	G(x,t;x',t')=\frac{1}{2}H\left(t-t'-(x-x')\right)H\left(t-t'+(x-x')\right)=G(x-x',t-t')
+	G(x,t;x',t')=\frac{1}{2}\left(H\left(t-t'-(x-x')\right)+H\left(t-t'+(x-x')\right)\right)=G(x-x',t-t')
 	\label{eq:GFwave}
 \end{equation}
 \end{example}
@@ -290,12 +290,12 @@ Greensche Funktion $G(x,t;x',t')$ zu bekommen und wir erhalten
 \begin{example}{Fundamentallösung der Poissongleichung}
 Verifiziere durch Anwendung der Fouriertransformation auf die Poissongleichung
 \begin{equation}
-	\nabla^2 V(\mbf{x})=-4\pi\rho(\mbf{x})
+	\nabla^2 V(\mbf{x})=-\rho(\mbf{x})
 	\label{eq:Poisson}
 \end{equation}
 dass deren Fundamentallösung gegeben ist durch 
 \begin{equation}
-	G_0(\mbf{x},\mbf{x}')=\frac{1}{|\mbf{x}-\mbf{x}'|}
+  G_0(\mbf{x},\mbf{x}')=\frac{1}{4\pi}\frac{1}{|\mbf{x}-\mbf{x}'|}
 	\label{eq:FSPoisson}
 \end{equation}
 \end{example}

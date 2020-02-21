@@ -1,7 +1,7 @@
 \chapter{Nichtlineare gewöhnliche Differentialgleichungen}
 Dieser Abschnitt behandelt Beispiele nichtlinearer gewöhnlicher
 Differentialgleichungen und deren Lösung mit verschiedenen Zugängen. Zuerst
-sollen nichtlineare System erster Ordnung und ersten grades behandelt werden,
+sollen nichtlineare Systeme erster Ordnung und ersten Grades behandelt werden,
 die eine eindeutige Zeitskalentrennung der abhängigen veränderlichen aufweisen
 und bei denen es möglich ist, das qualitative Lösungsverhalten durch wenige
 instabile Freiheitsgrade auszudrücken ({\red H.Haken, Advanced Synergetics,
@@ -39,8 +39,8 @@ wir so etwas als
     \[\ddot x(t)+\mu(x(t)^2-1)\dot x(t)+\omega^2x(t)=0 \]
     den wir wiederum umschreiben zu 1. Ordnung
     \begin{align*}
-     \dot x_1=&x_2\\
-     \dot x_2=&\mu(1-x(t)^2)\dot x(t)-\omega^2x_1(t)
+     \dot y_1=&y_2\\
+     \dot y_2=&\mu(1-y_1(t)^2) y_2(t)-\omega^2y_1(t)
     \end{align*}
     Wie sieht das Phasenraumbild aus?
    \item Der Lorenz Attraktor
@@ -56,7 +56,7 @@ wir so etwas als
      ging es Lorenz dabei um eine Modellierung der Zustände in der
      Erdatmosphäre zum Zweck einer Langzeitvorhersage. Allerdings betonte
      Lorenz, dass das von ihm entwickelte System allenfalls für sehr begrenzte
-     Parameterbereiche von a, b und c realistische
+     Parameterbereiche von $\sigma$, $\rho$ und $\beta$ realistische
       Resultate liefert.'' (siehe https://de.wikipedia.org/wiki/Lorenz-Attraktor).
    \item Das Volterra-Lotka System der Populationsdynamik
      \begin{align*}
@@ -69,7 +69,7 @@ Finden Sie ein Darstellung der Phasenraumbilder der drei Systeme aus obigen
 Beispiel!
 \section{Ordnungsparametergleichungen}
 Wir betrachten folgendes System gewöhnlicher Differentialgleichungen erster
-Ordnung und ersten grades in den Variablen $u(t)$ und $s(s)$.
+Ordnung und ersten grades in den Variablen $u(t)$ und $s(t)$.
 \begin{align} 
   \dot{u}&=\alpha u-us
   \label{eq:unstable}\\
@@ -137,19 +137,19 @@ in (\ref{eq:sapprox}) aus und erhalten
 Um den nächsten Iterationsschritt zu erhalten, integrieren wir
 (\ref{eq:soluelim1st}) partiell und erhalten 
 \begin{equation}
-  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4-
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(t)^4-
   \frac{8}{\beta^3}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
-  (u(\tau)\dot u(\tau))d\tau .
+  (u^3(\tau)\dot u(\tau))d\tau .
   \label{eq:soluelim2nd}
 \end{equation}
 Unter dem Integral ersetzen wir wieder $\dot u$ wie oben und ersetzen $s$ durch
 den zweiten Iterationsschritt (\ref{eq:soluelim2nd}) in dem wir das Integral
 vernachlässigt haben und erhalten
 \begin{equation}
-  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4-
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(t)^4-
   \underbrace{
-  \frac{8}{\beta^3}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
-  \left(\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4\right)d\tau .
+    \frac{8}{\beta^3}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}u^4(\tau)
+  \left(\frac{1}{\beta}u^2(\tau)+\frac{2}{\beta^3}u(\tau)^4\right)d\tau .
   }_{I}
   \label{eq:soluelim2ndrep}
 \end{equation}
@@ -157,16 +157,15 @@ Wir behalten vom Integral $I$ aus (\ref{eq:soluelim2ndrep}) zunächst nur die
 Terme 6-ter Ordnung
 \[ 
   I=\frac{8}{\beta^4}\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}
-  u^6(t)d\tau+\text{ h.O.}
+  u^6(\tau)d\tau+\text{ h.O.}
 \]
 Eine erneute partielle Inegration führt auf
 \[ 
-  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(\tau)^4+\frac{8}{\beta^5}u(\tau)^6+\dots
+  s(t)=\frac{1}{\beta}u^2(t)+\frac{2}{\beta^3}u(t)^4+\frac{8}{\beta^5}u(t)^6+\dots
 \]
 Es ist offensichtlich, dass wir diese Iteration immer weiter betreiben und
 somit $s(t)$ als eine Potenzreihe in $u$ ausdrücken können. Wenn $u$ klein
-genug ist, können wir erwarten für $s$ durch wenige Terme in $u$ annähern zu
-können.
+genug ist, erwarten wir, $s$ durch wenige Terme in $u$ annähern zu können.
 
 Dieses Verfahren können wir auch für allgemeinere Gleichungen als $\dot u=-us$,
 wie in unserem Beispiel verwendet, anwenden. Für diese Diskussion sei auf die
