@@ -71,10 +71,7 @@ oder in Anderen Worten $L^n_j(x_i)=\delta_{ij}$. Das Polynom, das durch die
 $n+1$ Interpolationspunkte geht, schreibt man
 \[ p_n(x)=\sum_{i=0}^n y_i\ L_i(x) \]
 \subsubsection{Alternative Form  der Langrangeinterpolationsformeln}
-This polynomial function coincides exactly with the function $f(x)$ at the
-sample point abscissae $x_i$. Away from $x_i$ there is an error, which may be
-calculated.
-Let us rewrite the polynomial
+Dieses Polynom stimmt mit der Funktion $f(x)$ an den Abszissen der Interpolationspunkte $x_i$ exakt überein. Neben $x_i$ tritt i. A. ein Fehler auf, der aber bestimmbar ist. Wir schreiben das Polynom um
 \[ p_n(x)=\sum_{i=0}^n y_i\ \prod_{j=0,j\neq i}^n\frac{x-x_j}{x_i-x_j}=
 \sum_{i=0}^n y_i 
 \underbrace{
@@ -82,16 +79,13 @@ Let us rewrite the polynomial
 }_{\mu_i}\ 
 \underbrace{\prod_{k=0}^n (x-x_k)}_{l(x)}
 \]
-We have an alternative way to write the polynomial
+Es gibt eine alternative Schreibweise für das Polynom
 \begin{equation}\label{eq:1stbarycentric}
-	p_n(x) = l(x)\sum_{i=0}^n \mu_iy_i
+	p_n(x) = l(x)\sum_{i=0}^n \mu_iy_i,
 \end{equation}
-which is commonly called the first barycentric form of the Lagrange
-interpolation.  If we require $p_n(x)=1$ we see that the $y_i=1$ and thus we
-have
+gemeinhin als baryzentrische Interpolationsformel bezeichnet. Wenn wir verlangen, dass $p_n(x)=1$ sehen wir, dass $y_i=1$ und deshalb haben wir
 \[ 1 = l(x)\sum_{i=0}^n \mu_i \]
-Divide (\ref{eq:1stbarycentric}) by the latter to get the second barycentric
-form
+Teilen wir (\ref{eq:1stbarycentric}) durch letzteres, dann erhalten wir die zweite baryzentrische Form
 \begin{equation}
 	p^n(x)=\frac{\sum_{i=0}^n \mu_iy_i}{\sum_{i=0}^n \mu_i}
 	\label{eq:2ndbarycentric}

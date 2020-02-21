@@ -163,7 +163,7 @@ es aber unter Umständen die Möglichkeit eine Funktion zu finden, mit der man
 die Gleichung multiplizieren kann, sodass diese exakt wird. 
 \begin{note}{Integrierender Faktor}
   $3ydt+2tdy=0$ ist keine exakte Differentialgleichung. Multipliziert man aber
-  $\Xi(y,t)=t^2y$ mit dieser Gleichung, so erhält man $3t^2y^2dt+2t^2ydy=0$.
+  $\Xi(y,t)=t^2y$ mit dieser Gleichung, so erhält man $3t^2y^2dt+2t^3ydy=0$.
   Dies kann man als vollständiges Differential der unktion $\mu(y,t)=t^3y^2$
   schreiben und somit ist $t^3y^2=C$ einen allgemeine Lösung der
   Differentialgleichung. Die Funktion $\Xi(y,t)$ heisst integrierender Faktor.
@@ -177,7 +177,7 @@ dann müssen wir einen solchen versuchen zu finden
     Ebenso wenn
     \[\frac{\frac{\partial p(t,y)}{\partial y}-\frac{\partial q(t,y)}{\partial t}}{p(t,y)}=-g(y)\]
     nur eine Funktion von y ist, dann ist $e^{\int g(y)dy}$ ein integrierender Faktor.
-    \item Ist (\ref{eq:DGLVarKoeff}) homogen und $p(t,y)\cdot t+q(t,y)\cdot y\ne 0$, dann ist
+    \item Ist (\ref{eq:DGLVarKoeff}) homogen, d.h. sind $p(t,y)$ und $q(t,y)$ homogene Funktionen vom selben Grad, und $p(t,y)\cdot t+q(t,y)\cdot y\ne 0$, dann ist
     $\frac{1}{p(t,y)\cdot t+q(t,y)\cdot y}$ ein integrierender Faktor.
     \item Wenn (\ref{eq:DGLVarKoeff}) in der Form $y\cdot f(t\cdot y)dt+t\cdot g(t\cdot y)dy=0$
     geschrieben werden kann, dann ist $\frac{1}{t\cdot y(f(t\cdot y)-g(t\cdot y))}=\frac{1}{p\cdot t-q\cdot y}$ ein integrierender Faktor.
