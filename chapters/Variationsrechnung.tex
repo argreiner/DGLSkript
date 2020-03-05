@@ -2,7 +2,8 @@
 Die Variationsrechnung beschäftigt sich mit der Veränderung von Funktionalen
 $F[\varphi(x)]$, wenn wir die Funktion $\varphi(x)$, die dem Funktional
 zugrunde liegt variieren. Dazu müssen wir zunächst den Begriff des
-Funktionals erklären.  
+Funktionals erklären, dann einen Exkurs zur Deltafunktion machen und uns
+schließlich die Funktionalableitung anhand von Beispielen erarbeiten. 
 
 \section{Das Funktional}\label{sec:DasFunktional}
 \begin{wrapfigure}[12]{l}{0.45\textwidth}
@@ -48,7 +49,7 @@ $F[\varphi]=\int\limits_a^b\varphi(x)dx$, das Integral von $\varphi(x)$
   Eine Erweiterung auf mehrere Funktionen, die auch noch von mehreren Variablen
   abhängen können ist möglich $F[\varphi_i(x_k)]$. Dabei kann
   $F[\varphi_i(x_k)]$ auch ein Integral einer Funktion $f$ der $\varphi_i(x_k)$
-  und deren verschiedenen partiellen Ableitungen sein.
+  und deren partieller Ableitungen sein.
 \end{example}
 \section{Exkurs zur Diracschen Deltafunktion}\label{sec:Deltafunktion}
 Zunächst sei hier eine Warnung ausgesprochen. Deltafunktionen sind keine
@@ -112,7 +113,7 @@ Grenzwertes $\lim_{\varepsilon\rightarrow 0}$ mit der Integration über $x$
 nicht vertauschbar ist, das heißt, dass vor der Limesbildung stets die
 Integration auszuführen ist.\vspace{1cm}
 
-Um den Grenzwert in (\ref{eq:intfy}) ausrechnen zu können machen wir die
+Um den Grenzwert in (\ref{eq:intfy}) ausrechnen zu können, machen wir die
 Substitution $x=\varepsilon\xi$. Damit erhalten wir
 \[ F(\varepsilon)=\int_{-\infty}^{\infty}f(\varepsilon\,\xi)
 \frac{1}{\pi}\frac{1}{\xi^2+1}d\xi\]
@@ -149,7 +150,7 @@ f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}F(k)dk
 \]
 Setzen wir die erste in die zweite Zeile ein, dann erhalten wir
 \[f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{ik(x-x')}f(x')dx'dk\]
-mit der Integration über $k$ nach der über $x'$. Wenn das Gleihheitszeichen
+mit der Integration über $k$ nach der über $x'$. Wenn das Gleichheitszeichen
 gelten soll, dann muss
 \[\delta(x-x')="\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ik(x-x')}dk".\]
 Wobei ``'' bedeutet, dass die Integration über $k$ erst nach der über $x'$
@@ -157,7 +158,7 @@ erfolgen soll. Dies ist die Fourierdarstellung der $\delta$-Funktion.
 %
 \section{Funktionalableitung oder Variation des Funktionals}\label{sec:Funktionalableitung}
 Gegeben das Funktional $F[\varphi(x)]$. Wenn wir nun die Funktion $\varphi(x)$
-ändern um einen Wert $\Delta\varphi$, dann ändert
+um einen Wert $\Delta\varphi$ verändern , dann ändert
 sich auch das Funktional
 $F[\varphi+\Delta\varphi]=F[\varphi]+\Delta F$. 
 
@@ -169,17 +170,16 @@ $F[\varphi+\varepsilon(x_0,dx_0)\Delta\varphi]$, mit
     }x\in[x_0-\frac{dx_0}{2},x_0+\frac{dx_0}{2}]\\ 0 \text{
     sonst}\end{matrix}\right.
   \end{equation}
-Damit schreiben wir $\Delta
-F=F[\varphi+F[\varphi+\varepsilon(x_0,dx_0)\Delta\varphi]-F[\varphi]$. Dies
-schreiben wir im Grenzübergang für verschwindende $\Delta\varphi$ und $dx_0$
-als
+Damit schreiben wir $\Delta F=F[\varphi +\varepsilon(x_0,dx_0) \Delta\varphi]
+-F[\varphi]$. Dies schreiben wir im Grenzübergang für verschwindende
+$\Delta\varphi$ und $dx_0$ als
 \begin{equation}\label{eq:Variationsableitung}
   \lim_{dx_0\rightarrow 0}\lim_{\Delta\varphi\rightarrow 0}
       \frac{F[\varphi+\varepsilon(x_0,dx_0)\Delta\varphi]-F[\varphi]}{\Delta\varphi dx_0}
     =\frac{\delta F[\varphi]}{\delta\varphi(x_0)}
 \end{equation} 
 Diese Funktionalableitung oder Variation von $F$ ist die Varallgemeinerung der
-partiellen Ableitung $\frac{\partial F[\varphi]}{\partial\varphi_k}$.
+partiellen Ableitung $\frac{\partial F[\vec{\varphi}]}{\partial\varphi_k}$.
 %
 \begin{figure}[!h] 
  \begin{center}
@@ -223,7 +223,9 @@ wissen, folgendermaßen definiert ist
     Deltafunktion (siehe Abschnitt \ref{sec:Deltafunktion}).
   \item Für $F[\varphi]=f(\varphi(\tilde{x}))$ erhalten wir mit Hilfe der Kettenregel
     \[
-      \frac{\delta f(\varphi(\tilde{x}))}{\delta\varphi(x)}=\frac{df}{d\varphi}\delta(\tilde{x}-x).
+      \frac{\delta f(\varphi(\tilde{x}))}{\delta\varphi(x)}
+      =\frac{df}{d\varphi}\frac{\delta \varphi(\tilde{x})}{\delta\varphi(x)}
+      =\frac{df}{d\varphi}\delta(\tilde{x}-x).
     \]
     Deshalb haben wir im Fall  $F[\varphi]=f(\varphi(\tilde{x}),\varphi'(\tilde{x}))$
       \[
@@ -289,14 +291,15 @@ q(t)^2-\frac{1}{2}k q(t)^2$ und erhalten
 
 Hieraus folgern wir, ohne dass wir hier den Beweis antreten, dass die
 Lagrangefunktion $L=T^*-V$ eines mechanischen Systems aus der Differenz
-ziwschen kinetischer Koenergie\footnote{Die Unterscheidung zwischen kinetischer
-  Energie $T=\frac{p^2}{2m}$ und kinetischer Koenergie $T=\frac{mv^2}{2}$ ist
-  nur wichtig im Falle, dass der Impuls nicht mehr als $p=m\cdot v$ geschrieben
-werden kann. Dies ist z.B. der Fall, wenn relativistische Effekte wichtig
-werden. Wir nehmen an, dass dies im Folgenden nicht der Fall sei und machen
-fortan diese Unterscheidung nicht.} 
+zwischen kinetischer 
+Koenergie\footnote{Die Unterscheidung zwischen kinetischer Energie
+  $T=\frac{p^2}{2m}$ und kinetischer Koenergie $T^* =\frac{mv^2}{2}$ ist nur
+  wichtig im Falle, dass der Impuls nicht mehr als $p=m\cdot v$ geschrieben
+  werden kann. Dies ist z.B. der Fall, wenn relativistische Effekte wichtig
+  werden. Wir nehmen an, dass dies im Folgenden nicht der Fall sei und machen
+  fortan diese Unterscheidung nicht.}
 %
-und potentieller Energie gebildet wird. Indem wir fordern, dass die
+$T^*$ und potentieller Energie V gebildet wird. Indem wir fordern, dass die
 Variation des Integrals über die Lagrangefunktion verschwindet, erhalten wir
 die Bewergungsgleichungen, der entsprechenden mechanischen Systeme. Diese
 Gleichungen nennen wir die Euler-Lagrange-Gleichungen.
@@ -359,10 +362,10 @@ Wir fügen ein Beispiel allgemeinerer Natur an.
     =\int\limits_{0}^{x_0}f(y(x),y'(x))dx=F[y]
    \label{eq:Zeitfunktional}
  \end{equation}
- Damit habe wir das Variationsproblem $\frac{\delta T[y]}{\delta y}=0$ zu
- lösen. Aus der obigen Liste der wichtigsten Funktionalableitungen in
- Abschnitt \ref{sec:WichtigeAbleitungen} sehen wir, dass wir die Euler-Lagrange
- Gleichungen
+ Damit haben wir das Variationsproblem $\frac{\delta T[y]}{\delta y}=0$ zu
+ lösen. D.h. bei welchem $y$ ist $T$ minimal? Aus der obigen Liste der
+ wichtigsten Funktionalableitungen in Abschnitt \ref{sec:WichtigeAbleitungen}
+ sehen wir, dass wir die Euler-Lagrange Gleichungen
  \[ 
    \frac{\partial f(y(x),y'(x))}{\partial y(x)}
     -\frac{d}{dx} \frac{\partial f(y(x),y'(x)}{\partial y'(x)}=0

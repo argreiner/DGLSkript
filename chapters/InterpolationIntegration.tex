@@ -91,26 +91,26 @@ Teilen wir (\ref{eq:1stbarycentric}) durch letzteres, dann erhalten wir die zwei
 	\label{eq:2ndbarycentric}
 \end{equation}
 %The $n+1$ Lagrange polynomials of order n add up to unity everywhere in the interval.
-\subsubsection{Equidistant sample points}
-For equally spaced sample points $x_i-x_{i-1}=h$ we have
+\subsubsection{Interpolationspunkte gleichen Abstands}
+Für Interpolationspunkte gleichen Abstands $x_i-x_{i-1}=h$ erhalten wir
 \begin{eqnarray*}
 \lambda_i =\prod_{j=0,j\neq i}^n\frac{1}{x_i-x_j} 
 &=&\frac{1}{(-1)^{n-i}h^n(i(i-1)(i-2)\ldots1)(1\ 2\ \ldots\ (n-1))}\\[1ex]
 &=&\frac{(-1)^{n-i}}{h^n n!}
 \left(\begin{array}{c}n\\ i\end{array}\right)
 \end{eqnarray*}
-In this case we may write 
+In diesem Fall können wir  
 \[
 \mu_i=\frac{1}{x-x_i} \prod_{j=0,j\neq i}^n\frac{1}{x_i-x_j}=
 \frac{1}{x-x_i} \lambda_i
 \]
-Taking into account that in (\ref{eq:2ndbarycentric}) all factorized quantities
-that are not subject to the summations in the numerator and the denominator
-cancel, there is a simple form 
+schreiben. Wenn wir beachten, dass in (\ref{eq:2ndbarycentric}) alle Faktoren
+im Zaähler und Nenner, über die nicht summiert wird, sich wegheben, dann
+erhalten wir die einfache Form
 \[ 
-\lambda_i^* = (-1)^i\left(\begin{array}{c}n\\ i\end{array}\right)
+  \lambda_i^* = (-1)^i\left(\begin{array}{c}n\\ i\end{array},\right)
 \]
-which replaces the $\lambda_i$ for unequally spaced sample points.
+die $\lambda_i$ für unregelmäßige Abstände der Interpolationspunkte ersetzt..
 \subsubsection{Application of Lagrange polynomials}
 For a given number of sample points let us calculate the derivative of the
 Lagrange polynomial, to read

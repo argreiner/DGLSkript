@@ -1,16 +1,16 @@
 \chapter{Gewöhnliche Differentialgleichungen}
 Die allgemeine Form einer Differentialgleichung sei folgendermaßen gegeben
 \begin{equation}
-\frac{d\mbf{y}(t)}{dt}=f(t,\mbf{y}(t))
+  \frac{d\mbf{y}(t)}{dt}=\mbf{f}(t,\mbf{y}(t))
   \label{eq:DGLallgemein}
 \end{equation}
 Anstatt den Differentialoperator $\frac{d}{dt}$ auszuschreiben, benutzen wir
 für (\ref{eq:DGLallgemein}) auch die Schreibweise
 $\dot{\mbf{y}}=f(t,\mbf{y}(t))$.  Dabei bezeichne $t$ die unabhängige
-Veränderliche, $f(t,\mbf{y})$ eine bekannte Funktion und $\mbf{y}$ einen Vektor
-gesuchter Funktionen $y_i(t)$.  Wir betrachten verschiedene
-Differentialgleichungen, benennen deren Eigenschaften und erkennen die
-verschiedenen Typen:
+Veränderliche, $\mbf{f}(t,\mbf{y})$ einen Vektor bekannter Funktion und
+$\mbf{y}$ einen Vektor gesuchter Funktionen $y_i(t)$.  Wir betrachten
+verschiedene Differentialgleichungen, benennen deren Eigenschaften und erkennen
+die verschiedenen Typen:
 \begin{enumerate}
 	\item Linear und nichtlinear, wie z.B.\
 	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t),\]
@@ -39,12 +39,12 @@ verschiedenen Typen:
 		die bekannte Räuber-Beute-Gleichungen oder auch Lotka-Volterra-Gleichungen.
 	\item Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung.
 		Gegeben der gedämpfte Harmonische Oszillator
-		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t)\]
-		ersetze $\dot{x} = y$ und wir erhalten zwei Gleichungen erster
+		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t)\]. Substituiere
+		$y_1=x$ und $y_2=\dot{x}$ und wir erhalten zwei Gleichungen erster
 		Ordnung anstatt der ursprünglichen Gleichung zweiter Ordnung, nämlich 
-		\begin{eqnarray*}
-		  \dot{x} &=& y\\
-	 	  m\dot{y}&=&-cy-kx+f(t)
+		\begin{eqnarray*} 
+		  \dot{y_1} &=& y_2\\
+	 	  m\dot{y_2}&=&-k\cdot y_1-c\cdot y_2+f(t)
 	       \end{eqnarray*}
 	     \item Der Grad einer Differentialgleichung ist der Exponent der Potenz der höchsten vorkommenden Ableitung.
 \end{enumerate}
@@ -187,9 +187,12 @@ dann müssen wir einen solchen versuchen zu finden
       integrierenden Faktor finden, wenn man bestimmte Gruppen von Termen als
       Teil eines vollständigen Differentials identifiziert.
 \end{enumerate}
+\Comment{
 %\begin{example}{}
-%Gruppe von Termen, Integrierender Faktor, Vollständiges Differential.
-%\end{example} \newpage
+Beispiele zu Gruppe von Termen, Integrierender Faktor, Vollständiges Differential.
+%\end{example}
+} 
+\newpage
 %
 \section{Gewöhnliche lineare Differentialgleichungen}
 \subsection{Gleichungen mit konstanten Koeffizienten}
@@ -650,8 +653,8 @@ Inhomogenitäten ab.
             \cdots(\mu-\lambda_s)^{r_s}}\]
 	  \item Liegt hingegen Resonanz vor, z.B.  $\mu=\lambda_s$, dann schreiben wir (\ref{eq:SoluInhomogenOperator})
 	    \[y(t)=e^{\lambda_s t}\cdot D^{-r_s}
-	    \left[\frac{e^{\mu-\lambda_s}}{(\mu-\lambda_1)^{r_1}\dots(\mu-\lambda_{s-1})^{r_{s-1}}}\right]\]
-	    Beachte, es die Reihenfolge der Operatoren $(D-\lambda_i)^{r_i}$
+	    \left[\frac{e^{(\mu-\lambda_s)\cdot t}}{(\mu-\lambda_1)^{r_1}\dots(\mu-\lambda_{s-1})^{r_{s-1}}}\right]\]
+	    Beachte, die Reihenfolge der Operatoren $(D-\lambda_i)^{r_i}$
 	    kann beliebig vertauscht werden und wir erhalten im Resonanzfall
 	    \[y(t)=e^{\mu t}\cdot D^{-r_s}
 	      \left[\frac{1}{(\mu-\lambda_1)^{r_1}\dots(\mu-\lambda_{s-1})^{r_{s-1}}}\right]\]
