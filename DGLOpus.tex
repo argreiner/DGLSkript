@@ -18,7 +18,7 @@
 \frontmatter
 \maketitle
 \part{Differentialgleichungen}
-\Erratum{Hier ist eine Fehlerbeschreibung.}
+%\Erratum{Hier ist eine Fehlerbeschreibung.}
 Lernziele:
 \begin{itemize}
 \item Verständnis der Klassifizierung unterschiedlicher Differenzialgleichungen
@@ -27,8 +27,9 @@ Lernziele:
 \end{itemize}
 Die meisten Phänomene denen wir in den Ingenieurwissenschaften begegnen, werden
 sehr gut durch Differentialgleichungen beschrieben. Lineare zeitinvariante
-System der Systemtheorie (LTI-Systeme) im Zeitbereich, \Comment{ anderes
-Beispiel wählen!!!} werden durch ein System linearer gewöhnlicher
+System der Systemtheorie {(LTI-Systeme)} im Zeitbereich, 
+%\Comment{ anderes Beispiel wählen!!!} 
+werden durch ein System linearer gewöhnlicher
 Differentialgleichungen (ODE = ordinary differential equation) mit der Zeit als
 unabängiger Veränderlicher beschrieben. Ein Diffusionsprozess, wie z.B. der
 Wärmetransport in einem Bauteil auf einem Kühlkörper, das einer Wärmequelle
@@ -73,21 +74,25 @@ wie das ganze Manuskript, ständig erweitert werden.
 \tableofcontents
 \newpage 
 \mainmatter
-\input{chapters/Introduction}
-\input{chapters/GDGL}
-\input{chapters/Integraltrafo}
-\input{chapters/LinearResponse}
-\input{chapters/NLDGL}
-\input{chapters/PDGL}
-\input{chapters/Variationsrechnung}
-%\input{chapters/InterpolationIntegration}
+\input{chapters/0_Introduction}
+\input{chapters/1_GDGL}
+\input{chapters/2_GLHDGL}
+\input{chapters/3_GLIDGL}
+\input{chapters/4_SLGDGL}
+\input{chapters/5_Integraltrafo}
+\input{chapters/6_LinearResponse}
+\input{chapters/7_NLDGL}
+\input{chapters/8_PDGL}
+\input{chapters/9_NumerischeMethoden}
+\input{chapters/10_Variationsrechnung}
+
 %
 \begin{appendices}
 \noappendicestocpagenum
 \renewcommand\appendixtocname{Anhang}
 \renewcommand\appendixpagename{Anhang}
-\input{chapters/Residuensatz}
-\input{chapters/InterpolationIntegration}
+\input{chapters/A1_Interpolation}
+\input{chapters/A2_Integration}
 %\input{chapters/VNOS}
 \end{appendices}
 \end{document}

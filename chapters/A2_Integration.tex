@@ -1,0 +1,151 @@
+\chapter{Numerical integration}
+Numerical integration must be used if:
+\begin{itemize}
+	\item The integral cannot be evaluated analytically
+	\item The integrand is not given in analytical form but rather
+		numerically with a certain number of dicrete values
+\end{itemize}
+		
+\subsection{Trapezoid quadrature}
+This method consists in replacing the given function $f(x)$ by a set of lines connecting the sample points and then to sum all the trapezoid areas to approximate the integral, to give
+\begin{eqnarray*}
+	\int_{x_{i-1}}^{x_i}f(x)dx&\approx &\frac{f_{i-1}+f_i}{2}\Delta x_i\\
+	\Delta x_i&=&x_i-x_{i-1}
+\end{eqnarray*}
+$[a,b]$ be the interval of integration. With $x_0=a,\; x_1,\dots,\; x_n=b$ we have
+\begin{equation}
+	\int_{a}^{b}f(x)dx\approx \sum_{i=1}^n\frac{f_{i-1}+f_i}{2}\Delta x_i
+	\label{eq:trapez}
+\end{equation}
+Suppose that we have regularly spaced sample points
+\[ \Delta x_i=\Delta x=\frac{b-a}{n} \]
+Then (\ref{eq:trapez}) reads
+\[\int_a^bf(x)dx\approx\frac{\Delta x}{2}\left[ f_0+f_n+2\sum_{i=1}^{n-1}f_i\right]\]
+This does not allow to tell about the integration error. For this we have to
+expand the function into a Taylor series to first order and one replaces the
+function by a secant neglecting second order terms in $\Delta x$. One can show
+that
+\begin{equation}
+	\int_a^bf(x)dx=\frac{\Delta x}{2}\left[ f(a)+f(b)+2\sum_{i=1}^{n-1}f(x_i)\right]
+	-\frac{(\Delta x)^2}{12}(b-a)f''(\bar{x})-{\cal O}(\Delta x^4)
+	\label{eq:order4}
+\end{equation}
+where $\bar{x}\in[a,b]$. In most cases one obtains a better approximation
+of the integral, if one writes for the second derivative
+\[ f''(\bar{x})=\frac{f'(a)-f'(b)}{b-a} \]
+to give
+\begin{equation}
+        \int_a^bf(x)dx=\frac{\Delta x}{2}\left[ f(a)+f(b)+2\sum_{i=1}^{n-1}f(x_i)\right]
+        -\frac{(\Delta x)^2}{12}\left[ f'(b)-f'(a)\right]
+        \label{eq:order4apr}
+\end{equation}
+(\ref{eq:order4apr}) is the trapezoid form with corrections at the
+endpoints. With this the methods becomes a 4th order method
+%\subsection{Example}
+\subsection{Integration using Interpolation}
+We consider an interpolating polynomial with the support points given as
+$a\le x_0\le x1\le\dots\le x_n\le b$
+and, e.g. Lagrange polynomials as interpolation functions
+\[ p_n[x]=\sum_{k=0}^nf[x_k]L_k[x]\]
+Integration of the polynomial yields
+\[ Q-n=\int_a^bp_n[x]dx=\sum_{k=0}^nf[x_k]\int_a^bL_k[x]dx=(b-a)\sum_{k=0}^nw_kf[x_k] \]
+where the weights are defined as
+\[ w_k=\frac{1}{(b-a)}\int_a^bL_k[x]dx\]
+
+\begin{note}{}
+If $f(x)$ is a polynomial of degree $<n+1$, then $p_n(x)$ is exact, and thus
+also $Q_n$ is exact.
+\end{note}
+\subsection{Simpson's rule}
+This method consists in replacing the function $f(x)$ between $x_{i-1}$ and
+$x_{i+1}$ by a parabola passing through $f_{i-1}$, $f_i$, and $f_{i+1}$. One
+can show the Simpson rule by a Taylor expansion of the integral. To this end we
+write
+\[ I(x)=\int_a^x f(x')dx'\]
+It is
+\[ \frac{dI(x)}{dx}=f(x)\]
+The integral over the interval between $x_{i-1}$ and $x_{i+1}$ can now be written as
+\[ A_i =I(x_{i+1})-I(x_{i-1})\]
+If we do this for all intervals and sum, we get
+\[\int_a^bf(x)dx=\frac{\Delta x}{3} \left[
+f(a)+f(b)+4 \sum_{\substack{i=1\\ odd}}^{n-1} 
+A_i+2 \sum_{\substack{i=2 \\ even}}^{n-2}A_i\right]+{\cal O}(\Delta x^4)\]
+
+\subsection{Gau{\ss} quadrature}
+This very precise method uses non uniformly distributed discretization points,
+which are chosen to the best convenience. This method can be applied when the
+integrand $f(x)$ is known analytically or if its values are known exactly where
+the support points for the method have to be located. It might not be applied,
+whenever a discrete representation of $f(x)$ does not fulfil these
+requirements.
+
+As we have already shown in the previous section, one can use an interpolation
+of the function $f(x)$ in terms of polynomials, in order to write the integral
+of this function as a weighted sum over its function values at specific points
+\[ \int_{a}^{b}f(x)dx=C\sum_{k=1}^nw_kf(x_k)\]
+where $C$ is proportional to $b-a$. The weighting factors $w_k$ depend on the
+specific function that approximates $f(x)$. These are straight line segments is
+the case of trapezoid quadrature, or parabolas in case of the method by
+Simpson.
+
+In the method by Gauss $f(x)$ is approximated by a basis of orthogonal
+polynomials. The $x_i$ are the roots of these polynomials and thus are
+irregularly spaced. One can use any kind of polynomials, e.g. Jacobi,
+Tchebychev, Laguerre, Hermite\dots, but the most often used are those of
+Legendre. These are defined in the interval $[-1,1]$. To this end we have to
+change the variable, which is $x\in[a,b]$, by means of a linear transformation
+to become $\xi\in[-1,1]$. This transformation reads
+\[x=\frac{b+a}{2}+\frac{b-a}{2}\xi \]
+
+Thus we have
+\[\int_a^bf(x)dx=\frac{b-a}{2}\sum_{k=1}^{n}w_kf(x_k)\]
+where the $w_k$ and the $\xi_k$ are given in the following table
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+n&$\pm\xi_k$&$w_k$\\\hline
+2&0.5773502692&1.0000000000\\\hline
+3&0.0000000000&0.8888888889\\
+ &0.7745966692&0.5555555556\\\hline
+4&0.8611363116&0.3478548451\\
+ &0.3399810436&0.6521451549\\\hline
+5&0.0000000000&0.5688888889\\
+ &0.5384693101&0.4786286705\\
+ &0.9061798459&0.1713244924\\\hline
+\end{tabular}
+\end{center}
+
+We shall not derive this method but rather give some arguments why it works.
+One can show that the method is exact for polynomials of order $2n-1$. To see
+this take such a polynomial $p(x)$ and represent it the following way
+\[ p(x)=q(x)P_n(x) +r(x)\]
+where $P_n(x)$ is a Legendre polynomial of order $n$, $q(x)$ is a polynomial of
+order $n-1$ as well as is the rest $r(x)$. 
+We thus have
+\[ \int_{-1}^1p(x)dx=\int_{-1}^1q(x) P_n(x) dx+\int_{-1}^1r(x)dx=\int_{-1}^1r(x)dx\]
+Now choose as support points the roots of $P_n(x)$ and we have the same result
+from the quadrature formula
+\[ \sum_{k=1}^nw_kp(x_k)=\sum_{k=1}^nw_kq(x_k)P_n(x_k)
++\sum_{k=1}^nw_kr(x_k)=\sum_{k=1}^nw_kr(x_k)\]
+Now, the interpolation quadrature
+formula of $x_k$ has accuracy of $2n-1$, and delivers the exact value for the
+polynomial $L_k(x)^2$. Therefore we have
+\[ w_k=\int_{-1}^1L_k(x)^2dx=\int_{-1}^1\prod_{\substack{j=1\\ j\neq
+k}}\left(\frac{x-x_j}{x_k-x_j}\right)^2=\sum_{\mu=1}^nw_\mu L_k(x_\mu)^2\]
+
+This gives a recipe how the $x_k$ and the $w_k$ must be chosen to get the
+desired accuracy.
+\subsection{Integrals of functions with multiple variables}
+The multidimensional integral
+\[ \int_{a_n}^{b_n}\ldots\int_{a_2}^{b_2}
+\int_{a_1}^{b_1}f(x_1,x_2,\ldots,x_n)dx_1dx_2\cdots dx_n\]
+must be progressively replaced by a quadrature formula
+\[ \sum_{i_1=0}^{k_1}w_{i_1}\int_{a_2}^{b_2}\ldots
+\int_{a_n}^{b_n}f(x_{i_1},x_2,\ldots,x_n)dx_1dx_2\cdots dx_n\]
+to give
+\[ \sum_{i_1=0}^{k_1}\sum_{i_2=0}^{k_2}\ldots
+\sum_{i_n=0}^{k_n} w_{i_1} w_{i_2}\ldots w_{i_n}
+f(x_{i_1},x_ {i_2},\ldots,x_ {i_n})\]
+For high dimensional spaces of the function argument this can very easily end
+in a tremendous computational load. In this case other methods must be provided
+which are not subject of the discussion here.

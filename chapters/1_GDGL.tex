@@ -1,0 +1,194 @@
+\chapter{Gewöhnliche Differentialgleichungen}
+Die allgemeine Form einer Differentialgleichung sei folgendermaßen gegeben
+\begin{equation}
+  \frac{d\mbf{y}(t)}{dt}=\mbf{f}(t,\mbf{y}(t))
+  \label{eq:DGLallgemein}
+\end{equation}
+Anstatt den Differentialoperator $\frac{d}{dt}$ auszuschreiben, benutzen wir
+für (\ref{eq:DGLallgemein}) auch die Schreibweise
+$\dot{\mbf{y}}=f(t,\mbf{y}(t))$.  Dabei bezeichne $t$ die unabhängige
+Veränderliche, $\mbf{f}(t,\mbf{y})$ einen Vektor bekannter Funktion und
+$\mbf{y}$ einen Vektor gesuchter Funktionen $y_i(t)$.  Wir betrachten
+verschiedene Differentialgleichungen, benennen deren Eigenschaften und erkennen
+die verschiedenen Typen:
+\begin{enumerate}
+	\item Linear und nichtlinear, wie z.B.\
+	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t),\]
+	  eine lineare inhomogene Differentialgleichung 2. Ordnung,
+	  die den gedämpften und getriebenen harmonischen Oszillator bechreibt, während
+	\[\frac{d^2x(t)}{dt^2}+\mu(x(t)^2-1)\frac{dx(t)}{dt}+x(t)= 0 \]
+	  eine nichtlineare Bewegungsgleichung für $x(t)$ ist. Sie beschreibt den so genannten
+	  van der Pol Oszillator.  
+	\item erste, zweite und höhere Ordnung 
+	  \[ \dot{x}(t)+\frac{1}{\tau}x=h(t)\] 
+	  beschreibt einen getriebenen Relaxator, den wir gleich näher
+	  betrachten werden. Die rechte Seite dieser Gleichung bezeichnen wir
+	  als Inhomogenität.
+		%- in der Systemtheorievbezeichneten wir damit ein
+		%Verzögerungsglied 1.\ Ordnung ($\mbox{PT}_1$-Glied). 
+	  Ein Beispiel für eine Gleichung 2.\ Ordnung ist entweder der
+	  van der Pol Oszillator oder der Harmonische Oszillator (siehe
+	  oben). 
+		% Finde ein entsprechendes elementares zeitinvariantes
+		% \"Ubertragungsglied (Hinweis: Skript Systemtheorie)!
+	\item System von DEs  1.\ Ordnung 
+		\begin{eqnarray*}
+			\frac{dx}{dt} &=& x(\alpha - \beta y) \\
+			\frac{dy}{dt} &=& - y(\gamma - \delta x) 
+		\end{eqnarray*}
+		die bekannte Räuber-Beute-Gleichungen oder auch Lotka-Volterra-Gleichungen.
+	\item Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung.
+		Gegeben der gedämpfte Harmonische Oszillator
+		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t)\]. Substituiere
+		$y_1=x$ und $y_2=\dot{x}$ und wir erhalten zwei Gleichungen erster
+		Ordnung anstatt der ursprünglichen Gleichung zweiter Ordnung, nämlich 
+		\begin{eqnarray*} 
+		  \dot{y_1} &=& y_2\\
+	 	  m\dot{y_2}&=&-k\cdot y_1-c\cdot y_2+f(t)
+	       \end{eqnarray*}
+	     \item Der Grad einer Differentialgleichung ist der Exponent der Potenz der höchsten vorkommenden Ableitung.
+\end{enumerate}
+Bei all diesen Differentialgleichungen sind wir immer an einer Lösung für
+einen bestimmten Anfangswert interessiert, also z.B.\ $x(t=0)=x_0$ etc. Um ein
+System von Gleichungen lösen zu können müssen wir für jede Variable
+Anfangsbedingungen angeben. Da aus einer Gleichung n-ter Ordnung ein System mit
+n Variablen wird, schließen wir daraus, dass wir für eine solche
+Differentialgleichung ebenfalls n Anfangsbedingungen brauchen.
+%
+\section{Allgemeine analytische Lösung}\label{sec:analyticsolu}
+Wenn wir gewöhnliche Differentialgleichungen analytisch lösen wollen so ist
+dies nicht in allen Fällen möglich. Betrachten wir das Anfangswertproblem
+für die gewöhnliche Differentialgleichung
+\[ \dot{y}(t) = f\left(t,y(t)\right)\]
+mit $y(t_0)=y_0$. Die Funktion $f(t,y(t))$ sei stetig im Bereich der
+$(t,y)$-Ebene, gegeben durch $t_0-a\le t\le t_0+a$ und $y_0 -b\le y\le y_0+b$.
+Der Nachweis der Existenz und Eindeutigkeit einer Lösung ist in diesem Falle
+nicht immer möglich. Wir wollen eine alternative Vorgehensweise vorschlagen.
+
+Wir nehmen an $y(t)$ sei eine Lösung des Anfangswertproblems und es gelte
+$y_0 -b\le y\le y_0+b$ für $t\in [t_0-\alpha,t_0+\alpha]$ mit $0<\alpha\le a$,
+so ergibt sich aus obiger Voraussetzung für $f(t,y(t))$, dass die Lösung im
+Intervall $[t_0-\alpha,t_0+\alpha]$ eine stetige Ableitungsfunktion
+$\dot{y}(t)$ besitzt.  Also lässt sich die Lösungsfunktion dort als
+Stammfunktion dieser Ableitung darstellen 
+\begin{equation}\label{eq:Integral}
+  y(t)=y_0+\int_{t_0}^t f(s,y(s))ds 
+\end{equation}
+Wobei $t_0-a\le t\le t_0+a$ gilt. Dies bedeutet aber, dass jede Lösung des
+obigen Anfangswertproblems auch Lösung der Integralgleichung
+(\ref{eq:Integral}) ist. Umgekehrt ist auch jede Lösung von
+(\ref{eq:Integral}) Lösung des Anfangswertproblems.
+\section{Lösung durch Iteration}
+Schreiben wir die Integralgleichung (\ref{eq:Integral}) in der Form
+\begin{equation}
+  y(t)=\Phi[y]\mbox{ mit } \Phi[y]=y_0+\int_{t_0}^t f(s,y(s))ds
+  \label{eq:Iteration}
+\end{equation}
+\begin{note}{Funktional statt Integral}
+  In (\ref{eq:Iteration}) schreiben wir absichtlich $\Phi[y]$, d.h. das $y$ in
+  eckigen Klammern geschrieben, weil $\Phi[y]$ ein Funktional ist. Es hängt
+  nicht nur vom Zeitpunkt $t$ in der unabhängigen Variablen ab, sondern vom
+  gesamten Verlauf der Funktion $y(t)$. Wir werden im Kapitel \ref{chap:Variationsrechnung}
+  Variationsrechnung darauf zurückkommen. 
+\end{note}
+Wir sehen, dass die Lösung von (\ref{eq:Iteration}) wie der Fixpunkt $y^*$ der
+Gleichung \[ y=\varphi(y)\] zu bestimmen ist. Hierbei gehen wir iterativ vor.
+Wir starten bei einem Rohwert $y_0$ und berechnen sukzessiv nach der Vorschrift
+\[ y_{n+1} = \varphi(y_n) \] 
+Jetzt müssen wir nur noch zeigen, dass die Iteration konvergiert. Dies ist für
+die Lösung der Integralgleichung (\ref{eq:Integral}) der Fall, wenn die
+Abbildung $\phi$ kontrahierend ist.
+\begin{example}{Iterative Lösung}
+Gegeben die Differentialgleichung
+\[
+  \frac{d}{dt}y(t)=-\alpha y(t) 
+\]
+Zeige, dass die iterative Lösung im Limes mit der analytischen Lösung
+übereinstimmt.
+\end{example}
+\section{Gleichungen erster Ordnung und ersten Grades}
+Wir gehen von einer Differentialgleichung erster Ordnung und ersten Grades 
+\[   p(t,y)+q(t,y)\dot{y}(t)=0 \]
+aus, die sich in der Form
+\begin{equation}\label{eq:DGLVarKoeff}
+  p(t,y)dt+q(t,y)dy=0
+\end{equation}
+schreiben lässt. Wobei $p(t,y)$ und $q(t,y)$ den gemeinsamen Definitionsbereich
+$a\le t\le b$ und $\alpha\le y\le\beta$ haben
+\begin{example}{Umformung}
+  \[\frac{dy}{dt}+\frac{y+t}{y-t}=0\]
+  kann mit $p(t,y)=y+t$ und $q(t,y)=y-t$ auf die Form
+  \[(y+t)dt+(y-t)dy=0\]
+  gebracht werden.
+\end{example}
+\subsection{Separierbare Differentialgleichungen}
+Den Spezialfall
+\begin{equation}
+  p(t)+q(y)\dot{y}(t)=0
+  \label{eq:getrennteVar}
+\end{equation}
+nennen wir eine {\it Differentialgleichung mit getrennten Variablen}.
+
+Existieren für $p$ und $q$ im angegebenen Definitionsbereich die Integrale $P$
+und $Q$, mit $\dot{P}(t)=p(t)$ und $\frac{dQ(y)}{dy}=q(y)$ so ist
+\[\mu(t,y)=P(t)+Q(y)=const.\]
+denn es ist wegen (\ref{eq:getrennteVar})
+\[ d\mu=\dot{P}(t)dt+\frac{dQ(y)}{dy}dy=p(t)dt+q(y)dy=0\]
+\begin{example}{Separierbare Differentialgleichung}
+a) $t\dot{y}=y$ und b) $y\dot{y}=-t$
+\begin{description}
+  \item[a)] Für $t\ne 0$ und $y\ne =0$ erhalten wir 
+  \[\frac{dy}{y}=\frac{dt}{t}\]
+\item[b)] $ydy=-tdt$
+\end{description}
+\end{example}
+\subsection{Exakte Differentialgleichungen}
+Ist $p(t,y)dt+q(t,y)dy$ das vollständige Differential einer Funktion
+$\mu(y,t)$, d.h.\ ist 
+\[d\mu(y,t)=\frac{\partial\mu(y,t)}{\partial t}dt+
+\frac{\partial\mu(y,t)}{\partial y}dy=p(t,y)dt+q(t,y)dy\]
+dann nennen wir (\ref{eq:DGLVarKoeff}) eine {\it exakte Differentialgleichung}
+und $\mu(y,t)=const.$ ist eine allgemeine Lösung. Damit (\ref{eq:DGLVarKoeff})
+eine exakte Differentialgleichung ist, muss die Bedingung
+\begin{equation}
+  \frac{\partial p(t,y)}{\partial y}=  \frac{\partial q(t,y)}{\partial t}
+  \label{eq:BedExaktheit}
+\end{equation}
+erfüllt sein.
+
+Nicht immer sieht man allerdings der Differentialgleichung die Exaktheit an.
+Selbst wenn wir sehen, dass (\ref{eq:DGLVarKoeff}) keine exakte
+Differentialgleichung ist, da (\ref{eq:BedExaktheit}) nicht erfüllt ist, gibt
+es aber unter Umständen die Möglichkeit eine Funktion zu finden, mit der man
+die Gleichung multiplizieren kann, sodass diese exakt wird. 
+\begin{note}{Integrierender Faktor}
+  $3ydt+2tdy=0$ ist keine exakte Differentialgleichung. Multipliziert man aber
+  $\Xi(y,t)=t^2y$ mit dieser Gleichung, so erhält man $3t^2y^2dt+2t^3ydy=0$.
+  Dies kann man als vollständiges Differential der unktion $\mu(y,t)=t^3y^2$
+  schreiben und somit ist $t^3y^2=C$ einen allgemeine Lösung der
+  Differentialgleichung. Die Funktion $\Xi(y,t)$ heisst integrierender Faktor.
+\end{note}
+Angenommen (\ref{eq:DGLVarKoeff}) sei keine exakte Differentialgleichung, 
+dann müssen wir einen solchen versuchen zu finden
+\begin{enumerate}
+    \item Wenn 
+    \[\frac{\frac{\partial p(t,y)}{\partial y}-\frac{\partial q(t,y)}{\partial t}}{q(t,y)}=f(t)\] 
+    eine Funktion von t allein ist, dann ist $e^{\int f(t)dt}$ ein integrierender Faktor. 
+    Ebenso wenn
+    \[\frac{\frac{\partial p(t,y)}{\partial y}-\frac{\partial q(t,y)}{\partial t}}{p(t,y)}=-g(y)\]
+    nur eine Funktion von y ist, dann ist $e^{\int g(y)dy}$ ein integrierender Faktor.
+    \item Ist (\ref{eq:DGLVarKoeff}) homogen, d.h. sind $p(t,y)$ und $q(t,y)$
+      homogene Funktionen vom selben Grad, und $p(t,y)\cdot t+q(t,y)\cdot y\ne
+      0$, dann ist $\frac{1}{p(t,y)\cdot t+q(t,y)\cdot y}$ ein integrierender
+      Faktor.
+    \item Wenn (\ref{eq:DGLVarKoeff}) in der Form $y\cdot f(t\cdot y)dt+t\cdot g(t\cdot y)dy=0$
+    geschrieben werden kann, dann ist $\frac{1}{t\cdot y(f(t\cdot y)-g(t\cdot y))}=\frac{1}{p\cdot t-q\cdot y}$ ein integrierender Faktor.
+    \item Durch genaues Hinschauen kann man durch Umgruppieren von Termen einen
+      integrierenden Faktor finden, wenn man bestimmte Gruppen von Termen als
+      Teil eines vollständigen Differentials identifiziert.
+\end{enumerate}
+\Comment{
+%\begin{example}{}
+Beispiele zu Gruppe von Termen, Integrierender Faktor, Vollständiges Differential.
+%\end{example}
+} 

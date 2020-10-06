@@ -1,0 +1,271 @@
+\chapter{Lösung der inhomogenen Gleichung}
+\section{Variation der Konstanten}
+Diese Methode lässt sich auch bei variablen Koeffizienten anwenden. Die Lösung
+der homogenen Gleichung hierfür, soll allerdings erst später besprochen werden.
+Daher gehen wir von einer Differentialgleichung der Form (\ref{eq:DGLOrdnungN})
+aus. Die Idee hinter der Methode ist die gefundenen Fundamentallösungen zu
+superponieren, die benutzten Koeffizienten aber als noch zu bestimmende
+Funktionen anzusetzen. Wir setzen also folgendes an
+\begin{equation}
+  y(t)=c_1(t)y_1(t)+c_2(t)y_2(t)+\cdots+c_n(t)y_n(t)
+  \label{eq:AnsatzVariationKonstanten}
+\end{equation}
+Nun brauchen wir natürlich auch $n$ Bedingungen um die Funktionen $c_i(t)$ zu
+bestimmen. Wir nehmen an dass die $c_i(t)$ mindestens einmal differenzierbar seien.
+Die Lösung $y(t)$ hingegen muss n-mal differenzierbar sein. Dann legen wir folgendes fest für die $c_i(t)$
+\begin{align}
+  \dot{y}(t)=&c_1(t)\dot{y}_1(t)+c_2(t)\dot{y}_2(t)+\cdots+c_n(t)\dot{y}_n(t)\nonumber\\
+  &+\underbrace{\dot{c}_1(t)y_1(t)+\dot{c}_2(t)y_2(t)+\cdots+\dot{c}_n(t)y_n(t)}_{=0}\nonumber\\
+  \ddot{y}(t)=&c_1(t)\ddot{y}_1(t)+c_2(t)\ddot{y}_2(t)+\cdots+c_n(t)\ddot{y}_n(t)\nonumber\\
+  &+\underbrace{\dot{c}_1(t)\dot{y}_1(t)+\dot{c}_2(t)\dot{y}_2(t)+\cdots
+               +\dot{c}_n(t)\dot{y}_n(t)}_{=0}\nonumber\\
+	       &\cdots\cdots\cdots\nonumber\\
+	       y^{(n)}(t)=&c_1(t)y^{(n)}_1(t)+c_2(t)y^{(n)}_2(t)+\cdots+c_n(t)y^{(n)}_n(t)\nonumber\\
+  &+\underbrace{\dot{c}_1(t)y^{(n-1)}_1(t)+\dot{c}_2(t)y^{(n-1)}_2(t)+\cdots
+  +\dot{c}_n(t)y^{(n-1)}_n(t)}_{=g(t)}\label{eq:Diffbarkeitci}
+\end{align}
+Gegeben, dass diese Bedingungen erfüllt sind, so ist
+(\ref{eq:AnsatzVariationKonstanten}) Lösung der Differentialgleichung. Dies
+können wir sofort erkennen, denn wenn wir die so berechneten Ableitungen aus
+(\ref{eq:Diffbarkeitci}) in die Differentialgleichung einsetzen, ist diese
+erfüllt.
+
+Für die $\dot{c}_k(t)$ dagegen habe wir das Gleichungssystem
+\begin{align}
+  \dot{c}_1(t)y_1(t)&+\dot{c}_2(t)y_2(t)+\cdots+\dot{c}_n(t)y_n(t)=0\nonumber\\
+	       &\cdots\cdots\cdots\nonumber\\
+  \dot{c}_1(t)y^{(n-1)}_1(t)&+\dot{c}_2(t)y^{(n-1)}_2(t)+\cdots
+  +\dot{c}_n(t)y^{(n-1)}_n(t)=g(t)
+	       \label{eq:SystemCs}
+\end{align}
+Die Koeffizientendeterminante von (\ref{eq:SystemCs}) ist die
+Wronskideterminante von der wir in (\ref{eq:WronskianGeneral}) gezeigt haben,
+dass sie von null verschieden ist. Damit ist sichergestellt, dass
+(\ref{eq:SystemCs}) eine Lösung hat.
+%
+\begin{example}{Variation der Konstanten}
+  \[\ddot{y}(t)+y(t)=\frac{1}{\cos(t)}\]
+  %TODO die homogene Lösungen sind ?
+  Die allgemeine Lösung ist $y(t)=c_1\cos(t)+c_2\sin(t)$ und wir machen für die
+  spezielle Lösung den Ansatz
+  \[y(t)=c_1(t)\cos(t)+c_2(t)\sin(t)\]
+  und erhalten das lineare Gleichungssystem
+  \begin{align*}
+    \dot{c}_1(t)\cos(t)+\dot{c}_2(t)\sin(t)&=0\\
+    -\dot{c}_1(t)\sin(t)+\dot{c}_2(t)\cos(t)&=\frac{1}{\cos(t)}
+  \end{align*}
+  Die spezielle Lösung ist damit
+  \[y(t)=\cos(t)\ln(|\cos(t)|)+t\sin(t)\]
+\end{example}
+%
+\pagebreak 
+\section{Lösung der inhomogenen Gleichung: Operatormethode}
+Für die Ableitung benutzen wir als Abkürung eine Operatorschreibweise der Form
+$\frac{dy(t)}{dt}=D[y(t)]$. Entsprechend soll $D^{-1}[y(t)]=\int y(t)dt$
+verwendet werden. Wir wissen ja aus dem Haupsatz der Differential- und
+Integralrechnung, dass die Ableitung die Umkehrung des Integrals ist. Für einen
+Operator $D$ schreiben wir dessen Inverse als $D^{-1}$. Ein r-faches
+Hintereinanderausführen eines Operators können wir also mit $D^r$ schreiben.
+\begin{note}{}
+  Mit dieser Schreibweise wird uns klar, dass z.B. die Exponentialfunktion der
+  Ableitung
+  \[e^\frac{d}{dt}=e^D=1+D+\frac{D^2}{2}+\dots=\sum_{\nu=0}^\infty\frac{D^\nu}{\nu!}\]
+  bedeutet. 
+  
+  Merke: Funktionen von Operatoren sind über ihre Reihenentwicklung
+  definiert.
+
+  Eine offensichtliche Anwendung sehen wir mit der Taylorentwicklung von
+  $y(t+\tau)$ um den Zeitpunkt $t$
+  \[y(t+\tau)=y(t)+\left.\frac{\tau}{1!}\dot{y}(s)\right|_{s=t}+\left.\frac{\tau^2}{2!}\ddot{y}(s)\right|_{s=t}
+	+\dots=\sum\limits_{\nu=0}^{\infty}\left.\frac{\tau^\nu}{\nu!}\frac{d^\nu}{ds^\nu}y(s)\right|_{s=t}=
+	e^{\tau\frac{d}{dt}}y(t)\]
+  Wir nennen $e^{\tau\frac{d}{dt}}=e^{\tau D}$ den Verschiebungs- oder
+  Shiftoperator.
+\end{note}
+Wir betrachten die folgende Differentialgleichung erster Ordnung mit konstanten
+Koeffizienten 
+\begin{equation}
+  \dot{y}(t)-\lambda y(t)=g(t)\mbox{ oder in Operatorform }(D-\lambda)y(t)=g(t)
+  \label{eq:RelaxatorOperatorform}
+\end{equation}
+Wir wissen, dass (\ref{eq:RelaxatorOperatorform}) als homogene Lösung
+$y(t)=e^{\lambda t}$ hat, also versuchen wir es mit dem
+Produktansatz\footnote[1]{Eingesetzt ergibt dies $D[e^{\lambda
+t}D^{-1}[e^{-\lambda t}g(t)]]-\lambda e^{\lambda t}D^{-1}[e^{-\lambda
+t}g(t)]=g(t)$. Wenn wir die Operation $D$ ausführen - Achtung Produktregel -
+und $DD^{-1}=1$ beachten, dann erhalten wir $g(t)=g(t)$}
+\begin{equation}
+  y(t)=e^{\lambda t}\cdot D^{-1}[e^{-\lambda t}g(t)]
+  \label{eq:Produktansatz}
+\end{equation}
+Wir verifizieren das durch einsetzen in (\ref{eq:RelaxatorOperatorform}). Nun
+wenden wir das auf die Differentialgleichung $(D-\lambda)^2[y(t)]=g(t)$ an und
+machen hierfür den entsprechenden Produktansatz
+\begin{equation}
+  y(t)=e^{\lambda t}\cdot D^{-2}[e^{-\lambda t}g(t)]
+  \label{eq:Produktansatz2Ordnung}
+\end{equation}
+und zeigen wieder, dass (\ref{eq:Produktansatz2Ordnung}) die
+Differentialgleichung erfüllt. nun stellt sich die Frage nach der
+Verallgemeinerung, d.h. was geschieht wenn die Differentialgleichung 
+\begin{equation}
+  \ddot{y}(t)-\alpha\dot{y}(t)+\beta y(t)=g(t)
+  \label{eq:DGL2Ordnung2Koeffizienten}
+\end{equation}
+vorliegt, woebei wir $\alpha=\lambda_1+\lambda_2$ und $\beta=\lambda_1\lambda_2$
+schreiben. Damit haben wir
+\begin{equation}
+  (D-\lambda_1)(D-\lambda_2)[y(t)]=g(t)
+  \label{eq:DGG2KoeffizientenOperatorform}
+\end{equation}
+Die Gleichung (\ref{eq:DGL2Ordnung2Koeffizienten}) können wir mit $(D-\lambda_2)[y(t)]=y^*(t)$ 
+in der Form $(D-\lambda_1)[y^*(t)]=g(t)$ schreiben.
+
+Nun lösen wir das ganze sukzessive auf
+\begin{align} 
+  y^*(t)&=e^{\lambda_1t}\cdot D^{-1}\left[e^{-\lambda_1 t}g(t)\right]\nonumber\\
+  y(t)  &=e^{\lambda_2t}\cdot D^{-1}\left[e^{-\lambda_2 t}y^*(t)\right]=\nonumber\\
+        &=e^{\lambda_2t}\cdot D^{-1}\left[e^{(\lambda_1-\lambda_2) t}\cdot
+      D^{-1}\left[e^{-\lambda_1 t}g(t)\right]\right]
+  \label{eq:DGL2OrdnungSolu}
+\end{align}
+Damit ist auch der allgemeine Fall für ein Polynom beliebiger Ordnung 
+\[ P(D)[y(t)]=(D-\lambda_1)^{r_1}\cdot(D-\lambda_2)^{r_2}\cdots 
+(D-\lambda_n)^{r_n}[y(t)]\]
+zugänglich, nämlich
+\begin{equation}
+  y(t)=e^{\lambda_s t}\cdot D^{-r_s}[e^{(\lambda_{s-1}-\lambda_s)t}\cdot D^{-r_{s-1}}
+  [\dots e^{(\lambda_1-\lambda_2)t}D^{-r_1}[e^{-\lambda_1t}g(t)]\dots]]
+  \label{eq:SoluInhomogenOperator}
+\end{equation}
+\begin{example}{Ganzrationale Inhomogenität}
+  \[\dddot{y}(t)-3\dot{y}(t)-2y(t)=4t^2-2\]
+  Hat die characteristische Gleichung
+  \[(\lambda^3-3\lambda-2)=(\lambda-2)(\lambda+1)^2=0\]
+  Die allgemeine Lösung der homogenen Differentialgleichung lautet somit
+  \[y(t)=c_1e^{2t}+c_2e^{-t}+c_3te^{-t}\]
+  Mit (\ref{eq:SoluInhomogenOperator}) erhalten wir
+  \[
+    y(t)=e^{-t}\cdot D^{-2}[e^{3t}\cdot D^{-^1}[e^{-2t}(4t^2-2)]]=-2t^2+6t-8
+  \]
+  Damit ist die allgemeine Lösung gegeben durch
+  \[ y(t)=c_1e^{2t}+c_2e^{-t}+c_3te^{-t}-2t^2+6t-8 \]
+  Die $c_i$ werden durch die Anfangsbedingungen festgelegt.
+\end{example}
+Hieraus leiten wir eine allgemeine herangehensweise bei Polynomen als
+Inhomogenitäten ab.
+\begin{note}{Spezielle Lösung bei speziellen Inhomogenitäten}
+  \begin{enumerate}
+    \item Ist die Inhomogenität gegeben als ein Polynom n-ter Ordnung, so setzt
+      man die spezielle Lösung der Differentialgleichung als allgemeines
+      Polynom n-ter Ordnung an und bestimmt die Polynomialkoeffizienten durch
+      einsetzen in die inhomogene Differetialgleichung und
+      Koeffizientenvergleich.  Wir haben 2 Fälle zu betrachten
+    \item Ist $g(t)=e^{\mu t}$ und $\mu\ne\lambda_i$ dann erhalten wir durch
+      einsetzen in (\ref{eq:SoluInhomogenOperator}) 
+  \[ y(t)=\frac{e^{\mu t}}{(\mu-\lambda_1)^{r_1}
+            \cdots(\mu-\lambda_s)^{r_s}}\]
+	  \item Liegt hingegen Resonanz vor, z.B.  $\mu=\lambda_s$, dann schreiben wir (\ref{eq:SoluInhomogenOperator})
+	    \[y(t)=e^{\lambda_s t}\cdot D^{-r_s}
+	    \left[\frac{e^{(\mu-\lambda_s)\cdot t}}{(\mu-\lambda_1)^{r_1}\dots(\mu-\lambda_{s-1})^{r_{s-1}}}\right]\]
+	    Beachte, die Reihenfolge der Operatoren $(D-\lambda_i)^{r_i}$
+	    kann beliebig vertauscht werden und wir erhalten im Resonanzfall
+	    \[y(t)=e^{\mu t}\cdot D^{-r_s}
+	      \left[\frac{1}{(\mu-\lambda_1)^{r_1}\dots(\mu-\lambda_{s-1})^{r_{s-1}}}\right]\]
+	    Was sich wiederum integrieren lässt zu
+	\[ y(t)=\frac{t^{r_s}e^{\mu t}}{(\mu-\lambda_1)^{r_1} \cdots(\mu-\lambda_{s-1})^{r_{s-1}}}
+	\cdot\frac{1}{r_s!}\]
+  \end{enumerate}
+\end{note}
+Wir fassen die allgemeine Vorgehensweise im Diagramm in Abbildung
+\ref{fig:FlowchartSolu} zusammen.
+%
+\begin{figure}[htb]
+  \centering
+  \tikzstyle{decision} = [diamond, draw, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+  \tikzstyle{block} = [rectangle, draw, 
+    text width=8em, text centered, rounded corners, minimum height=4em]
+  \tikzstyle{line} = [draw, -latex']
+  \tikzstyle{cloud} = [draw, ellipse, node distance=3cm,
+    minimum height=2em]
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    \node [block] (init) {DGL-Löser};
+    \node [block, left of=init, node distance=4cm] (dgl) {Differential- gleichung};
+    \node [block, right of=init, node distance=4cm] (ics) {Anfangsbe- dingungen};
+    \node [decision, below of=init] (hominhom) {ist es eine homogene DGL?};
+    \node [block, right of=hominhom, node distance=4cm] (partsolu) {Suche spezielle L\"osung};
+    \node [block, below of=hominhom, node distance=3cm] (homsolu) {Suche homogene L\"osung(en)};
+    \node [block, below of=homsolu, node distance=2cm] (hometinhom) {Addiere
+           homogene und inhomogene L\"osung(en)};
+    \node [block, below of=hometinhom, node distance=2cm] (stop) {Erf\"ulle Randbedingungen};
+         % Draw edges
+    \path [line] (init) -- (hominhom);
+    \path [line] (hominhom) -- node {immer} (homsolu);
+    \path [line] (hominhom) -- node {yes} (partsolu);
+    \path [line] (homsolu) -- (hometinhom);
+    \path [line] (hometinhom) -- (stop);
+    \path [line] (dgl) -- (init);
+    \path [line] (ics) -- (init);
+    \path [line] (partsolu) |- (stop);
+\end{tikzpicture}
+\caption{Flussdiagramm zur Lösung inhomogener linearer Differentialgleichungen.}
+  \label{fig:FlowchartSolu}
+\end{figure}
+Zur Erfüllung der Randbedingungen gibt es zwei Vorgehensweisen, die wir im
+folgenden diskutieren wollen.
+
+In der ersten Vorgehensweise überlagern wir die gefundene spezielle Lösung mit
+der homogenen Lösung, die ja noch zu wählende Konstanten beinhaltet
+$y(t)=y_{hom}(t)+y_{par}(t)$. Dann setzen wir diese Lösung in die
+Randbedingungen ein und bestimmen so die Konstanten. Dies ist die sichere
+Variante.
+
+Für die zweite Vorgehensweise erinnern wir uns an die Variation der Konstanten.
+Dort hatten wir für eine inhomogene Gleichung erster Ordnung
+$(D-\lambda)y(t)=f(t)$ den Ansatz $y_{par}(t)=c(t)\cdot e^{\lambda t}$ gemacht.
+Die Besitummungsgleichung für $c(t)$ lautete $\dot c(t)=e^{\lambda t}\cdot
+f(t)$. Nun integrieren wir über t in den Grenzen von $0$ bis $t$. Damit
+erhalten wir $c(t)-c(0)=\int_0^te^{\lambda t'}\cdot f(t')dt'$. Die Konstante
+$c(0)$ ist unbestimmt. Wir wählen $c(0)=0$. Die Integration in den Grenzen
+wenden wir auch auf (\ref{eq:SoluInhomogenOperator}) an. Damit wird
+(\ref{eq:SoluInhomogenOperator}) zu
+\begin{equation}
+  y_p(t)=e^{\lambda_n t}
+\int\limits_0^t e^{(\lambda_{n-1}-\lambda_n) t'}
+\int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots
+\int\limits_0^{r} e^{(\lambda_{1}-\lambda_{2}p) p}\
+\int\limits_0^{p} e^{-\lambda_{1}q}f(q)dqdp\dots dt''dt'
+  \label{eq:SoluInhomogenOperator0}
+\end{equation}
+Wie man leicht sieht, gilt $y_p(0)=0$, $\dot y_p(0)=0$,\ldots,
+$y^{(n-1)}_p(0)=0$ (wir zeigen dies in der Anmerkung unten). Damit bleibt die
+Aufgabe, die $c_i$ der homogenen Lösung so zu bestimmen, dass die homogene
+Lösung die Anfangsbedingungen erfüllt.
+\begin{note}{Die Ableitungen von $y_p(t)$ aus (\ref{eq:SoluInhomogenOperator0}) bei $t=0$}
+Wir leiten (\ref{eq:SoluInhomogenOperator0}) einmal nach $t$ ab, dann erhalten
+wir (Kettenregel beachten)
+\[ \dot y_p(t)=\lambda_n y_p(t)+
+e^{\lambda_n t}\frac{d}{dt}
+\int\limits_0^t e^{(\lambda_{n-1}-\lambda_n) t'}
+\int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots
+\int\limits_0^{r} e^{(\lambda_{1}-\lambda_{2}p) p}\
+\int\limits_0^{p} e^{-\lambda_{1}q}f(q)dqdp\dots dt''dt'\
+\]
+Unter dem Integral über $dt'$ steht eine Funktion $g(t')$, n'est-ce pas? Nämlich
+\[g(t')=e^{(\lambda_{n-1}-\lambda_n) t'}
+\int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots
+\int\limits_0^{r} e^{(\lambda_{1}-\lambda_{2}p) p}\
+\int\limits_0^{p} e^{-\lambda_{1}q}f(q)dqdp\dots dt''
+\]
+Also haben wir
+\[ \dot y_p(t)=\lambda_n y_p(t)+e^{\lambda_n t}\frac{d}{dt}
+\int\limits_0^t g(t')dt'
+\]
+Davon wissen wir aber, dass gilt
+\[ \lambda_n y_p(t)+e^{\lambda_n t} g(t)
+\]
+Es ist aber $y_p(0)=0$ und, wie wir leicht sehen, auch $g(0)=0$. Der geneigte Leser möge letzte Aussage beweisen. Also ist auch $\dot y_p(0)=0$. Das geht weiter bis zur Ableitung der Ordnung $n-1$.
+\end{note}

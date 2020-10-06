@@ -1,0 +1,290 @@
+\chapter{Gewöhnliche lineare homogene Differentialgleichungen}
+\section{Gleichungen mit konstanten Koeffizienten}
+Eine lineare Differentialgleichung n-ter Ordnung ist ein Zusammenhang folgender
+Art
+\begin{equation}\label{eq:DGLOrdnungN}
+a_n\frac{d^n y(t)}{dt^n}+a_{n-1}\frac{d^{n-1} y(t)}{dt^{n-1}}+
+\cdots +a_{1}\frac{d y(t)}{dt}+a_0y(t)=f(t)
+\end{equation}
+Dabei ist $y(t)$ eine Funktion der unabhängigen Veränderlichen $t$.
+Differentialgleichungen vom Typ (\ref{eq:DGLOrdnungN}) beschreiben zahlreiche
+Phänomene in Naturwissenschaft und Technik. Zunächst einmal wollen wir die
+linearen Differentialgleichungen mit konstanten Koeffizienten untersuchen. Die
+Funktion $f(t)$, Inhomogenität genannt, sei nur von der unabhängigen
+Veränderlichen $t$ ab\-hängig. Wenn $f(t)=0$ nennen wir (\ref{eq:DGLOrdnungN})
+eine homogene Differentialgleichung, wenn dem nicht so ist, heisst
+(\ref{eq:DGLOrdnungN}) inhomogen.
+
+Man beachte, dass die Koeffizienten der Ableitungen von $y(t)$ nicht
+notwendigerweise Konstanten sein müssen, sondern bekannte Funktionen $a_k(t)$
+sein können. Wichtig für die Bezeichnung als lineare Differentialgleichung ist
+ganz einfach die Tatsache, dass das Superpositionsprinzip gilt. 
+\begin{note}{Lineare Superposition von Lösungen}
+D.h. wenn $y_a(t)$ und $y_b(t)$ je eine Lösung der homogenen linearen
+Differentialgleichung sind, dann ist auch $y(t)=\alpha y_a(t) + \beta y_b(t)$
+eine Lösung. Es löse $y_f(t)$ die Differentialgleichung mit der Inhomogenität
+$f(t)$ und $y_g(t)$ diejenige mit der Inhomogenität $g(t)$, dann löst
+$y(t)=\alpha y_f(t) + \beta y_g(t)$ die Differentialgleichung mit der
+Inhomogenität $h(t)=\alpha f(t) + \beta g(t)$. Man beweise diese Aussage!
+\end{note}
+%
+\section{Lösung der Gleichungen mit konstanten Koeffizienten}
+Zur Lösung der Gleichungen vom Typ (\ref{eq:DGLOrdnungN}) haben wir
+verschiedene Herangeshensweisen. Dabei gehen wir davon aus, dass es genau eine
+Lösung von (\ref{eq:DGLOrdnungN}) mit $f(t)=0$, also der homogenen
+Differentialgleichung, gibt, die den Bedingungen 
+\begin{equation}
+y(t_0)=b_0,\,\dot{y}(t_0)=b_1,\,\dots y^{(n-1)}(t_0)=b_{n-1}
+  \label{eq:ICsGDGL}
+\end{equation}
+genügt. Man möge den Beweis dieses Satzes in den einschlägigen Lehrbüchern
+nachlesen.
+\section{Taylorreihe und  Potentzreihenansatz}
+Zur Lösung von (\ref{eq:DGLOrdnungN}) liegt es nahe, den Ansatz
+\begin{equation}
+  y(t)=\sum\limits_{\nu=0}^{\infty}c_\nu t^\nu
+  \label{eq:AnsatzPotenz}
+\end{equation}
+zu versuchen. D.h. wir vermuten die Lösung in der Form (\ref{eq:AnsatzPotenz})
+finden zu können. Hierzu gibt es zwei Herangehensweisen. Einmal mit Hilfe der
+Taylorreihe und zum anderen durch direktes Einsetzen von
+(\ref{eq:AnsatzPotenz}). 
+
+Wir arbeiten beides am Beispiel des Relaxators aus.
+\begin{example}{Taylorreihe verglichen mit Potenzreihenansatz}
+  Gegeben die homogene Differentialgleichung $\dot{y}(t)+a_0y(t)=0$ mit
+  Anfangsbedingung $y(0)=b_0$ - wir setzen o.B.d.A. $t_0=0$. Wir haben
+  \[ \dot{y}(t)=-a_0y(t),\, \ddot{y}(t)=-a_0\dot{y}(t),\,\dots\, 
+      y^{(n)}(t)=-a_0y^{(n-1)}(t)\]
+  Damit erhalten wir die Ableitungen bei $t=0$
+  \[ y(0)=b_0,\, \dot{y}(0)=-a_0b_0,\, \ddot{y}(0)=a_0^2b_0,\,\dots\, 
+     y^{(n)}(0)=(-1)^na_0^nb_0\]
+  und können die Taylorreihe für $y(t)$ um $t=0$ schreiben als
+  \begin{equation}
+    y(t)=b_0\sum\limits_{\nu=0}^{\infty}(-1)^\nu\frac{a_0^\nu}{\nu!}t^\nu=b_0e^{-a_0t}
+    \label{eq:SoluTaylor}
+  \end{equation}
+Wenn wir (\ref{eq:AnsatzPotenz}) direkt einsetzen, dann erhalten wir die Lösung
+durch Koeffizientenvergleich.
+  \[ \sum\limits_{\nu=0}^{\infty}\nu c_\nu t^{\nu-1}+ 
+      a_0\sum\limits_{\nu=0}^{\infty}c_\nu t^\nu=
+      \sum\limits_{\mu=0}^{\infty}(\mu+1)c_{\mu+1}t^\mu+ 
+      a_0\sum\limits_{\nu=0}^{\infty}c_\nu t^\nu=
+      \sum\limits_{\nu=0}^{\infty} \left((\nu+1)c_{\nu+1}+a_0c_\nu\right) t^\nu
+  \]
+  Aus der Anfangsbedingung erhalten wir eine Rekursionsformel für die $c_\nu$
+  \begin{equation}
+    (\nu+1)c_{\nu+1}+a_0c_\nu=0
+    \label{eq:Rekursion}
+  \end{equation}
+  Mit $y(0)=b0$ haben wir $c_0=b_0$ und finden damit die $c_\nu$ aus
+  (\ref{eq:Rekursion}) 
+    \begin{equation}
+      c_{\nu}=(-1)^\nu\frac{a_0^\nu b_0}{\nu!}\qquad (\nu=0,1,2,\dots).
+    \label{eq:PotenzKoeffizienten}
+  \end{equation}
+  Mit den Koeffizienten (\ref{eq:PotenzKoeffizienten}) erhalten wir die Lösung
+  \begin{equation}
+    y(t)=\sum\limits_{\nu=0}^{\infty}(-1)^\nu\frac{a_0^\nu b_0}{\nu!}t^\nu=b_0e^{-a_0t}
+    \label{eq:SoluPotenz}
+  \end{equation}
+\end{example}
+%
+\section{Der Lösungsansatz $y(t)=e^{\lambda t}$}
+Setzen wir $y(t)=e^{\lambda t}$ in (\ref{eq:DGLOrdnungN}) ein, so erhalten wir
+\begin{equation}
+  \lambda^n+a_{n-1}\lambda^{n-1}+\dots +a_0=0
+  \label{eq:Charakteristische}
+\end{equation}
+Die Gleichung (\ref{eq:Charakteristische}) hat $n$ Nullstellen und somit haben
+wir auch $n$ Lösungen, die wir als Superposition zur Lösung des
+Anfangswertproblems angeben können. Für unseren Relaxator bedeutet dies
+\[ \lambda e^{\lambda t}+a_0e^{\lambda t}=0\]
+Und daraus erhalten wir die Lösung $y(t)=ce^{-a_0 t}$. Um die Anfangsbedingung
+zu erfüllen, setzen wir $c=b_0$.
+
+\begin{example}{Der Exponentialansatz für eine Gleichung 2. Ordnung}
+  Gegeben die Gleichung $\ddot{y}(t)+2\dot{y}(t)-3y(t)=0$ mit den
+  Anfangsbedingungen $y(0)=2$ und $\dot{y}(0)=-2$. Die charakteristische
+  Gleichung (\ref{eq:Charakteristische}) lautet für diesen Fall
+  $\lambda^2+2\lambda-3=0$ mit den beiden Lösungen $\lambda_1=1$ und
+  $\lambda_2=-3$. Wir schreiben die Lösung der Gleichung als Superposition
+  $y(t)=c_1e^{\lambda_1 t}+c_2e^{\lambda_2 t}=c_1e^{t}+c_2e^{-3 t}$. Wenn wir
+  die beiden Anfangsbedingunen erfüllen, dann sind $c_1=c_2=1$ festgelegt.
+  Damit ist die Lösung $y(t)=e^t+e^{-3t}$.
+\end{example}
+Damit erhebt sich die berechtigte Frage, warum man den Potenzreihenansatz dann
+überhaupt in Betracht zieht. Wir erörten dies an folgendem Beispiel:
+\begin{example}{Mehrfachlösungen des charakteristishen Polynoms}
+  \[\ddot{y}(t)-2\dot{y}(t)+y(t)=0,\mbox{ mit } y(0)=1,\quad \dot{y}(0)=2\]
+Mit dem Exponentialansatz $e^{\lambda t}$ erhalten wir das charakteristische
+Polynom $\lambda^2-2\lambda+1=(\lambda -1)^2=0$. Dieses hat eine
+doppelte Nullstelle, aber wie lautet die zweite Lösung?
+\end{example}
+Versuchen wir es mit dem Potenzreihenansatz (\ref{eq:AnsatzPotenz}) wir
+erhalten die Rekursionsformel
+\[ (\nu+1)(\nu+2)c_{\nu+2}-2(\nu+1)c_{\nu+1}+c_\nu=0\]
+Mit $d_\nu=c_{\nu}\nu!$ erhalten wir die Rekursionsformel
+$d_{\nu+2}-2d_{\nu+1}+d_\nu=0$, wobei wegen der Anfangsbedingungen $d_0=c_0=1$
+und $d_1=c_1=2$ sein muss und wir sehen dass $d_\nu=\nu+1$. Damit ist aber
+\[ 
+  y(t)=\sum\limits_{\nu=0}^{\infty}\frac{1+\nu}{\nu!}t^\nu=
+        \sum\limits_{\nu=0}^{\infty}\frac{t^\nu}{\nu!}
+       +\sum\limits_{\nu=1}^{\infty}\frac{t^\nu}{(\nu-1)!}=
+        e^t+t\sum\limits_{\mu=0}^{\infty}\frac{t^\mu}{\mu!}=e^t+te^t
+\]       
+Dies legt die Vermutung nahe, dass bei einer r-fachen Lösung $\lambda_1$ des
+charakteristischen Polynoms neben $e^{\lambda_1 t}$ auch $te^{\lambda_1
+t},\dots,t^{r-1}e^{\lambda_1 t}$ Lösungen sind. Man zeige dies durch einsetzen
+der einzelnen Lösungen in die homogene Differentialgleichung
+$(D-\lambda_1)^r[y(t)]=0$!
+%
+\section{Das Fundamentalsystem von Lösungen}
+Die Frage nach der Zahl der Lösungen soll im folgenden behandelt werden, d.h.
+wir suchen das Fundamentalsystem von Lösungen zu (\ref{eq:DGLOrdnungN}).
+\begin{example}{Fundamentalsystem der Gleichung 2. Ordnung}
+  Wir wissen, dass für die Gleichung 2. Ordnung 
+  \[\ddot{y}(t)+a_0y(t)=0 \]
+  zwei Bedingungen vorliegen müssen, damit die Lösung eindeutig angegebn werden
+  kann. Also nehmen wir die Bedingunen
+  \begin{align}
+  y(0)=&b_0\mbox{ und }\dot{y}(0)=0\mbox{ oder}\nonumber\\
+  y(0)=&0\mbox{ und }\dot{y}(0)=b_1\nonumber\\
+  \end{align}
+  Der Potenzreihenansatz
+  \[ y(t)=\sum\limits_{\nu=0}^\infty c_\nu t^\nu \]
+  führt auf
+  \begin{align*}
+  \sum\limits_{\nu=2}^\infty\nu(\nu-1)c_\nu t^{\nu-2}+a_0\sum\limits_{\nu=0}^\infty c_\nu t^\nu &=0\\
+  \sum\limits_{\nu=0}^\infty\left( (\nu+2)(\nu+1)c_{\nu+2} +a_0c_\nu\right) t^\nu &=0
+  \end{align*}
+  und mit der ersten Anfangsbedingung auf die Lösungen $y_1(t)$ mit
+  \[ c_{2\mu}=(-1)^\mu\frac{a_0^\mu b_0}{(2\mu)!},\quad c_{2\mu+1}=0\]
+  während die zweite Anfangsbedingung auf die Lösung $y_2$ mit
+  \[ c_{2\mu}=0, \quad c_{2\mu+1}=(-1)^\mu\frac{a_0^\mu b_1}{(2\mu+1)!}\]
+  führt. Damit erfüllt die Summe der beiden Lösungen die allgemeine
+  Anfangsbedingung
+  \[ y(0)=b_0\mbox{ und }\dot{y}(0)=b_1\]
+\end{example}
+Das obige Beispiel legt nahe, bei homogenen Differentiagleichungen n-ter
+Ordnung, wie in (\ref{eq:DGLOrdnungN}) mit $f(t)=0$ angegeben, ähnlich
+vorzugehen, indem wir der Reihe nach folgende Anfangsbedingungen aufstellen
+\begin{align*}
+  y(t_0)=1,\dot{y}(t_0)=0,&\dots\dots\dots,y^{(n-1)}(t_0)=0;\\
+  y(t_0)=0,\dot{y}(t_0)=1,&\dots\dots\dots,y^{(n-1)}(t_0)=0;\\
+  &\dots\dots\dots \\
+  y(t_0)=0,\dot{y}(t_0)=0,&\dots\dots\dots,y^{(n-1)}(t_0)=1;
+  \label{eq:NICs}
+\end{align*}
+Wir bezeichnen die entsprechenden Lösungen mit $y_1(t),y_2(t),\dots,y_n(t)$.
+Für die Anfangsbedingung
+$y(t_0)=b_0,\dot{y}(t_0)=b_1,\dots,y^{(n-1)}(t_0)=b_{n-1}$ können wir damit
+sofort die Lösung in der Form
+\begin{equation}
+  y(t)=b_0y_1(t)+b_1y_2(t)+\dots+b_{n-1}y_n(t)
+  \label{eq:FundamentalSuperpose}
+\end{equation}
+angeben. Dies ist allerdings bisher auf die Stelle $t_0$ beschränkt, wir wollen
+versuchen eine allgemeine Aussage zu machen. Wir bilden mit den obigen Lösungen 
+\[y(t)=c_1y_1(t)+c_2y_2(t)+\dots+c_ny_n(t)\qquad (c_1,c_2,\dots,c_n\in\mathbb{R})\]
+was wieder Lösung der Differentialgleichung (\ref{eq:DGLOrdnungN}) ist.
+
+Das lineare Gleichungssystem
+\begin{align}
+c_1y_1(t_0)+c_2y_2(t_0)&+{\dots\dots\dots}+c_ny_n(t_0)=b_0\nonumber\\
+c_1\dot{y}_1(t_0)+c_2\dot{y}_2(t_0)&+{\dots\dots\dots}+c_n\dot{y}_n(t_0)=b_1\nonumber\\
+c_1\ddot{y}_1(t_0)+c_2\ddot{y}_2(t_0)&+{\dots\dots\dots}+c_n\ddot{y}_n(t_0)=b_2\nonumber\\
+  &\dots\dots\dots \\
+  c_1y^{(n-2)}_1(t_0)+c_2y^{(n-2)}_2(t_0)&+{\dots\dots\dots}+c_ny^{(n-2)}_n(t_0)=b_{n-2}\nonumber\\
+  c_1y^{(n-1)}_1(t_0)+c_2y^{(n-1)}_2(t_0)&+{\dots\dots\dots}+c_ny^{(n-1)}_n(t_0)=b_{n-1}\nonumber
+  \label{eq:LGSatt0}
+\end{align}
+hat die eindeutige Lösung $c_1=b_0$, $c_2=b_1$,\dots, $c_n=b_{n-1}$. Das
+bedeutet dass die Koeffizientendeterminante
+\begin{equation}
+  W(t_0)=\begin{vmatrix}
+           y_1(t_0)&y_2(t_0)&\quad\dots\quad &y_n(t_0)\\
+           \dot{y}_1(t_0)&\dot{y}_2(t_0)&\quad\dots\quad &\dot{y}_n(t_0)\\
+           \ddot{y}_1(t_0)&\ddot{y}_2(t_0)&\quad\ddots\quad &\ddot{y}_n(t_0)\\
+	   \dots&\dots &\quad\dots\quad&\dots\\
+           y^{(n-2)}_1(t_0)&y^{(n-2)}_2(t_0)&\quad\dots\quad &y^{(n-2)}_n(t_0)\\
+           y^{(n-1)}_1(t_0)&y^{(n-1)}_2(t_0)&\quad\dots\quad &y^{(n-1)}_n(t_0)
+         \end{vmatrix}
+  \label{eq:Wronskiant0}
+\end{equation}
+von null verschieden ist. Die Determinante (\ref{eq:Wronskiant0}), wird
+Wronskideterminante genannt und sie ist also, wenn eine Lösung für die
+Anfangsbedingungen bei $t_0$ vorliegt, von null verschieden. Wenn dies aber für
+beliebige Stellen $t$ der Fall sein soll, müssen wir das allgemeine Verhalten
+der Wronskideterminante untersuchen, d.h. sie muss für jedes beliebige $t$ von
+null verschieden sein.
+
+Dazu bilden wir die Ableitung von $W(t)$ und erhalten
+\begin{align}
+  \dot{W}(t)=&\begin{vmatrix}
+    \dot{y}_1(t)&\quad\dots\quad &\dot{y}_n(t)\\
+           \dot{y}_1(t)&\quad\dots\quad &\dot{y}_n(t)\\
+           \ddot{y}_1(t)&\quad\ddots\quad &\ddot{y}_n(t)\\
+                       &\quad\dots\quad&\dots\\
+           y^{(n-1)}_1(t)&\quad\dots\quad &y^{(n-1)}_n(t)
+         \end{vmatrix}+
+	 \begin{vmatrix}
+           y_1(t)&\quad\dots\quad &y_n(t)\\
+           \ddot{y}_1(t)&\quad\dots\quad &\ddot{y}_n(t)\\
+           \ddot{y}_1(t)&\quad\dots\quad &\ddot{y}_n(t)\\
+                       &\quad\dots\quad&\dots\\
+           y^{(n-1)}_1(t)&\quad\dots\quad &y^{(n-1)}_n(t)
+         \end{vmatrix}+\dots\\
+      \dots+&\begin{vmatrix}
+           y_1(t)&\quad\dots\quad &y_n(t)\\
+           \dot{y}_1(t)&\quad\dots\quad &\dot{y}_n(t)\\
+                       &\quad\dots\quad&\dots\\
+           y^{(n-1)}_1(t)&\quad\dots\quad &y^{(n-1)}_n(t)\\
+           y^{(n-1)}_1(t)&\quad\dots\quad &y^{(n-1)}_n(t)
+         \end{vmatrix}+
+      \begin{vmatrix}
+           y_1(t)&\quad\dots\quad &y_n(t)\\
+           \dot{y}_1(t)&\quad\dots\quad &\dot{y}_n(t)\\
+                       &\quad\dots\quad&\dots\\
+           y^{(n-2)}_1(t)&\quad\dots\quad &y^{(n-2)}_n(t)\\
+           y^{(n)}_1(t)&\quad\dots\quad &y^{(n)}_n(t)
+         \end{vmatrix}
+  \label{eq:WronskianDerivative1}
+\end{align}
+Nur die letzte der resultierenden Determinanten ist von null verschieden.
+O.b.d.A. nehmen wir $a_n=1$ in (\ref{eq:DGLOrdnungN}) an\footnote[1]{Wir teilen
+(\ref{eq:DGLOrdnungN}) durch $a_n$, vorausgesetzt $a_n\ne0$, denn wenn das
+nicht der Fall ist, liegt eine Differentialgleichung (n-1)-ter Ordnung vor.}
+und erhalten damit
+\begin{equation}
+  \begin{vmatrix}
+           y_1(t)&\quad\dots\quad &y_n(t)\\
+           \dot{y}_1(t)&\quad\dots\quad &\dot{y}_n(t)\\
+                       &\quad\dots\quad&\dots\\
+      -a_{n-1}y^{(n-1)}_1(t)-\dots-a_0y_1&\quad\dots\quad 
+      &-a_{n-1}y^{(n-1)}_n(t)-\dots-a_0y_n(t)
+         \end{vmatrix}
+  \label{eq:WronskianDerivative2}
+\end{equation}
+Nun multiplizieren wir die erste Zeile von (\ref{eq:WronskianDerivative2}) mit
+$a_0$ und addieren sie zur letzten Zeile, sukzessive bis $a_{n-2}$
+multipliziert mit den vorletzten Zeile und wir erhalten
+\begin{equation}
+  \dot{W}(t)=-a_{n-1}W(t)
+  \label{eq:WronskianDGL}
+\end{equation}
+Für diese Differentialgleichung haben wir eine Anfangsbedinung $W(t_0)=w_0$ und
+können sie damit lösen. Wir erhalten
+\begin{equation}
+  W(t)=w_0e^{-a_{n-1}(t-t_0)}
+  \label{eq:WronskianGeneral}
+\end{equation}
+Da die Exponentialfunktion keine Nullstellen hat, schließen wir aus
+(\ref{eq:WronskianGeneral}), dass wenn $W(t)$ an irgendeiner Stelle von null
+verschieden ist, sie üeberall von null verschieden ist. Wir sehen also, da
+$W(t)$ im gegebenen Fall nicht null werden kann, dass immer eine Lösung
+existiert.
+\begin{note}{}
+  Beachte das über multiple Lösungen des charakteristischen Polynoms oben
+  gesagte!
+\end{note}

@@ -1,0 +1,330 @@
+\chapter{Systeme linearer gewöhnlicher Differentialgleichungen}
+Wir benutzen die Operatorschreibweise, um ein allgemeines System von
+Differentialgleichungen beliebiger Ordnung anzugeben. Wir betrachten somit
+Systeme der Art
+\begin{equation}
+  P_{i_1}(D)[y_1(t)]+P_{i_2}(D)[y_2(t)]+\dots+P_{i_n}(D)[y_n(t)]=f_i(t)\hfill
+  (i=1,2,\dots,m)
+  \label{eq:SystemGeneral}
+\end{equation}
+Um (\ref{eq:SystemCs}) zu lösen gibt es zwei Strategien: Erstens könnten wir
+aus dem vorliegenden System eine Differentialgleichung höherer Ordnung machen
+oder zweitens könnten wir versuchen auf ein System von gekoppelten
+Differentialgleichungen erster Ordnung überzugehen.
+
+Anhand zweier Beispiele wollen wir die Vor- und Nachteile beider Methoden
+untersuchen und aus den Nachteilen gegebenenfalls Rückschlüsse auf die Modelle
+ziehen.
+\begin{example}{Rückführung auf DGL höherer Ordnung}
+  Ähnlich dem Gauß'schen Eliminationsverfahren schreiben wir
+  \begin{equation*}
+    \begin{array}{rrl|l}
+      D^2[y_1(t)]+&y_2(t)&=0&D^2\\
+      y_1(t)+&D^2[y_2(t)]&=0&\cdot(-1)
+    \end{array}
+  \end{equation*}
+  und erhalten die DGL $D^4[y_1(t)]-y_1(t)=0$.
+
+Versuchen wir die Methode hingegen auf das System
+\begin{align*}
+  (D+1)[y_1(t)]+(D^2-1)[y_2(t)]&=0\\
+  y_1(t)+(D-1)[y_2(t)]&=0
+\end{align*}
+anzuwenden, gelingt die Elimination von $y_1(t)$ oder $y_2(t)$ nicht, denn die
+beiden Gleichungen sind linear abhängig (warum?).
+\end{example}
+Wie wir aus dem Gegenbeispiel gesehen haben, ist die Tatsache der linearen
+Abhängigkeit auf eine nicht eindeutige Formulierung der Problemstellung
+zurückzuführen. Denn entweder ist $y_1(t)$ oder $y_2(t)$ frei wählbar und die
+Gleichung dann nach der jeweils anderen Funktion zu lösen. Diese Wahlfreiheit
+bedeutet aber einen Mangel an Information über das Modellsystem. Für eine
+eindeutige Lösung müssen wir uns Gedanken über weitere Bedingungen machen, die
+wir dem System auferlegen, damit es eindeutig mit Hilfe der
+Differentialgleichungen formuliert werden kann. Das beudeutet dann noch nicht,
+dass es lösbar sein wird.
+\begin{example}{Rückführung auf ein System linearer DGL 1. Ordnung}
+  Aus dem System
+  \begin{align*}
+    \ddot{y}_1(t)+y_2(t)=0\\
+    \ddot{y}_2(t)+y_1(t)=0
+  \end{align*}
+  erhalten wir mit $\dot{y}_1(t)=y_3(t)$ und $\dot{y}_2(t)=y_4(t)$ das System
+  \begin{align*}
+    \dot{y}_1(t)=y_3(t)\\
+    \dot{y}_2(t)=y_4(t)\\
+    \dot{y}_3(t)=-y_2(t)\\
+    \dot{y}_4(t)=-y_1(t)
+  \end{align*}
+  Versuchen wir allerdings diese Methode auf das System
+    \begin{align*}
+      \ddot{y}_2(t)+\dot{y}_1(t)+y_1(t)-y_2(t)=0\\
+      \dot{y}_2(t)+y_1(t)-y_2(t)=0
+  \end{align*}
+  anzuwenden, dann lässt sich dieses nicht in ein System der gewünschten Art
+  überführen. In diesem Fall lässt sich die Funktion $y_1(t)$ frei wählen und
+  dann das lineare System lösen. Da aber von vornherein $y_1(t)$ nicht
+  eindeutig bestimmt ist, gilt das oben gesagte.
+\end{example}
+Wir werden uns im folgenden daher nur mit der Form
+\[
+  \dot{y}_i(t)=a_{i1}y_1(t)+a_{i2}y_2(t)+\dots+a_{in}y_n(t)\hfill (i=1,2,\dots,m)
+\]
+befassen.
+\subsection{Homogene Systeme erster Ordnung}
+Ein homogenes System von linearen Differentialgleichungen erster Ordnung hat
+die Form
+\begin{equation}
+  \begin{pmatrix}
+    \dot{y}_1(t)\\
+    \dot{y}_2(t)\\
+    \dots\\
+    \dot{y}_n(t)
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a_{11}&a_{12}&\dots &a_{1n}\\
+    a_{21}&a_{22}&\dots &a_{2n}\\
+    \multicolumn{4}{c}\dotfill\\
+    a_{n1}&a_{n2}&\dots &a_{nn}\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    y_1(t)\\
+    y_2(t)\\
+    \dots\\
+    y_n(t)
+  \end{pmatrix}
+  \label{eq:System1stOrder}
+\end{equation}
+Das System (\ref{eq:System1stOrder}) lässt sich mit Hilfe der
+Operatorschreibweise auch so darstellen
+\begin{equation}
+  \begin{pmatrix}
+    a_{11}-D&a_{12}&\dots &a_{1n}\\
+    a_{21}&a_{22}-D&\dots &a_{2n}\\
+    \multicolumn{4}{c}\dotfill\\
+    a_{n1}&a_{n2}&\dots &a_{nn}-D\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    y_1(t)\\
+    y_2(t)\\
+    \dots\\
+    y_n(t)
+  \end{pmatrix}
+  =0
+  \label{eq:System1stOperator}
+\end{equation}
+Oder wir schreiben es ganz einfach als
+\begin{equation}
+  \dot{\vec{y}}(t)=A\cdot\vec{y}(t)
+  \label{eq:SystemVectorMatrixNotation}
+\end{equation}
+Es gibt genau eine Lösung $(y_1(t),y_2(t),\dots,y_n(t))$ von
+(\ref{eq:System1stOrder}), so dass die zu einem beliebigen Zeitpunkt $t_0$
+gewählten Bedingungen
+\begin{equation}
+  y_1(t_0)=b1,\:y_2(t_0)=b_2,\dots,y_n(t_0)=b_n
+  \label{eq:ICsSystem}
+\end{equation}
+erfüllt sind. Wir werden den Beweis hier nicht antreten und verweisen
+stattdessen auf die einschlägigen Lehrbücher.
+
+Für die Lösung der Systeme (\ref{eq:System1stOrder}) benutzen wir den
+Exponentialansatz $e^{\lambda t}$. Da wir $n$ Funktionen zu bestimmen haben,
+schreiben wir diesen gleich in der Form
+\begin{equation}
+  y_i(t)=c_ie^{\lambda t}\hfill (i=1,2,\dots,n\mbox{ und }c_i\in\mathbb{R})
+  \label{eq:SystemAnsatz}
+\end{equation}
+Wir setzen den Ansatz in (\ref{eq:System1stOrder}) ein und erhalten das
+Gleichungssystem
+\begin{align}
+    (a_{11}-\lambda)c_1+a_{12}c_2+\dots+a_{1n}c_n&=0\nonumber\\
+    a_{21}c_1+(a_{22}-\lambda)c_2+\dots+a_{2n}c_n&=0\nonumber\\
+    \dots\dots\dots\dots\nonumber\\
+    a_{21}c_1+a_{22}c_2+\dots+(a_{2n}-\lambda)c_n&=0
+  \label{eq:System4cs}
+\end{align}
+Oder einfacher
+\begin{equation}
+  (A-\lambda\mathbbm{1})\cdot\vec{c}=0
+  \label{eq:Vektorform}
+\end{equation}
+Aus der linearen Algebra wissen wir, dass (\ref{eq:Vektorform}) nur eine
+Lösung hat, wenn gilt $|A-\lambda\mathbbm{1}|=0$ und die für die Lösungen
+gewählten Werte der $\lambda$ sind die Eigenwerte der Koeffizientenmatrix $A$.
+
+Um (\ref{eq:Vektorform}) zu lösen erinnern wir uns an Eigenwerte, Eigenvektoren
+und Normalformen quadratischer Matrizen. Wir wissen es gibt drei Fälle:
+\begin{enumerate}
+  \item Alle Eigenwerte $\lambda_i$ sind voneinander verschieden.
+  \item Es treten mehrfache Eigenwerte auf. Der Rang der Matrix
+    $A-\lambda\mathbbm{1}$ fällt für jeden mehrfachen Eigenwert um soviel
+    gegenüber $n$, wie die Vielfachheit des entsprechenden Eigenwertes beträgt.
+  \item Es tritt mindestens ein mehrfacher Eigenwert auf für den der Rangabfall
+    nicht die obere Regel erfüllt.
+\end{enumerate}
+Die ersten beiden Fälle erlauben uns die Matrix $A$ auf Diagonalform 
+\begin{equation}
+  \Lambda=
+  \begin{pmatrix}
+    \lambda_1&0&\dots&0\\
+    0&\lambda_2&\dots&0\\
+    \multicolumn{4}{c}\dotfill\\
+    0&0&\dots&\lambda_n
+  \end{pmatrix}
+  \label{eq:Diagonalform}
+\end{equation}
+zu bringen. Was bedeutet das für unser Gleichungssystem? Wir schreiben
+$\vec{y}^T$ als Transformierte eines Vektors $\vec{z}^T$ dergestalt
+$\vec{y}^T=C\cdot\vec{z}^T$ und damit auch $\dot{\vec{y}}^T = C\cdot
+\dot{\vec{z}}^T$. Damit erhalten wir 
+\[ C\cdot \dot{\vec{z}}^T = A\cdot C\cdot\vec{z}^T \]
+und wenn wir mit $C^{-1}$ multiplizieren ergibt sich
+\begin{equation}
+  \dot{\vec{z}}^T = C^{-1}A\cdot C\cdot\vec{z}^T
+  \label{eq:Diagonalsystem}
+\end{equation}
+Der Vorteil erschließt sich uns sofort: wir lösen das einfache Diagonalsysteme
+(\ref{eq:Diagonalsystem}) und transformieren dann zurück um $\vec{y}(t)$ zu
+erhalten.
+%
+
+\textbf{Fall 1: }Wir bestimmen zunächst die Eigenvektoren $(c_{i1}, c_{i2},
+\dots, c_{in})$, die zu den jeweiligen Eigenwerten $\lambda_i$ gehören. Diese
+bilden die Spalten der Transformationsmatrix 
+\begin{equation}
+  C=\begin{pmatrix}
+    c_{11}&c_{21}&\dots&c_{n1}\\
+    c_{12}&c_{22}&\dots&c_{n2}\\
+    &&\dots&\\
+    c_{1n}&c_{2n}&\dots&c_{nn}
+  \end{pmatrix}
+  \label{eq:Tranformationsmatrix}
+\end{equation}
+mit deren Hilfe wir die Matrix $A$ in die Diagonalform $\Lambda$ übeführen können
+\begin{equation}
+  C^{-1}\cdot A\cdot C=\Lambda
+%  \label{eq:Diagonalform}
+\end{equation}
+Mit (\ref{eq:Tranformationsmatrix}) können wir die allgemeine Lösung angeben
+\begin{equation}
+  \begin{pmatrix}y_1(t)\\y_2(t)\\\dots\\y_n(t)\end{pmatrix}=
+  \begin{pmatrix}
+    c_{11}d_1&c_{21}d_2&\dots&c_{n1}d_n\\
+    c_{12}d_1&c_{22}d_2&\dots&c_{n2}d_n\\
+    &&\dots&\\
+    c_{1n}d_1&c_{2n}d_2&\dots&c_{nn}d_n\\
+  \end{pmatrix}\cdot
+  \begin{pmatrix}e^{\lambda_1t}\\e^{\lambda_2t}\\\dots\\e^{\lambda_nt}\end{pmatrix}
+  \label{eq:LsgAllgFall1}
+\end{equation}
+Die beliebig wählbaren reellen Konstanten $d_i$ benutzen wir zur Erfüllung der
+Anfangsbedingungen.
+
+\textbf{Fall 2: }Es treten mehrfache Eigenwerte auf und der Rangabfall der
+Koeffizientenmatrix des Gleichungssystems aus (\ref{eq:System4cs}) ist gleich
+dem Vielfachen des Eigenwertes. Auch in diesem Fall lässt sich $A$ in die
+Diagonalform bringen. Wir erhalten parametrische Lösungen für die
+Eigenvektroren der mehrfachen Eigenwerte, die wir so wählen können, dass sie
+linear unabhängig sind. Das weitere Vorgehen ist genauso, wie in Fall 1.
+
+\textbf{Fall 3: }In diesem Fall können wir die Matrix $A$ nicht auf
+Diagonalform jedoch auf die Jordansche Normalform bringen.
+\begin{equation*}
+  J=\begin{pmatrix}
+    \lambda_1&\delta_1&0&\dots&0&0\\
+    0&\lambda_2&\delta_2&\dots&0&0\\
+    0&0&\lambda_3&\dots&0&0\\
+    &&&\dots&&\\
+    0&0&0&\dots&\lambda_{n-1}&\delta_{n-1}\\
+    0&0&0&\dots&0&\lambda_n\\
+  \end{pmatrix}
+\end{equation*}
+Die $\lambda_i$ sind die Eigenwerte der Matrix $A$ und die $\delta_i$ entweder
+$0$ oder $1$. Es gibt eine Transformationsmatrix $C$, die $A$ auf die
+Jordanform gemäß \[ C^{-1}\cdot A\cdot C=J \] abbildet. Für einen vielfachen
+Eigenwert $\lambda_k$ mit der Multiplizität $k$ bilden wir aus den Lösungen der
+Gleichungen $(A - \lambda_k \mathbbm{1})^2 \vec{c}^T = 0$, $(A - \lambda_k
+\mathbbm{1})^3\vec{c}^T = 0$, \dots, $(A - \lambda_k \mathbbm{1})^k \vec{c}^T =
+0$ linear unabhängige Vektoren, die wir zur Transformationsmatrix
+zusammenbauen. Wir bringen das System (\ref{eq:System1stOrder}) auf die Jordanform und lösen dann die Gleichung
+\begin{equation}
+  \begin{pmatrix}\dot{z}_1\\\dot{z}_2\\\dot{z}_3\\\dots\\\dot{z}_{n-1}\\\dot{z}_{n}\end{pmatrix}=
+  \begin{pmatrix}
+    \lambda_1&\delta_1&0&\dots&0&0\\
+    0&\lambda_2&\delta_2&\dots&0&0\\
+    0&0&\lambda_3&\dots&0&0\\
+    &&&\dots&&\\
+    0&0&0&\dots&\lambda_{n-1}&\delta_{n-1}\\
+    0&0&0&\dots&0&\lambda_n\\
+  \end{pmatrix}
+  \begin{pmatrix}z_1\\z_2\\z_3\\\dots\\z_{n-1}\\z_{n}\end{pmatrix}
+  \label{eq:JordanNormalForm} 
+\end{equation}
+Wieder lösen wir das System (\ref{eq:JordanNormalForm}) nach $\vec{z}^T$ auf
+und transformieren danach wieder zurück\newline $\vec{y}^T=C\cdot\vec{z}^T$. 
+\subsection{Inhomogene Systeme erster Ordnung}
+In diesem Abschnitt beschäftigen wir uns mit den inhomogenen Systemen von
+Differentialgleichungen erster Ordnung der Form
+\begin{equation}
+  \dot{\vec{\mathbf{x}}}=\mathbf{A}\vec{\mathbf{x}}+\vec{\mathbf{b}}
+  \label{eq:InhomSystem}
+\end{equation}
+Eine Fundamentallösung von (\ref{eq:InhomSystem}) in der Form einer
+Matrixfunktion $\boldsymbol{\Phi}(t)$ gehorcht der Gleichung 
+\begin{equation}
+  \dot{\boldsymbol{\Phi}}(t)=\mathbf{A}\boldsymbol{\Phi}(t)
+  \label{eq:Fundamentalmatrix}
+\end{equation}
+$\boldsymbol{\Phi}(t)=e^{At}$ ist eine Fundamentalmatrix, welche die Bedingung
+$\boldsymbol{\Phi}(0)=\mathbbm{1}$ erfüllt. Für (\ref{eq:InhomSystem}) haben wir
+$\boldsymbol{\Phi}(t)=e^{At}\mathbf{C}$, mit einer beliebigen nichtsingulären
+Matrix $\mathbf{C}$.  Wenn aber mit $\boldsymbol{\Phi(t)}$ eine Fundamentalmatrix
+gefunden ist, dann ist es leicht ein System wie (\ref{eq:InhomSystem}) mit den
+Anfangsbedingungen $\mathbf{x}(0)=\mathbf{x}_0$ zu lösen
+\begin{equation}
+  \mathbf{x}(t)=\boldsymbol{\Phi}(t)\boldsymbol{\Phi}^{-1}(0)\mathbf{x}_0
+  +\int\limits_0^t\boldsymbol{\Phi}(t)\boldsymbol{\Phi}^{-1}(\tau)\vec{\mathbf{b}}(\tau)d\tau
+  \label{eq:LoesInhom}
+\end{equation}
+Setzen wir hier $\boldsymbol{\Phi}(t)=e^{\mathbf{A}t}$ ein, dann erhalten wir
+\[ \mathbf{x}(t)=e^{\mathbf{A}t}\mathbf{x}_0
+   +e^{\mathbf{A}t}\int\limits_0^te^{-\mathbf{A}\tau}\;\vec{\mathbf{b}}(\tau)d\tau\]
+
+   \begin{example}{Getriebener harmonischer Oszillator}
+     \[\ddot{x}(t)+x(t)=f(t)\]
+     kann als inhomogenes System erster Ordnung geschrieben werden. Wir setzen
+     $y_1(t)=x(t)$ und $y_2(t)=\dot{x}(t)$
+     \begin{align*}
+       \dot{y}_1(t)&=y_2(t)\\
+       \dot{y}_2(t)&=-y_1(t)+f(t)
+     \end{align*}
+     In diesem Fall ist
+     \[\mathbf{A}=
+       \begin{pmatrix}
+	 0&1\\ -1&0
+       \end{pmatrix}\quad
+       \mbox{ und }\quad
+       \vec{\mathbf{b}}(t)=\begin{pmatrix}0\\ f(t)\end{pmatrix}
+     \]
+     Wir wissen, dass
+     \[e^{\mathbf{A}t}=
+       \begin{pmatrix}
+	 \cos(t)&-\sin(t)\\ \sin(t)&\cos(t)
+       \end{pmatrix}
+       =R(t)
+     \]
+     eine Rotationsmatrix ist und es ist
+     \[e^{-\mathbf{A}t}=
+       \begin{pmatrix}
+         \cos(t)&\sin(t)\\-\sin(t)&\cos(t)
+       \end{pmatrix}
+       =R(-t)
+     \]
+     Wir erhalten als Lösung
+     \[\mathbf{y}(t)=R(t)\mathbf{y}_0 + 
+       R(t)\int\limits_0^t\begin{pmatrix}f(\tau)\sin(\tau)\\f(\tau)\cos(\tau)\end{pmatrix}d\tau
+     \]
+     Das ursprüngliche Oszillatorsystem hat also die Lösung $x(t)=y_1(t)$
+     \[ x(t)=x_0\cos(t)-v_0\sin(t)+\int\limits_0^tf(\tau)\sin(\tau -t)d\tau \]
+   \end{example}
