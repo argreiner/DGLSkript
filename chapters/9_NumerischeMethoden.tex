@@ -99,4 +99,100 @@ ist und zu allen anderen Zeitpunkten 0. Damit nutzen wir $s$ vorhergehende
 Zeitschritte aus. Daher auch der Name Mehrschrittverfahren und hier im
 speziellen beschrieben ist die Methode von Adams.
 %\subsection{Predictor-Corrector Methode}
-%\subsection{Shooting- und Matrixmethode für Randwertprobleme}
+%\subsection{Shooting- und Matrixmethode für Randwertprobleme
+\section{Finite Differenzen (FD) Operatoren}
+Entwickle die Funktion $f(x)$ um $x$:
+\[ f(x+h)=f(x)+\frac{\partial f(x)}{\partial x}h+\frac{1}{2!}\frac{\partial^2
+f(x)}{\partial x^2}h^2+\ldots+\frac{1}{(n-1)!}\frac{\partial^{n-1}
+f(x)}{\partial x^ {n-1}}h^ {n-1} +O(h^n) \]
+oder
+\[f(x+h)=f(x)+ f(x)' h+\frac{1}{2!} f(x)'' h^2+\ldots+\frac{1}{(n-1)!} f(x)^{(n-1)} h^ {n-1} +O(h^n)\]
+wir bezeichnen die Funktionswerte auf dem Gitter mit 
+\[\mathbf{Z}=\left\{ z_k\right\}_{k=-\infty}^{\infty}\]
+Dann bekommen wir die folgende Liste von operatoren
+
+\begin{tabular}{ll}
+Shiftoperator:&	$(\mathcal{E}\ z)_k=z_{k+1}$\\
+Vorwärts Differenzoperator:&	$(\Delta_+\ z)_k=z_{k+1}-z_{k}$\\
+Rückwärts Differenzoperator:&	$(\Delta_-\ z)_k=z_{k}-z_{k-1}$\\
+Zentraler Differenzoperator:&	$(\Delta_0\ z)_k=z_{k+\frac{1}{2}}-z_{k-\frac{1}{2}}$\\
+Mittelwertoperator:&	$(\gamma_0\ z)_k=\frac{1}{2}(z_{k+\frac{1}{2}}+z_{k-\frac{1}{2}})$\\
+Differentialoperator:&	$(\mathcal{D}\ z)_k=(z^\prime)_k$
+\end{tabular}
+
+Eine schematische Darstellung ist in in Fig.\ \ref{fig:opaction} dargestellt.
+\begin{figure}[!ht]
+	        \begin{center}
+                \includegraphics[width=.9\textwidth]{fig/FiniteDifferenceOperators.pdf}
+                \caption{Schematic representation of operator actions.\label{fig:opaction}} 
+        \end{center}
+\end{figure} 
+
+Durch eine Reihenentwicklung des Shiftoperators erhalten wir den Asudruck
+für den Differentialoperator
+\[
+\mathcal{E}z(x)=z(x+h)=\sum_{j=0}^\infty \frac{1}{j!}
+\left[{\frac{d^jz(x)}{dx^j}}\right]h^j=
+\left[{\sum_{j=0}^\infty}\frac{1}{j!}(hD)^j\right]z(x)=e^{hD}z(x)
+\]
+womit wir shreiben können
+\[ D=\frac{\ln(\mathcal{E})}{h}\]
+Beachte, dass Funktionen von Operatoren nur über deren Reihenentwicklung
+definiert sind.  Es ist möglich alle Finiten Differenzenopertoren durch den
+Shiftoperator auszudrücken:
+
+\begin{tabular}{ll}
+	Shiftoperator:&   $(\mathcal{E}\ z)_k=z_{k+1} $\\
+	Vorwärts Differenzoperator:&       $(\Delta_+\
+	z)_k=z_{k+1}-z_{k}=\left( (\mathcal{E}-\mathcal{I})\ z \right)_k$\\
+	Rückwärts Differenzoperator:&     $(\Delta_-\ z)_k=z_{k}-z_{k-1}=
+	\left( (\mathcal{I}-\mathcal{E}^{-1})\ z \right)_k$\\
+	Zentraler Differenzoperator:&       $(\Delta_0\
+	z)_k=z_{k+\frac{1}{2}}-z_{k-\frac{1}{2}}=\left(
+	(\mathcal{E}^\frac{1}{2}-\mathcal{E}^{-\frac{1}{2}})z \right)_k$\\
+	Mittelwertoperator:&        $(\gamma_0\
+	z)_k=\frac{1}{2}(z_{k+\frac{1}{2}}+z_{k-\frac{1}{2}})
+	=\frac{1}{2}\left(
+	(\mathcal{E}^\frac{1}{2}+\mathcal{E}^{-\frac{1}{2}})z \right)_k$\\
+	Differentialoperator:&    $(\mathcal{D}\ z)_k=\frac{1}{h}\left(
+	(\ln[\mathcal{E}])z \right)_k$ 
+\end{tabular}
+
+Somit erhalten wir für den Differentialoperator
+
+\[
+\mathcal{D}=\frac{1}{h}\ln[\mathcal{I}+\Delta_+]=
+\frac{1}{h}\left({\Delta_+-\frac{1}{2}\Delta_+^2+
+\frac{1}{3}\Delta_+^3 +O\left(\Delta_+^4\right)}\right)
+\]
+\section{FD für die Lösung von PDEs}
+Wir formulieren die FD Form der partiellen Ableitungen auf einem regulären 2D
+Gitter, wie z.B. in Fig.\ \ref{fig:gridfd2d} dargestellt.
+
+\begin{figure}[!ht]
+        \begin{center}
+	        \includegraphics[width=.7\textwidth]{fig/GridFD2D.pdf}
+        	\caption{2D FD regular grid.\label{fig:gridfd2d}}
+        \end{center}
+\end{figure}
+
+Erste und zweite Ableitung auf em Gitter lauten (verify through Taylor expansion!):
+\begin{eqnarray*}
+	\left(\frac{\partial f}{\partial x}\right)_{i,k}&=&\frac{f_{i+1,k}-f_{i-1,k}}{2\Delta x}\\
+	\left(\frac{\partial f}{\partial y}\right)_{i,k}&=&\frac{f_{i,k+1}-f_{i,k-1}}{2\Delta y}\\
+	\left(\frac{\partial^2 f}{\partial x^2}\right)_{i,k}&=&\frac{1}{\Delta
+	     x^2}(f_{i+1,k}-2f_{i,k}+f_{i-1,k})\\
+	\left(\frac{\partial^2 f}{\partial y^2}\right)_{i,k}&=&\frac{1}{\Delta
+	     y^2}(f_{i,k+1}-2f_{i,k}+f_{i,k-1})\\
+	\left(\frac{\partial^2 f}{\partial x\partial y}\right)_{i,k}&=&\frac{1}{4\Delta x\Delta
+	     y}(f_{i+1,k+1}-f_{i+1,k-1}+f_{i-1,k-1}-f_{i-1,k+1})
+\end{eqnarray*}
+\begin{example}{Laplacegleichung 2D}
+Wie lautet die diskrete Form der Laplacegleichung
+\[
+\left(
+\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial x^2}
+\right)u(x,y)=0
+\]
+mittels der Finiten Differenzen Methode?
+\end{example}

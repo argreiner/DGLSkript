@@ -8,25 +8,19 @@ und der räumlichen Position $x$ dargestellt
 \[\frac{\partial T(x,t)}{\partial t}=\kappa\frac{\partial^2 T(x,t)}{\partial x^2}\]
 dabei bezeichnet $\kappa$ den Wärmeleitungskoefizienten.
 \section{PDEs erster Ordnung}
-\Comment{Diesen Abschnitt ausbauen. Wir sollten uns damit beschäftigen, denn man
-kann auf die Maxwellschen Gleichungen und die Lösung mit der FDTD-Methode in
-der Simulation zurückkommen.}
+Quasilinearwe PDEs erster Ordnung, also Gleichungen der Form
+\begin{equation}
+   P(x,y;ux)\frac{\partial u(x,y)}{\partial x}+
+Q(x,y;ux)\frac{\partial u(x,y)}{\partial y}=
+R(x,y;u), \label{eq:PDE1Oquasi}
+\end{equation}
+können systematisch auf ein System gekoppelter ODEs erster Ordnung zurückgeführt werden können. Diese wichtige Eigenschaft wollen wir untersuchen.
 
-Wir werden uns nicht mit der Lösung von PDEs erster Ordnung beschäftigen,
-da beliebige Systeme von PDEs erster Ordnung, welche komplexität oder
-nichtlinearität sie auch aufweisen mögen, systematisch auf ein System
-gekoppelter ODEs erster Ordnung zurückgeführt werden können.
-Dies bedeutet: Gegeben eine beliebige Gleichung vom Typ $F(x,y;u,u_x,u_y)=0$
-(Beachte, dass wir in der Liste die unabhängigen und abhängigen Variablen
-durch ein Semikolon trennen), wobei $u_x$ ($u_y$) die partielle Ableitung der
-gesuchten Funktion $u(x,y)$ nach der unabhängigen Variablen $x$ ($y$)
-bezeichne. Diese Gleichung können wir auf ein System von ODEs transformieren.
+(\ref{eq:PDE1Oquasi}) können wir auf ein System von ODEs transformieren. Dies wird die Methode der Charakteristiken genannt. Das bedeutet nicht, dass das resultierende System von ODEs analytisch lösbar ist. In jedem Falle werden wir aber den Vorteil haben, dass der ganze Formalismus zur Lösung eines Systems von ODEs angewandt werden kann, entweder die Analytik oder die Numerik.
 
-Dies bedeutet nicht, dass das Resultierende System von ODEs analytisch lösbar
-ist. In jedem Falle werden wir hier den Vorteil haben, dass der Formalismus zur
-Lösung eines Systems von ODEs angewandt werden kann, entweder die Analytik
-oder die Numerik.
+Wir illustrieren die Methode an einem Beispiel im Zweidimensionalen.
 \section{PDEs zweiter Ordnung}
+\Comment{Das sollte die 2. Vorlesung werden.}
 Beispiele von PDEs zweiter Ordnung:\\
 Wellengleichung
 \begin{equation}

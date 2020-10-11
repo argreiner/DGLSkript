@@ -1,8 +1,7 @@
-\chapter{Lösung der inhomogenen Gleichung}
+\chapter{Gewöhnliche lineare inhomogene Gleichung}
+\Comment{3. Vorlesung}
 \section{Variation der Konstanten}
-Diese Methode lässt sich auch bei variablen Koeffizienten anwenden. Die Lösung
-der homogenen Gleichung hierfür, soll allerdings erst später besprochen werden.
-Daher gehen wir von einer Differentialgleichung der Form (\ref{eq:DGLOrdnungN})
+Diese Methode lässt sich auch bei variablen Koeffizienten anwenden. Die Lösung der homogenen Gleichung hierfür, soll allerdings erst später besprochen werden. Daher gehen wir von einer Differentialgleichung der Form (\ref{eq:DGLOrdnungN})
 aus. Die Idee hinter der Methode ist die gefundenen Fundamentallösungen zu
 superponieren, die benutzten Koeffizienten aber als noch zu bestimmende
 Funktionen anzusetzen. Wir setzen also folgendes an
@@ -41,7 +40,7 @@ Für die $\dot{c}_k(t)$ dagegen habe wir das Gleichungssystem
 Die Koeffizientendeterminante von (\ref{eq:SystemCs}) ist die
 Wronskideterminante von der wir in (\ref{eq:WronskianGeneral}) gezeigt haben,
 dass sie von null verschieden ist. Damit ist sichergestellt, dass
-(\ref{eq:SystemCs}) eine Lösung hat.
+(\ref{eq:SystemCs}) eine Lösung hat. Es bleibt die Aufgabe die $c_i(t)$ zu berechnen.
 %
 \begin{example}{Variation der Konstanten}
   \[\ddot{y}(t)+y(t)=\frac{1}{\cos(t)}\]
@@ -58,9 +57,8 @@ dass sie von null verschieden ist. Damit ist sichergestellt, dass
   \[y(t)=\cos(t)\ln(|\cos(t)|)+t\sin(t)\]
 \end{example}
 %
-\pagebreak 
 \section{Lösung der inhomogenen Gleichung: Operatormethode}
-Für die Ableitung benutzen wir als Abkürung eine Operatorschreibweise der Form
+Für die Ableitung benutzen wir als Abkürzung eine Operatorschreibweise der Form
 $\frac{dy(t)}{dt}=D[y(t)]$. Entsprechend soll $D^{-1}[y(t)]=\int y(t)dt$
 verwendet werden. Wir wissen ja aus dem Haupsatz der Differential- und
 Integralrechnung, dass die Ableitung die Umkehrung des Integrals ist. Für einen
@@ -193,23 +191,23 @@ Wir fassen die allgemeine Vorgehensweise im Diagramm in Abbildung
 \begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
     \node [block] (init) {DGL-Löser};
-    \node [block, left of=init, node distance=4cm] (dgl) {Differential- gleichung};
-    \node [block, right of=init, node distance=4cm] (ics) {Anfangsbe- dingungen};
+    \node [block, left of=init, node distance=4.5cm] (dgl) {Differential- gleichung};
+    \node [block, right of=init, node distance=4.5cm] (ics) {Anfangsbe- dingungen};
     \node [decision, below of=init] (hominhom) {ist es eine homogene DGL?};
-    \node [block, right of=hominhom, node distance=4cm] (partsolu) {Suche spezielle L\"osung};
-    \node [block, below of=hominhom, node distance=3cm] (homsolu) {Suche homogene L\"osung(en)};
-    \node [block, below of=homsolu, node distance=2cm] (hometinhom) {Addiere
-           homogene und inhomogene L\"osung(en)};
-    \node [block, below of=hometinhom, node distance=2cm] (stop) {Erf\"ulle Randbedingungen};
+    \node [block, right of=hominhom, node distance=4.5cm] (partsolu) {Suche spezielle L\"osung};
+    \node [block, below of=hominhom, node distance=3.5cm] (homsolu) {Suche homogene L\"osung(en)};
+    \node [block, below of=homsolu, node distance=2.5cm] (hometinhom) {Addiere
+           homogene und spezielle L\"osung(en)};
+    \node [block, below of=hometinhom, node distance=2.5cm] (stop) {Erfülle Anfangsbedingungen};
          % Draw edges
     \path [line] (init) -- (hominhom);
     \path [line] (hominhom) -- node {immer} (homsolu);
-    \path [line] (hominhom) -- node {yes} (partsolu);
+    \path [line] (hominhom) -- node {nein} (partsolu);
     \path [line] (homsolu) -- (hometinhom);
     \path [line] (hometinhom) -- (stop);
     \path [line] (dgl) -- (init);
     \path [line] (ics) -- (init);
-    \path [line] (partsolu) |- (stop);
+    \path [line] (partsolu) |- (hometinhom);
 \end{tikzpicture}
 \caption{Flussdiagramm zur Lösung inhomogener linearer Differentialgleichungen.}
   \label{fig:FlowchartSolu}
@@ -247,13 +245,13 @@ Lösung die Anfangsbedingungen erfüllt.
 \begin{note}{Die Ableitungen von $y_p(t)$ aus (\ref{eq:SoluInhomogenOperator0}) bei $t=0$}
 Wir leiten (\ref{eq:SoluInhomogenOperator0}) einmal nach $t$ ab, dann erhalten
 wir (Kettenregel beachten)
-\[ \dot y_p(t)=\lambda_n y_p(t)+
-e^{\lambda_n t}\frac{d}{dt}
+\begin{align} \dot y_p(t)=\lambda_n y_p(t)+
+e^{\lambda_n t}\frac{d}{dt}&
 \int\limits_0^t e^{(\lambda_{n-1}-\lambda_n) t'}
-\int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots
-\int\limits_0^{r} e^{(\lambda_{1}-\lambda_{2}p) p}\
-\int\limits_0^{p} e^{-\lambda_{1}q}f(q)dqdp\dots dt''dt'\
-\]
+\int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots\\
+&\dots\int\limits_0^{r} e^{(\lambda_{1}-\lambda_{2}p) p}\
+\int\limits_0^{p} e^{-\lambda_{1}q}f(q)dqdp\dots dt''dt'\nonumber
+\end{align}
 Unter dem Integral über $dt'$ steht eine Funktion $g(t')$, n'est-ce pas? Nämlich
 \[g(t')=e^{(\lambda_{n-1}-\lambda_n) t'}
 \int\limits_0^{t'} e^{(\lambda_{n-2}-\lambda_{n-1}) t''}\dots
@@ -269,3 +267,36 @@ Davon wissen wir aber, dass gilt
 \]
 Es ist aber $y_p(0)=0$ und, wie wir leicht sehen, auch $g(0)=0$. Der geneigte Leser möge letzte Aussage beweisen. Also ist auch $\dot y_p(0)=0$. Das geht weiter bis zur Ableitung der Ordnung $n-1$.
 \end{note}
+%
+\section{Randwertprobleme}
+Gegeben eine lineare Differentialgleichung mit konstanten Koeffizienten 2. Ordnung
+\begin{equation}
+    \frac{d^2y(x)}{dx^2}+a\frac{dy(x)}{dx}+by(x)=g(x)
+    \label{eq:LinDGL2Ordnung}
+\end{equation}
+Wir machen einen Exponentialansatz $y(x)=e^{\lambda x}$ und erhalten für die homogene Differentialgleichung (\ref{eq:LinDGL2Ordnung})
+\begin{equation}
+    \lambda^2+a\lambda+b=0
+    \label{eq:CharGL}
+\end{equation}
+als charackteristische Gleichung. Hat (\ref{eq:CharGL}) zwei Lösungen, so ergibt dies auch zwei Lösungen $y_1(x)=e^\lambda_1 x$ und $y_2(x)=e^\lambda_2x$. Die zwei Lösungen überlagern wir um eine Lösung von (\ref{eq:LinDGL2Ordnung}) zu erhalten
+\[ y(x)=c_1 y_1(x)+c_2 y_2(x) \]
+
+Nun sei $g(x)=0$ und die beiden Randbedingungen $y(0)=\alpha$ und $y(L)=\beta$ seien gegeben. Damit erhalten wir foldendes Gleichungssystem, das wir erfüllen müssen
+\begin{equation}
+    \begin{pmatrix}y_1(0)&y_2(0)\\ y_1(L)&y_2(L)\end{pmatrix}
+    \begin{pmatrix}c_1\\ c_2\end{pmatrix} = 
+     \begin{pmatrix}\alpha \\ \beta\end{pmatrix}
+\label{eq:Randbedingungen}
+\end{equation}
+Aus (\ref{eq:Randbedingungen}) berechnen wir die Lösungen für $c_1$ und $c_2$, wobei diese Gleichung nicht notwendigerweise eine Lösung hat, dies ist zuerst zu zeigen. Sollte (\ref{eq:Randbedingungen}) nicht lösbar sein, so haben wir Randbedingungen gefordert, die durch das Gleichungssysten nicht efüllt werden können.
+
+In Falle $g\ne 0$ gehen wir vor, wie wir es bei den Anfangswertproblemen auch getan haben. Wir überlagern die homogene und die partikuläre Lösung $y(x)=y_h(x)+y_p(x)$ und bekommen ein Gleichungssystem, das nun auch die Funktion $g(x)$ enthält, nämlich durch (\ref{eq:DGL2OrdnungSolu}) eben in der Form
+\[ y_p(x)=e^{\lambda_2 x}\int\limits_0^x e^{(\lambda1-\lambda_2)\eta}\int\limits_0^{\eta}e^{-\lambda_1 \xi}g(\xi)d\xi d\eta\]
+Damit wird (\ref{eq:Randbedingungen}) zu
+\begin{equation}
+    \begin{pmatrix}y_1(0)&y_2(0)\\ y_1(L)&y_2(L)\end{pmatrix}
+    \begin{pmatrix}c_1\\ c_2\end{pmatrix} = 
+     \begin{pmatrix}\alpha+y_p(0) \\ \beta+y_p(L)\end{pmatrix}
+\label{eq:RandBDInhom}
+\end{equation}

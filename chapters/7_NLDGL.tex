@@ -67,7 +67,9 @@ wir so etwas als
 \end{example}
 Finden Sie ein Darstellung der Phasenraumbilder der drei Systeme aus obigen
 Beispiel!
+\Comment{Hier muss was zu Matplotlib kommen!}
 \section{Ordnungsparametergleichungen}
+\Comment{Das hier ist optional}
 Wir betrachten folgendes System gewöhnlicher Differentialgleichungen erster
 Ordnung und ersten grades in den Variablen $u(t)$ und $s(t)$.
 \begin{align} 
@@ -178,4 +180,36 @@ daher relaxiert $s$ sehr schnell auf den stationären Wert, der nun aber durch
 $u$ vorgegeben wird. Das ist eine sehr vage Behauptung und diese muss daher
 durch eine genaue Untersuchung der Konvergenz der Potenzreihenentwicklung
 geklärt werden.
-
+\section{Normalformen}
+Anstatt eine Differentialgleichung zu lösen, kann man versuchen, sie in eine möglichst einfache Form über zu führen. D.h. wir suchen eine Variablentransformation, die eine beliebige Differentialgleichung in eine lineare Differentialgleichung überführt. Dies wird nicht immer gelingen.
+\begin{example}{Nichlineare Differentiagleichung 1. Ordnung}
+  Gegeben sei eine Differentialgleichung der Form
+  \begin{equation}\label{eq:1stNL}
+  \dot{x}(t)=\lambda x + a_2x^2+a_3x^3+\dots
+  \end{equation}
+  mit $\lambda\ne 0$. Wir führen folgende Transformation durch
+  \begin{equation}\label{eq:Trafo}
+  x=y+\alpha_2y^2+\alpha_3y^2+\dots
+  \end{equation}
+  Wir versuchen die $\alpha_i$ so zu bestimmen, dass die Gleichung für $y$ linear ist. Dazu setzen wir (\ref{eq:Trafo}) in (\ref{eq:1stNL}) ein und erhalten
+  \[
+  \dot{y}(1+2\alpha_2y+3\alpha_3y^2+\dots)=
+  \lambda y+(\lambda\alpha_2+a_2)y^2
+  +(\lambda\alpha_3+2a_2\alpha_2+\alpha_3)y^3
+  +\dots
+  \]
+  Wir dividieren durch den Koeffizienten von $\dot{y}$ und entwickeln um $y=0$. Damit erhalten wir
+  \[
+  \dot{y}=\lambda y+(a_2-\lambda\alpha_2)y^2
+  +(\lambda\alpha_3+2\lambda\alpha_2^2
+  -2\lambda\alpha_3)y^3
+  \]
+  Setzen wir nun
+  \[
+  \alpha_2=\frac{a_2}{\lambda}
+  \quad\text{und}\quad
+  \alpha_3=\frac{a_2^2}{\lambda^2}+
+  \frac{a_3}{2\lambda},
+  \]
+  dann verschwinden die Terme $y^2$ und $y^3$. D.h. wir haben (\ref{eq:1stNL}) auf eine Normalform dritten Grades gebracht. 
+\end{example}

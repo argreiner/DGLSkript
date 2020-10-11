@@ -291,6 +291,70 @@ Wir erhalten drei verschiedene Eigenwerte $\lambda_1=1$, $\lambda_2=-1$ und $\la
 \]
 Dies ist ein LGS, dessen Rang der Koeffizientenmatrix 2 ist, gleich dem Rang der erweiterten Koeffizientenmatrix. Damit erwarten wir eine parametrische Lösung mit einem frei wählbaren Parameter.
 Wir sehen, dass die ersten beiden Zeilen der Koeffizientenmatrix linear abhängig sind (multipliziere 2. Zeile mit $-2$ und erhalte Zeile 1). Davon ist allerdings die dritte Zeile unabhängig. Also hat die Koeffizientenmatrix den Rang 2. Der Rangabfall gegenüber $\mathbf{M}_1$ ist 1 und dies ist gleich der Vielfachheit des Eigenwertes, im voeliegenden Fall 1. In der Tat haben wir 3 verscheidene Eigenwerte.
-\section{Das Computer Algebra System Maxima}
 
+Die Eigenvektoren $\mathbf{x}_i$ lauten daher
+\[
+\mathbf{x}_1=\begin{pmatrix}1\\ -1\\ 2\end{pmatrix},\quad
+\mathbf{x}_2=\begin{pmatrix}2\\ -1\\ 3\end{pmatrix}\text{ und }
+\mathbf{x}_3=\begin{pmatrix}2\\ -1\\ 4\end{pmatrix}.
+\]
+Wir haben die Komponenten so gewählt, dass sie ganze Zahlen ergeben, das ist natürlich will\-kürlich bei einer Parameterlösung.
+
+Die Eigenvektoren bilden die Transformationsmatrix $\mathbf{P}_1$, mit deren Hilfe wir $\mathbf{M}_1$ auf Diagonalgestalt bringen und zwar mit $\bm{\Lambda}_1=
+\mathbf{P}_1^{-1}\mathbf{M}_1\mathbf{P}_1$. Es ist
+\[
+\mathbf{P}_1=\begin{pmatrix}1&2&2\\ -1&-1&-1\\ 2&3&4\end{pmatrix}
+\quad\text{ und }\quad
+\mathbf{P}_1^{-1}=\begin{pmatrix}-1&-2&0\\ 2&0&-1\\ -1&2&1\end{pmatrix}.
+\]
+Wir erhalten somit
+\[
+\bm{\Lambda}_1=
+\begin{pmatrix}-1&-2&0\\ 2&0&-1\\ -1&2&1\end{pmatrix}
+\begin{pmatrix}-9&2&6\\5&0&-3\\-16&4&11\end{pmatrix}
+\begin{pmatrix}1&2&2\\ -1&-1&-1\\ 2&3&4\end{pmatrix}=
+\begin{pmatrix}1&0&0\\0&-1&0\\0&0&2\end{pmatrix}
+\]
+
+Die Eigenwerte von $\mathbf{M}_2$ sind $\lambda_1=7$ und $\lambda_2=\lambda_3=-2$. wir haben einen doppelt auftretenden Eigenwert. Für $\lambda_1=7$ erhalten wir den Eigenvektor $\mathbf{x}_1=(2/3,2/3,-1/3)^T$. Was passiert nun mit dem doppelten Eigenwert, können wir hierfür Eigenvektoren identifizieren? Wir untersuchen die Matrix  $\mathbf{M}_2-\lambda_{2}\mathds{1}$ und stellen fest dass diese einen Rangabfall von 2 aufweist. Damit erhalten wir für die Lösung des Gleichungssystems $(\mathbf{M}_2-\lambda_{2}\mathds{1})\cdot\mathbf{x}_i=0$ eine zweiparametrische Lösung und wir finden die zwei linear unabhängigen Eigenvektoren
+\[
+\mathbf{x}_2=\frac{\sqrt{2}}{2}
+\begin{pmatrix}1\\ 1\\ 0\end{pmatrix}
+\quad\text{ und }
+\mathbf{x}_3=\frac{\sqrt{2}}{6}
+\begin{pmatrix}1\\ 1\\ 4\end{pmatrix}
+\]
+Die Konstruktion von $\mathbf{P}_2$ und $\mathbf{P}_2^{-1}$ mit diesen Eigenvektoren erlaubt uns die Transformation von $\mathbf{x}_2$ auf Diagonalform
+\[
+\bm{\Lambda}_2=
+\begin{pmatrix}7&0&0\\0&-2&0\\0&0&-2\end{pmatrix}.
+\]
+
+Eine ganz andere Situation liegt bei $\mathbf{M}_3$ vor. Wir berechnen die Eigenwerte und stellen fest, dass $\lambda_1=\lambda_2=\lambda_3=-1$.
+Die Eigenvektoren berechnen wir aus  $(\mathbf{M}_3+\mathds{1})\cdot\mathbf{x}_i=0$. Wir stellen fest, dass $\text{Rg}(\mathbf{M}_3+\mathds{1})=2$ nicht einen Rangabfall von 3 aufweist, wie es bei einem dreifachen Eigenwert der Fall sein müsste. Also haben wir nur eine zweiparametrische Lösung vorliegen, die wir aus einer der linear abhängigen Gleichungen $(\mathbf{M}_3+\mathds{1})\cdot\mathbf{x}_i=0$ berechnen können:
+\[
+\begin{pmatrix}7&-6&5\\ 14&-12&10\\ 7&-6&5\end{pmatrix}
+\begin{pmatrix}x_{i1}\\ x_{i2}\\ x_{i3}\end{pmatrix}=
+\begin{pmatrix}0\\ 0\\ 0\end{pmatrix}
+\]
+Wir sehen sofort, dass diese drei Gleichungen linear abhängig sind 
+\[ 7x_{i1}-6x_{i2}+5x_{i3}=0\]
+und wir nur eine zweiparametrische Lösung bekommen. Wir wählen schlauerweise $x_{i1}=5\cdot s_i$ und $x_{i2}=5\cdot t_i$ und erhalten damit $x_{i3}\cdot s_i+6\cdot t_i$. Für $s_1=\frac{1}{5}$ und $t_1=\frac{2}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_1=(1,2,1)^T$. Mit $s_2=\frac{3}{5}$ und $t_2=\frac{1}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_2=(3,1,-3)^T$. Alle weiteren Eigenvektoren sind Linearkombination aus $\mathbf{x}_1$ und $\mathbf{x}_2$. D.h. das LGS gibt keine weiteren Eigenvektoren her. Anders gesagt $\mathbf{P}_3$ wäre singulär und nicht invertierbar und damit können wir $\mathbf{M}_3$ nicht auf Diagonalform bringen. Berechnen wir anstelle eines linear abhängigen dritten Eigenvektors den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$, dann lässt sich zeigen, dass ein $\mathbf{P}_3$ gebildet aus den ersten beiden Eigenvektoren und disem Lösungsvektor $\mathbf{M}_3$ zumidest auf die JORDANsche Normalform transformieren kann. Dies ist keine Diagonalform. Auf der Diagonalen stehen zwar die Eigenwerte, aber die obere Nebendiagonale ist mit Einsen besetzt. Und zwar stehen bei k-fachem eigenwert und Rangabfall $r\le k$ genau $k-r$ Einsen auf der oberen Nebendiagonale. Diese Aussage beweisen wir nicht. Berechnen wir zunächst den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$. Wir sehen, dass $(\mathbf{M}_3+\mathds{1})^2$ die Nullmatrix ist und damit die Lösung des Gleichungssystems beliebig. Ganz beliebig geht natürlich nicht, der Vektor muss zumindest linear unabhängig von den ersten beiden Eigenvektoren sein. Wir wählen $\mathbf{x}_3=(0,1,1)^T$ und konstruiren uns die Transformationsmatrix
+\[
+\mathbf{P}_3=
+\begin{pmatrix}-1&0&3\\ -2&1&1\\ -1&1&-3\end{pmatrix}\quad\text{ wobei }\quad
+\mathbf{P}_3^{-1}=
+\begin{pmatrix}-4&3&-3\\ -7&6&-5\\ -1&1&-1\end{pmatrix}.
+\]
+Damit erhalten wir 
+\[
+\mathbf{P}_3^{-1}\mathbf{M}_3\mathbf{P}_3=
+\begin{pmatrix}-1&1&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix}
+\]
+\section{Das Computer Algebra System Maxima}
+Maxima ist ein Computer Algebra System (CAS). Der Quellcode wurde seit 1982 von William Shelter\footnote{William Frederick Schelter (1947 – July 30, 2001) war Professor für Mathematik der  University of Texas in Austin. Er war Lisp Entwickler und  Programmierer (siehe \url{https://en.wikipedia.org/wiki/Bill_Schelter}).}  entwickelt und 1998 unter der GNU General Public License (GPL) veröffentlicht.
+
+Maxima ist die Engine, die hinter den Stackaufgaben auf ILIAS steht, die wir im Rahmen dieses Kurses bearbeiten. Es ist daher ratsam, sich zumindest mit der Syntax von Maxima zu beschäftigen, da diese zur Eingabe bei den Aufgaben benutzt werden muss. Die Syntax ist einigermaßen intuitiv, es schadet aber nicht, sich einmal damit zu beschäftigen. Weitere Information ist hier 
+\url{http://maxima.sourceforge.net/docs/manual/de/maxima.html#SEC_Top} 
+zu finden.
 \newpage

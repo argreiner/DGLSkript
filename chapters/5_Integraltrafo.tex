@@ -1,4 +1,5 @@
 \chapter{Integraltransformationen}
+\Comment{5. Vorlesung}
 Eine Integraltransformation der Form
 \begin{equation}
   \mathcal{F}(y)=\int\limits_a^bK(y,x)f(x)dx
@@ -24,8 +25,8 @@ f_m=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx
 (\ref{eq:fourierreihe}) einsetzen erhalten wir 
 \begin{equation}\label{eq:fm}
 f_m=\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}f(x)dx=\frac{1}{L}
-\sum_{n=-\infty}^{n=\infty}f_n\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}e^{ik_nx}dx
-=L\delta_{mn}f_n
+\sum_{n=-\infty}^{n=\infty}f_n\underbrace{\int_{-\frac{L}{2}}^{\frac{L}{2}}e^{-ik_mx}e^{ik_nx}dx}_{L\delta_{mn}}
+=\delta_{mn}f_n
 \end{equation}
 Es gehören also die beiden Darstellungen im Raum der Wellenzahlen und dem Ortsraum zusammen
 \begin{align}
@@ -225,4 +226,5 @@ oder
   +\underbrace{\frac{(s+1)y_0+\dot{y}_0}{s^2+s+2}}_{\mbox{hom. Lösung+Anfangsb.}}
 \end{equation}
 \end{example}
+\Comment{Die Sätze zur Laplacetrafo hier bringen!}
 \newpage

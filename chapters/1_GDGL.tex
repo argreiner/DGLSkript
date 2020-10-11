@@ -1,4 +1,5 @@
 \chapter{Gewöhnliche Differentialgleichungen}
+\Comment{1. Vorlesung}
 Die allgemeine Form einer Differentialgleichung sei folgendermaßen gegeben
 \begin{equation}
   \frac{d\mbf{y}(t)}{dt}=\mbf{f}(t,\mbf{y}(t))
@@ -7,7 +8,7 @@ Die allgemeine Form einer Differentialgleichung sei folgendermaßen gegeben
 Anstatt den Differentialoperator $\frac{d}{dt}$ auszuschreiben, benutzen wir
 für (\ref{eq:DGLallgemein}) auch die Schreibweise
 $\dot{\mbf{y}}=f(t,\mbf{y}(t))$.  Dabei bezeichne $t$ die unabhängige
-Veränderliche, $\mbf{f}(t,\mbf{y})$ einen Vektor bekannter Funktion und
+Veränderliche, $\mbf{f}(t,\mbf{y})$ einen Vektor bekannter Funktionen und
 $\mbf{y}$ einen Vektor gesuchter Funktionen $y_i(t)$.  Wir betrachten
 verschiedene Differentialgleichungen, benennen deren Eigenschaften und erkennen
 die verschiedenen Typen:
@@ -15,7 +16,7 @@ die verschiedenen Typen:
 	\item Linear und nichtlinear, wie z.B.\
 	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t),\]
 	  eine lineare inhomogene Differentialgleichung 2. Ordnung,
-	  die den gedämpften und getriebenen harmonischen Oszillator bechreibt, während
+	  die den gedämpften und getriebenen harmonischen Oszillator beschreibt, während
 	\[\frac{d^2x(t)}{dt^2}+\mu(x(t)^2-1)\frac{dx(t)}{dt}+x(t)= 0 \]
 	  eine nichtlineare Bewegungsgleichung für $x(t)$ ist. Sie beschreibt den so genannten
 	  van der Pol Oszillator.  
@@ -49,10 +50,9 @@ die verschiedenen Typen:
 	     \item Der Grad einer Differentialgleichung ist der Exponent der Potenz der höchsten vorkommenden Ableitung.
 \end{enumerate}
 Bei all diesen Differentialgleichungen sind wir immer an einer Lösung für
-einen bestimmten Anfangswert interessiert, also z.B.\ $x(t=0)=x_0$ etc. Um ein
-System von Gleichungen lösen zu können müssen wir für jede Variable
-Anfangsbedingungen angeben. Da aus einer Gleichung n-ter Ordnung ein System mit
-n Variablen wird, schließen wir daraus, dass wir für eine solche
+einen bestimmten Anfangswert interessiert, also z.B.\ $x(t=0)=x_0$. Um ein
+System von Gleichungen lösen zu können, müssen wir für jede Variable
+Anfangsbedingungen angeben. Da aus einer Gleichung n-ter Ordnung ein System mit n Variablen wird, schließen wir daraus, dass wir für eine solche
 Differentialgleichung ebenfalls n Anfangsbedingungen brauchen.
 %
 \section{Allgemeine analytische Lösung}\label{sec:analyticsolu}
@@ -65,7 +65,7 @@ $(t,y)$-Ebene, gegeben durch $t_0-a\le t\le t_0+a$ und $y_0 -b\le y\le y_0+b$.
 Der Nachweis der Existenz und Eindeutigkeit einer Lösung ist in diesem Falle
 nicht immer möglich. Wir wollen eine alternative Vorgehensweise vorschlagen.
 
-Wir nehmen an $y(t)$ sei eine Lösung des Anfangswertproblems und es gelte
+Wir nehmen an, $y(t)$ sei eine Lösung des Anfangswertproblems und es gelte
 $y_0 -b\le y\le y_0+b$ für $t\in [t_0-\alpha,t_0+\alpha]$ mit $0<\alpha\le a$,
 so ergibt sich aus obiger Voraussetzung für $f(t,y(t))$, dass die Lösung im
 Intervall $[t_0-\alpha,t_0+\alpha]$ eine stetige Ableitungsfunktion
@@ -88,15 +88,11 @@ Schreiben wir die Integralgleichung (\ref{eq:Integral}) in der Form
   In (\ref{eq:Iteration}) schreiben wir absichtlich $\Phi[y]$, d.h. das $y$ in
   eckigen Klammern geschrieben, weil $\Phi[y]$ ein Funktional ist. Es hängt
   nicht nur vom Zeitpunkt $t$ in der unabhängigen Variablen ab, sondern vom
-  gesamten Verlauf der Funktion $y(t)$. Wir werden im Kapitel \ref{chap:Variationsrechnung}
-  Variationsrechnung darauf zurückkommen. 
+  gesamten Verlauf der Funktion $y(t)$. Wir werden im Kapitel \ref{chap:Variationsrechnung} \textit{Variationsrechnung} darauf zurückkommen. 
 \end{note}
-Wir sehen, dass die Lösung von (\ref{eq:Iteration}) wie der Fixpunkt $y^*$ der
-Gleichung \[ y=\varphi(y)\] zu bestimmen ist. Hierbei gehen wir iterativ vor.
-Wir starten bei einem Rohwert $y_0$ und berechnen sukzessiv nach der Vorschrift
+Wir sehen, dass die Lösung von (\ref{eq:Iteration}) wie der Fixpunkt $y^*$ der Gleichung \[ y=\varphi(y)\] zu bestimmen ist. Hierbei gehen wir iterativ vor. Wir starten bei einem Rohwert $y_0$ und berechnen sukzessiv nach der Vorschrift
 \[ y_{n+1} = \varphi(y_n) \] 
-Jetzt müssen wir nur noch zeigen, dass die Iteration konvergiert. Dies ist für
-die Lösung der Integralgleichung (\ref{eq:Integral}) der Fall, wenn die
+Jetzt müssen wir nur noch zeigen, dass die Iteration konvergiert. Dies ist für die Lösung der Integralgleichung (\ref{eq:Integral}) der Fall, wenn die
 Abbildung $\phi$ kontrahierend ist.
 \begin{example}{Iterative Lösung}
 Gegeben die Differentialgleichung
@@ -143,10 +139,10 @@ a) $t\dot{y}=y$ und b) $y\dot{y}=-t$
 \end{description}
 \end{example}
 \subsection{Exakte Differentialgleichungen}
-Ist $p(t,y)dt+q(t,y)dy$ das vollständige Differential einer Funktion
-$\mu(y,t)$, d.h.\ ist 
+Gegeben die Differentialgleichung in der Form wie in (\ref{eq:DGLVarKoeff}
+) dargestellt. Ist $p(t,y)dt+q(t,y)dy$ das vollständige Differential einer Funktion $\mu(y,t)$, d.h.\ ist 
 \[d\mu(y,t)=\frac{\partial\mu(y,t)}{\partial t}dt+
-\frac{\partial\mu(y,t)}{\partial y}dy=p(t,y)dt+q(t,y)dy\]
+\frac{\partial\mu(y,t)}{\partial y}dy=p(t,y)dt+q(t,y)dy=0\]
 dann nennen wir (\ref{eq:DGLVarKoeff}) eine {\it exakte Differentialgleichung}
 und $\mu(y,t)=const.$ ist eine allgemeine Lösung. Damit (\ref{eq:DGLVarKoeff})
 eine exakte Differentialgleichung ist, muss die Bedingung
@@ -154,7 +150,7 @@ eine exakte Differentialgleichung ist, muss die Bedingung
   \frac{\partial p(t,y)}{\partial y}=  \frac{\partial q(t,y)}{\partial t}
   \label{eq:BedExaktheit}
 \end{equation}
-erfüllt sein.
+erfüllt sein (Warum?).
 
 Nicht immer sieht man allerdings der Differentialgleichung die Exaktheit an.
 Selbst wenn wir sehen, dass (\ref{eq:DGLVarKoeff}) keine exakte
