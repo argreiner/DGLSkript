@@ -17,7 +17,7 @@ die verschiedenen Typen.
 %\begin{enumerate}
 	%\item 
 	Die Gleichung 
-	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t),\]
+	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t)\]
 	  ist eine \emph{lineare} inhomogene Differentialgleichung 2. Ordnung, die den gedämpften und getriebenen harmonischen Oszillator beschreibt. Die Gleichung
 	\[\ddot{x}+\mu\left(x(t)^2-1\right)\dot{x}+x(t)= 0 \]
 	  hingegen ist eine \emph{nichtlineare} Bewegungsgleichung für $x(t)$. Sie beschreibt den sogenannten
@@ -39,13 +39,13 @@ die verschiedenen Typen.
 \paragraph{Systeme von DGL 1.\ Ordnung}
     Die Gleichungen
 		\begin{eqnarray*}
-			\frac{dx}{dt} &=& x(\alpha - \beta y) \\
-			\frac{dy}{dt} &=& - y(\gamma - \delta x) 
+			\dot{x} &=& x(\alpha - \beta y) \\
+			\dot{y} &=& - y(\gamma - \delta x) 
 		\end{eqnarray*}
-		sind die bekannte Räuber-Beute-Gleichungen oder auch Lotka-Volterra-Gleichungen.
+		sind die bekannten Räuber-Beute-Gleichungen, auch Lotka-Volterra-Gleichungen genannt. 
 	%\item 
-\paragraph{	Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung}
-		Gegeben der gedämpfte Harmonische Oszillator
+\paragraph{Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung}
+		Man nehme als Beispiel den gedämpften Harmonische Oszillator
 		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t).\] Durch Substitution von 
 		$y_1=x$ und $y_2=\dot{x}$ erhalten wir zwei Gleichungen erster 		Ordnung anstelle der ursprünglichen Gleichung zweiter Ordnung, nämlich 
 		\begin{eqnarray*} 
@@ -141,14 +141,13 @@ denn es ist wegen (\ref{eq:getrennteVar})
 \begin{example}{Separierbare Differentialgleichung}
 a) $t\dot{y}=y$ und b) $y\dot{y}=-t$
 \begin{description}
-  \item[a)] Für $t\ne 0$ und $y\ne =0$ erhalten wir 
+  \item[a)] Für $t\ne 0$ und $y\ne 0$ erhalten wir 
   \[\frac{dy}{y}=\frac{dt}{t}\]
 \item[b)] $ydy=-tdt$
 \end{description}
 \end{example}
 \subsection{Exakte Differentialgleichungen}
-Gegeben die Differentialgleichung in der Form wie in (\ref{eq:DGLVarKoeff}
-) dargestellt. Ist $p(t,y)dt+q(t,y)dy$ das vollständige Differential einer Funktion $\mu(y,t)$, d.h.\ ist 
+Gegeben die Differentialgleichung in der Form wie in (\ref{eq:DGLVarKoeff}) dargestellt. Ist $p(t,y)dt+q(t,y)dy$ das vollständige Differential einer Funktion $\mu(y,t)$, d.h.\ ist 
 \[d\mu(y,t)=\frac{\partial\mu(y,t)}{\partial t}dt+
 \frac{\partial\mu(y,t)}{\partial y}dy=p(t,y)dt+q(t,y)dy=0\]
 dann nennen wir (\ref{eq:DGLVarKoeff}) eine {\it exakte Differentialgleichung}
@@ -168,9 +167,9 @@ die Gleichung multiplizieren kann, sodass diese exakt wird.
 \begin{note}{Integrierender Faktor}
   $3ydt+2tdy=0$ ist keine exakte Differentialgleichung. Multipliziert man aber
   $\Xi(y,t)=t^2y$ mit dieser Gleichung, so erhält man $3t^2y^2dt+2t^3ydy=0$.
-  Dies kann man als vollständiges Differential der unktion $\mu(y,t)=t^3y^2$
+  Dies kann man als vollständiges Differential der Funktion $\mu(y,t)=t^3y^2$
   schreiben und somit ist $t^3y^2=C$ einen allgemeine Lösung der
-  Differentialgleichung. Die Funktion $\Xi(y,t)$ heisst integrierender Faktor.
+  Differentialgleichung. Die Funktion $\Xi(y,t)$ hei{\ss}t integrierender Faktor.
 \end{note}
 Angenommen (\ref{eq:DGLVarKoeff}) sei keine exakte Differentialgleichung, 
 dann müssen wir einen solchen versuchen zu finden
