@@ -11,49 +11,57 @@ $\dot{\mbf{y}}=f(t,\mbf{y}(t))$.  Dabei bezeichne $t$ die unabhängige
 Veränderliche, $\mbf{f}(t,\mbf{y})$ einen Vektor bekannter Funktionen und
 $\mbf{y}$ einen Vektor gesuchter Funktionen $y_i(t)$.  Wir betrachten
 verschiedene Differentialgleichungen, benennen deren Eigenschaften und erkennen
-die verschiedenen Typen:
-\begin{enumerate}
-	\item Linear und nichtlinear, wie z.B.\
+die verschiedenen Typen.
+
+\paragraph{Unterscheidung zwischen linearen und nichtlinearen DGL}
+%\begin{enumerate}
+	%\item 
+	Die Gleichung 
 	  \[m\ddot{x}(t)+c\dot{x}(t)+kx(t)=f(t),\]
-	  eine lineare inhomogene Differentialgleichung 2. Ordnung,
-	  die den gedämpften und getriebenen harmonischen Oszillator beschreibt, während
-	\[\frac{d^2x(t)}{dt^2}+\mu(x(t)^2-1)\frac{dx(t)}{dt}+x(t)= 0 \]
-	  eine nichtlineare Bewegungsgleichung für $x(t)$ ist. Sie beschreibt den so genannten
-	  van der Pol Oszillator.  
-	\item erste, zweite und höhere Ordnung 
-	  \[ \dot{x}(t)+\frac{1}{\tau}x=h(t)\] 
+	  ist eine \emph{lineare} inhomogene Differentialgleichung 2. Ordnung, die den gedämpften und getriebenen harmonischen Oszillator beschreibt. Die Gleichung
+	\[\ddot{x}+\mu\left(x(t)^2-1\right)\dot{x}+x(t)= 0 \]
+	  hingegen ist eine \emph{nichtlineare} Bewegungsgleichung für $x(t)$. Sie beschreibt den sogenannten
+	  van-der-Pol-Oszillator.  
+	%\item erste, zweite und höhere Ordnung
+\paragraph{Die Ordnung einer DGL}
+	  Die Gleichung \[ \dot{x}(t)+\frac{1}{\tau}x=h(t)\] 
 	  beschreibt einen getriebenen Relaxator, den wir gleich näher
 	  betrachten werden. Die rechte Seite dieser Gleichung bezeichnen wir
 	  als Inhomogenität.
 		%- in der Systemtheorievbezeichneten wir damit ein
 		%Verzögerungsglied 1.\ Ordnung ($\mbox{PT}_1$-Glied). 
-	  Ein Beispiel für eine Gleichung 2.\ Ordnung ist entweder der
-	  van der Pol Oszillator oder der Harmonische Oszillator (siehe
+	  Beispiele für Gleichungen 2.\ Ordnung sind der
+	  van-der-Pol-Oszillator und der harmonische Oszillator (siehe
 	  oben). 
 		% Finde ein entsprechendes elementares zeitinvariantes
 		% \"Ubertragungsglied (Hinweis: Skript Systemtheorie)!
-	\item System von DEs  1.\ Ordnung 
+	%\item 
+\paragraph{Systeme von DGL 1.\ Ordnung}
+    Die Gleichungen
 		\begin{eqnarray*}
 			\frac{dx}{dt} &=& x(\alpha - \beta y) \\
 			\frac{dy}{dt} &=& - y(\gamma - \delta x) 
 		\end{eqnarray*}
-		die bekannte Räuber-Beute-Gleichungen oder auch Lotka-Volterra-Gleichungen.
-	\item Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung.
+		sind die bekannte Räuber-Beute-Gleichungen oder auch Lotka-Volterra-Gleichungen.
+	%\item 
+\paragraph{	Transformation von Gleichungen höherer Ordnung auf ein System von Gleichungen 1.\ Ordnung}
 		Gegeben der gedämpfte Harmonische Oszillator
-		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t)\]. Substituiere
-		$y_1=x$ und $y_2=\dot{x}$ und wir erhalten zwei Gleichungen erster
-		Ordnung anstatt der ursprünglichen Gleichung zweiter Ordnung, nämlich 
+		\[m\ddot{x}(t)+c\dot{x}(t)+kx=f(t).\] Durch Substitution von 
+		$y_1=x$ und $y_2=\dot{x}$ erhalten wir zwei Gleichungen erster 		Ordnung anstelle der ursprünglichen Gleichung zweiter Ordnung, nämlich 
 		\begin{eqnarray*} 
 		  \dot{y_1} &=& y_2\\
 	 	  m\dot{y_2}&=&-k\cdot y_1-c\cdot y_2+f(t)
 	       \end{eqnarray*}
-	     \item Der Grad einer Differentialgleichung ist der Exponent der Potenz der höchsten vorkommenden Ableitung.
-\end{enumerate}
+	     %\item 
+\paragraph{Grad einer DGL}
+	     Der Grad einer Differentialgleichung ist der Exponent der Potenz der höchsten vorkommenden Ableitung.
+%\end{enumerate}
+
 Bei all diesen Differentialgleichungen sind wir immer an einer Lösung für
 einen bestimmten Anfangswert interessiert, also z.B.\ $x(t=0)=x_0$. Um ein
 System von Gleichungen lösen zu können, müssen wir für jede Variable
-Anfangsbedingungen angeben. Da aus einer Gleichung n-ter Ordnung ein System mit n Variablen wird, schließen wir daraus, dass wir für eine solche
-Differentialgleichung ebenfalls n Anfangsbedingungen brauchen.
+Anfangsbedingungen angeben. Da aus einer Gleichung $n$-ter Ordnung ein System mit $n$ Variablen wird, schließen wir daraus, dass wir für eine solche
+Differentialgleichung ebenfalls $n$ Anfangsbedingungen brauchen.
 %
 \section{Allgemeine analytische Lösung}\label{sec:analyticsolu}
 Wenn wir gewöhnliche Differentialgleichungen analytisch lösen wollen so ist

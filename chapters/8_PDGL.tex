@@ -8,17 +8,63 @@ und der räumlichen Position $x$ dargestellt
 \[\frac{\partial T(x,t)}{\partial t}=\kappa\frac{\partial^2 T(x,t)}{\partial x^2}\]
 dabei bezeichnet $\kappa$ den Wärmeleitungskoefizienten.
 \section{PDEs erster Ordnung}
-Quasilinearwe PDEs erster Ordnung, also Gleichungen der Form
+Quasilineare PDEs erster Ordnung, also Gleichungen der Form
 \begin{equation}
-   P(x,y;ux)\frac{\partial u(x,y)}{\partial x}+
-Q(x,y;ux)\frac{\partial u(x,y)}{\partial y}=
-R(x,y;u), \label{eq:PDE1Oquasi}
+   P(x,t;u)\frac{\partial u(x,t)}{\partial x}+
+Q(x,t;u)\frac{\partial u(x,t)}{\partial t}=
+R(x,t;u), \label{eq:PDE1Oquasi}
 \end{equation}
-können systematisch auf ein System gekoppelter ODEs erster Ordnung zurückgeführt werden können. Diese wichtige Eigenschaft wollen wir untersuchen.
-
+für eine Funktion $u(x,t)$ und der Anfangsbedingung $u(x,t=0)=u_0(x)$ können systematisch auf ein System gekoppelter ODEs erster Ordnung zurückgeführt werden können. Diese wichtige Eigenschaft wollen wir untersuchen.
+\begin{note}{Allgemeine Problemstellung}
+In (\ref{eq:PDE1Oquasi}) wurde zur Illustration eine Darstellung im 2D gewählt. Allgemein können wir schreiben:
+\[
+\sum\limits_i P_i(x_i;u)\frac{\partial u(x_i)}{\partial x_i}=
+R((x_i;u)
+\]
+\end{note}
 (\ref{eq:PDE1Oquasi}) können wir auf ein System von ODEs transformieren. Dies wird die Methode der Charakteristiken genannt. Das bedeutet nicht, dass das resultierende System von ODEs analytisch lösbar ist. In jedem Falle werden wir aber den Vorteil haben, dass der ganze Formalismus zur Lösung eines Systems von ODEs angewandt werden kann, entweder die Analytik oder die Numerik.
 
-Wir illustrieren die Methode an einem Beispiel im Zweidimensionalen.
+Wir gehen folgendermaßen vor:
+\begin{enumerate}
+    \item Parametrisiere die unabhängigen Veränderlichen in (\ref{eq:PDE1Oquasi}) mit dem Parameter $s$ gemäß $x(s)$ und $t(s)$.
+    \item Bilde die totale Ableitung von $u(x(s),t(s))$ nach $s$
+    \[
+    \frac{du(x(s),t(s))}{ds}=
+    \frac{\partial u(x(s),t(s))}{\partial x}\frac{dx(s)}{ds}+
+    \frac{\partial u(x(s),t(s))}{\partial t}\frac{dt(s)}{ds}=
+    R(x,t;u)
+    \]
+    \item Schreibe (\ref{eq:PDE1Oquasi}) als gewöhnliche Differentialgleichung
+    \[\frac{du(s)}{ds}=R(u(s))\]
+    entlang bestimmter Kurven in der $(x,t)$-Ebene.
+    \item Bestimme die Kurven mit Hilfe der Gleichungen
+    \begin{align*}
+        \frac{dx(s)}{ds}&=P(x,t,u)\\
+        \frac{dt(s)}{ds}&=Q(x,t,u)
+    \end{align*}
+    \item Somit erhalten wir ein System dreier gekoppelter gewöhnlicher Differentialgleichungen erster Ordnung
+\end{enumerate}
+%
+\begin{example}{Methode der Charakteristiken am Beispiel in 2D}
+Die Transportgleichung
+\[
+\frac{\partial u(x,t)}{\partial t}+c\cdot\frac{\partial u(x,t)}{\partial x}=0
+\]
+mit der Anfangsbedingung $u(x,t=0)=u_0(x)$ soll gelöst werden. Wir gehen nach obigem Rezept vor und schreiben:
+\begin{enumerate}
+    \item Verwende Parametrisierung mit $s$, also $x(s)$ und $t(s)$.
+    \item Totale Ableitung:
+    \[\frac{du(x(s),t(s)}{ds}=\frac{\partial u}{\partial x}\frac{dx(s)}{ds}+
+    \frac{\partial u}{\partial t}\frac{dt(s)}{ds}=
+    \frac{\partial u(x,t)}{\partial t}+c\cdot\frac{\partial u(x,t)}{\partial x}=0\]
+    \item\[\frac{du(x(s),t(s)}{ds}=0\]
+    \item \[\frac{dx(s)}{ds}=c\]
+    \[\frac{dt(s)}{ds}=1\]
+    \item Anfangsbedingungen: $t(0)=0$, $x(0)=\xi $ und $u(x,t=0)=f(\xi)$
+    \item Damit haben wir $t=s$, $x=ct+\xi $ und $u=f(\xi)=f(x-ct)$
+\end{enumerate}
+Interpretation: Die Anfangsbedingung $f(\xi)$ wird mit der Geschwindigkeit $c$ in die positive x-Richtung transportiert. Die Lösung für $u$ bleibt konstant, da die Ableitung von $u$ Null ist, also behält  $u$ den durch die Anfangsbedingung gegebenen Wert.
+\end{example}
 \section{PDEs zweiter Ordnung}
 \Comment{Das sollte die 2. Vorlesung werden.}
 Beispiele von PDEs zweiter Ordnung:\\

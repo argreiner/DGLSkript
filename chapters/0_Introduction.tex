@@ -11,8 +11,8 @@ $F(x)=\int\limits_{x_0}^{x}f(\xi)d\xi$ existiert, dann ist
 \]
 \label{theo:HDI}
 \end{satz}
-Satz \ref{theo:HDI} in Worten:„Die Ableitung des Integrals ist gleich der
-Funktion im Integranden an der oberen Integrationsgrenze“.
+Satz \ref{theo:HDI} in Worten: ``Die Ableitung des Integrals ist gleich der
+Funktion im Integranden an der oberen Integrationsgrenze''.
 \begin{example}{Ableitung eines Integrals}
 \[
  \frac{d F(x)}{dx}=\frac{d}{dx}\int\limits_{x_0}^{x}e^{-\xi}d\xi=
@@ -57,7 +57,7 @@ Mittelwertsatz der Differetialrechnung bezeichnet. Es gilt also:
 %{\red Das könnte ein Beispiel für den Beweis eines Satzes sein}
 Die Taylorreihe ist zweifelsohne eines der wichtigen Instrumente. Sie dient zur
 Abschätzung des Verhaltens von Funktionen und findet in numerischen
-Methoden Anwendung, wie z.B. den Finiten Differenzen.
+Methoden Anwendung, wie z.B.\ den Finiten Differenzen.
 \begin{satz}{Der Taylorsche Satz\label{theo:Taylor}} Sei $f$ eine Funktion, die
   eine $(n+1)$-te stetige Ableitung auf einem Intervall $J$ besitze. Es seien
   $a,b\in J$. Dann ist 
@@ -264,6 +264,25 @@ Matrix $\mathbf{A}$ anfügen. Wir schreiben dies $\mathbf{\{A|b\}}$.
 
   \end{itemize}
 \end{example}
+\subsection{Das Inverse einer Matrix}
+Gegeben eine $n\times n$ Matrix $\mathbf{A}$. Gibt es ein Inverses $\mathbf{A}^{-1}$ zu dieser Matrix, so dass $\mathbf{A}^{-1}\cdot\mathbf{A}=\mathds{1}$ die $n\times n$ Einheitsmatrix ergibt? In der Tat gibt es dies, wenn die Matrix $\mathbf{A}$ regulär ist. Eine Matrix ist regulär, wenn Ihre Determinante von Null verschieden ist, sonst heisst die singulär.
+
+Berechnet wir die Inverse folgendermaßen
+\begin{equation}\label{eq:matrixinverse}
+    \mathbf{A}^{-1}=\frac{\text{adj }\mathbf{A}}{\text{det }\mathbf{A}},
+\end{equation}
+Wobei die Elemente $A^{ad}_{ij}$ der Adjunkten $\text{adj }\mathbf{A}$ der Matrix $\mathbf{A}$ folgendermaßen definiert sind: Man streiche die Zeile $i$ und die Spalte $j$ der Matrix $\mathbf{A}$ transponiere diese $(n-1)\times(n-1)$-Matrix, berechne deren Determinante und multipliziere diese mit $(-1)^{i+j}$. Zur praktischen Durchführung nehmen wir allerdings den Algorithmus von Gauß und Jordan:
+
+Erweitere die Matrix $\mathbf{A}$ um eine Einheitsmatrix $\mathds{1}$ derselben Dimension
+\begin{equation*}
+    (\mathbf{A}|\mathds{1})=
+    \begin{pmatrix}
+    a_{11}&\dots&a_{1n}&1&&0\\
+    \vdots&&\vdots&&\ddots&\\
+    a_{n1}&\dots&a_{nn}&0&&1
+    \end{pmatrix}
+\end{equation*}
+Nun wenden wir die erlaubten Zeilenoperationen auf die erweiterte Matrix an, sodass aus der linken Hälfte die $n\times n$ Einheitsmatrix $\mathds{1}$ wird, dann erhalten wir in der rechten Hälfte die inverse der Matrix $\mathbf{A}$. Sollte die Inverse nicht existieren, dann merken wir das sofort daran, dass auf der Hauptdiagonalen eine Null resultiert.
 \subsection{Eigenwerte, Eigenvektoren, Normalformen}
 Die Menge der Eigenwerte und Eigenvektoren einer Matrix nennt man auch ihr Spektrum. Von den drei Matrizen $\mathbf{M}_i$ mit $i=1,2,3$
 \[
@@ -319,7 +338,7 @@ Wir erhalten somit
 Die Eigenwerte von $\mathbf{M}_2$ sind $\lambda_1=7$ und $\lambda_2=\lambda_3=-2$. wir haben einen doppelt auftretenden Eigenwert. Für $\lambda_1=7$ erhalten wir den Eigenvektor $\mathbf{x}_1=(2/3,2/3,-1/3)^T$. Was passiert nun mit dem doppelten Eigenwert, können wir hierfür Eigenvektoren identifizieren? Wir untersuchen die Matrix  $\mathbf{M}_2-\lambda_{2}\mathds{1}$ und stellen fest dass diese einen Rangabfall von 2 aufweist. Damit erhalten wir für die Lösung des Gleichungssystems $(\mathbf{M}_2-\lambda_{2}\mathds{1})\cdot\mathbf{x}_i=0$ eine zweiparametrische Lösung und wir finden die zwei linear unabhängigen Eigenvektoren
 \[
 \mathbf{x}_2=\frac{\sqrt{2}}{2}
-\begin{pmatrix}1\\ 1\\ 0\end{pmatrix}
+\begin{pmatrix}1\\ -1\\ 0\end{pmatrix}
 \quad\text{ und }
 \mathbf{x}_3=\frac{\sqrt{2}}{6}
 \begin{pmatrix}1\\ 1\\ 4\end{pmatrix}
@@ -339,7 +358,7 @@ Die Eigenvektoren berechnen wir aus  $(\mathbf{M}_3+\mathds{1})\cdot\mathbf{x}_i
 \]
 Wir sehen sofort, dass diese drei Gleichungen linear abhängig sind 
 \[ 7x_{i1}-6x_{i2}+5x_{i3}=0\]
-und wir nur eine zweiparametrische Lösung bekommen. Wir wählen schlauerweise $x_{i1}=5\cdot s_i$ und $x_{i2}=5\cdot t_i$ und erhalten damit $x_{i3}\cdot s_i+6\cdot t_i$. Für $s_1=\frac{1}{5}$ und $t_1=\frac{2}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_1=(1,2,1)^T$. Mit $s_2=\frac{3}{5}$ und $t_2=\frac{1}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_2=(3,1,-3)^T$. Alle weiteren Eigenvektoren sind Linearkombination aus $\mathbf{x}_1$ und $\mathbf{x}_2$. D.h. das LGS gibt keine weiteren Eigenvektoren her. Anders gesagt $\mathbf{P}_3$ wäre singulär und nicht invertierbar und damit können wir $\mathbf{M}_3$ nicht auf Diagonalform bringen. Berechnen wir anstelle eines linear abhängigen dritten Eigenvektors den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$, dann lässt sich zeigen, dass ein $\mathbf{P}_3$ gebildet aus den ersten beiden Eigenvektoren und disem Lösungsvektor $\mathbf{M}_3$ zumidest auf die JORDANsche Normalform transformieren kann. Dies ist keine Diagonalform. Auf der Diagonalen stehen zwar die Eigenwerte, aber die obere Nebendiagonale ist mit Einsen besetzt. Und zwar stehen bei k-fachem eigenwert und Rangabfall $r\le k$ genau $k-r$ Einsen auf der oberen Nebendiagonale. Diese Aussage beweisen wir nicht. Berechnen wir zunächst den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$. Wir sehen, dass $(\mathbf{M}_3+\mathds{1})^2$ die Nullmatrix ist und damit die Lösung des Gleichungssystems beliebig. Ganz beliebig geht natürlich nicht, der Vektor muss zumindest linear unabhängig von den ersten beiden Eigenvektoren sein. Wir wählen $\mathbf{x}_3=(0,1,1)^T$ und konstruiren uns die Transformationsmatrix
+und wir nur eine zweiparametrische Lösung bekommen. Wir wählen schlauerweise $x_{i1}=5\cdot s_i$ und $x_{i2}=5\cdot t_i$ und erhalten damit $x_{i3}=-7\cdot s_i+6\cdot t_i$. Für $s_1=\frac{1}{5}$ und $t_1=\frac{2}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_1=(1,2,1)^T$. Mit $s_2=\frac{3}{5}$ und $t_2=\frac{1}{5}$ ergibt sich der Eigenvektor $\mathbf{x}_2=(3,1,-3)^T$. Alle weiteren Eigenvektoren sind Linearkombination aus $\mathbf{x}_1$ und $\mathbf{x}_2$. D.h.\  das LGS gibt keine weiteren Eigenvektoren her. $\mathbf{P}_3$ wäre singulär und nicht invertierbar. Daher können wir $\mathbf{M}_3$ nicht auf Diagonalform bringen. Berechnen wir anstelle eines linear abhängigen dritten Eigenvektors den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$, dann lässt sich zeigen, dass ein $\mathbf{P}_3$ gebildet aus den ersten beiden Eigenvektoren und diesem Lösungsvektor $\mathbf{M}_3$ zumindest auf die \textsc{jordan}sche Normalform transformieren kann. Dies ist keine Diagonalform. Auf der Diagonalen stehen zwar die Eigenwerte, aber die obere Nebendiagonale ist mit Einsen besetzt. Bei $k$-fachem Eigenwert und Rangabfall $r\le k$ stehen genau $k-r$ Einsen auf der oberen Nebendiagonale. Diese Aussage beweisen wir nicht. Berechnen wir zunächst den Lösungsvektor von $(\mathbf{M}_3+\mathds{1})^2\cdot\mathbf{x}_i=0$. Wir sehen, dass $(\mathbf{M}_3+\mathds{1})^2$ die Nullmatrix ist und damit die Lösung des Gleichungssystems beliebig. Ganz beliebig geht natürlich nicht, der Vektor muss zumindest linear unabhängig von den ersten beiden Eigenvektoren sein. Wir wählen $\mathbf{x}_3=(0,1,1)^T$ und konstruiren uns die Transformationsmatrix
 \[
 \mathbf{P}_3=
 \begin{pmatrix}-1&0&3\\ -2&1&1\\ -1&1&-3\end{pmatrix}\quad\text{ wobei }\quad
@@ -349,10 +368,11 @@ und wir nur eine zweiparametrische Lösung bekommen. Wir wählen schlauerweise $
 Damit erhalten wir 
 \[
 \mathbf{P}_3^{-1}\mathbf{M}_3\mathbf{P}_3=
-\begin{pmatrix}-1&1&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix}
+\begin{pmatrix}-1&1&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix}.
 \]
-\section{Das Computer Algebra System Maxima}
-Maxima ist ein Computer Algebra System (CAS). Der Quellcode wurde seit 1982 von William Shelter\footnote{William Frederick Schelter (1947 – July 30, 2001) war Professor für Mathematik der  University of Texas in Austin. Er war Lisp Entwickler und  Programmierer (siehe \url{https://en.wikipedia.org/wiki/Bill_Schelter}).}  entwickelt und 1998 unter der GNU General Public License (GPL) veröffentlicht.
+\newpage
+\section{Das Computeralgebrasystem Maxima}
+Maxima ist ein Computeralgebrasystem (CAS). Der Quellcode wurde seit 1982 von William Shelter\footnote{William Frederick Schelter (1947 – July 30, 2001) war Professor für Mathematik der  University of Texas in Austin. Er war Lisp Entwickler und  Programmierer (siehe \url{https://en.wikipedia.org/wiki/Bill_Schelter}).}  entwickelt und 1998 unter der GNU General Public License (GPL) veröffentlicht.
 
 Maxima ist die Engine, die hinter den Stackaufgaben auf ILIAS steht, die wir im Rahmen dieses Kurses bearbeiten. Es ist daher ratsam, sich zumindest mit der Syntax von Maxima zu beschäftigen, da diese zur Eingabe bei den Aufgaben benutzt werden muss. Die Syntax ist einigermaßen intuitiv, es schadet aber nicht, sich einmal damit zu beschäftigen. Weitere Information ist hier 
 \url{http://maxima.sourceforge.net/docs/manual/de/maxima.html#SEC_Top} 

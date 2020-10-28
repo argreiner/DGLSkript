@@ -1,4 +1,3 @@
-\chapter{Interpolation und Kurvenanpassung}
 %{\bf Learning goals:}
 %\begin{itemize}
 %\item Represent discrete data as functions to obtain function values apart from
@@ -402,65 +401,3 @@ The first six Legendre polynomials read
 	P_5(x)=\frac{1}{8} (63x^5-70x^3+15x)
 \end{eqnarray*}
 \newpage
-\section{Least square fit}
-Suppose you are given a set of date $z_i\in\{Z\}$ measured at points $x_i$ and $y_i$. We want to find a function $f(x,y;\mathbf{p})$ which depends on a vector $\mathbf{p})$ of paramters $p_k$. Assume that $f(x=0,y=0)=0$. Thus we propose a polynomial function $f(x,y;\mathbf{p})=p_0\cdot x+p_1\cdot y+p_2\cdot x^2+p_3\cdot x\cdot y+p_4\cdot y^2$ the data set of measurements $\{x_i,y_i,z_i\}$ we want to fit to. We choose a least square method, i.e.
-\[
-\sum_i \left( f(x_i,y_i;\mathbf{p})-z_i\right)^2 = \text{Min}.
-\]
-Which in turn is equivalent to require
-\[
-\frac{\partial}{\partial p_k}\sum_i \left( f(x_i,y_i;\mathbf{p})-z_i\right)^2=\sum_i \left( f(x_i,y_i;\mathbf{p})-z_i\right)\frac{\partial}{\partial p_k}f(x_i,y_i;\mathbf{p})=0
-\]
-this yields a linear system of equation for the $p_k$ to read
-\begin{align*}
-p_0\sum_i x_i^2+p_1\sum_i x_i\cdot y_i+p_2\sum_i x_i^3+p_3\sum_i x_i^2\cdot y_i+p_4\sum_i x_i\cdot y_i^2&=\sum_iz_i\cdot x_i\\
-p_0\sum_i x_i\cdot y_i+p_1\sum_i y_i^2+p_2\sum_i x_i^2\cdot y_i+p_3\sum_i x_i\cdot y_i^2+p_4\sum_i y_i^3&=\sum_iz_i\cdot y_i\\
-p_0\sum_i x_i^3+p_1\sum_i x_i^2\cdot y_i+p_2\sum_i x_i^4+p_3\sum_i x_i^3\cdot y_i+p_4\sum_i x_i^2\cdot y_i^2&=\sum_iz_i\cdot x_i^2\\
-p_0\sum_i x_i^2\cdot y_i+p_1\sum_i x_i\cdot y_i^2+p_2\sum_i x_i^3\cdot y_i+p_3\sum_i x_i^2\cdot y_i^2+p_4\sum_i x_i\cdot y_i^3&=\sum_iz_i\cdot x_i\cdot y_i\\
-p_0\sum_i x_i\cdot y_i^2+p_1\sum_i y_i^3+p_2\sum_i x_i^2\cdot y_i^2+p_3\sum_i x_i\cdot y_i^3+p_4\sum_i x_i\cdot y_i^4&=\sum_iz_i\cdot y_i^2
-\end{align*}
-Let us write this as a 
-\[
-\mathbf{A}\cdot\mathbf{p}=\mathbf{b}
-\]
-Note that $\mathbf{A}$ is symmetric and the matrix entries read
-\[ 
-\mathbf{A}=
-\begin{pmatrix}
-\sum_i x_i^2&\sum_i x_i\cdot y_i&\sum_i x_i^3&\sum_i x_i^2\cdot y_i&\sum_i x_i\cdot y_i^2\\
-\sum_i x_i\cdot y_i&\sum_i y_i^2&\sum_i x_i^2\cdot y_i&\sum_i x_i\cdot y_i^2&\sum_i y_i^3\\
-\sum_i x_i^3&\sum_i x_i^2\cdot y_i&\sum_i x_i^4&\sum_i x_i^3\cdot y_i&\sum_i x_i^2\cdot y_i^2\\
-\sum_i x_i^2\cdot y_i&\sum_i x_i\cdot y_i^2&\sum_i x_i^3\cdot y_i&\sum_i x_i^2\cdot y_i^2&\sum_i x_i\cdot y_i^3\\
-\sum_i x_i\cdot y_i^2&\sum_i y_i^3&\sum_i x_i^2\cdot y_i^2&\sum_i x_i\cdot y_i^3&\sum_i x_i\cdot y_i^4
-\end{pmatrix},
-\]
-while we habe for the r.h.s. of the linear system
-\[ 
-\mathbf{b}=
-\begin{pmatrix}
-\sum_iz_i\cdot x_i\\
-\sum_iz_i\cdot y_i\\
-\sum_iz_i\cdot x_i^2\\
-\sum_iz_i\cdot x_i\cdot y_i\\
-\sum_iz_i\cdot y_i^2
-\end{pmatrix},
-\]
-$\mathbf{A}$ and $\mathbf{b}$ can be easily calculated and thus we have $\mathbf{p}=\mathbf{A}^{-1}\cdot\mathbf{b}$. The only task left is to find an analytical expression for the inverse of $\mathbf{A}$, which components read
-\[
-\mathbf{A}^{-1}_{ij}=\frac{\alpha_{ij}}{|\mathbf{A}|},
-\]
-where the $\alpha_{ij}$ are the elements of the adjoint matrix $\mathbf{A}_{ad}$. 
-\begin{note}{The adjoint matrix elements}
-\[
-\alpha_{ij}=(-1)^{i+j}
-\left|
-\begin{matrix}
-a_{11}&\dots &a_{1,j-1}& &a_{1,j+1}&\dots &a_{1n}\\
-a_{11}&\dots &a_{1,j-1}& &a_{1,j+1}&\dots &a_{1n}\\
-&&&\vdots &&&\\
-a_{11}&\dots &a_{1,j-1}& &a_{1,j+1}&\dots &a_{1n}\\
-a_{11}&\dots &a_{1,j-1}& &a_{1,j+1}&\dots &a_{1n}\\
-\end{matrix}
-\right|\text{, where }a_{ij}=(\mathbf{A})_{ij}
-\]
-\end{note}
