@@ -213,3 +213,36 @@ Anstatt eine Differentialgleichung zu lösen, kann man versuchen, sie in eine m�
   \]
   dann verschwinden die Terme $y^2$ und $y^3$. D.h. wir haben (\ref{eq:1stNL}) auf eine Normalform dritten Grades gebracht. 
 \end{example}
+
+\section{Modellidentifikation}
+In diesem Abschnitt wollen wir uns die Fragen stellen, ob es möglich ist aus Signalen eine Differentialgleichung erster Ordnung, oder eine System von Differentialgleichungen erster Ordnung zu rekonstruieren. Was meinen wir damit? 
+
+Gegeben die Signale $x_i(t)$, von denen wir vermuten, dass sie gekoppelt sind. Wie lautet das System von Differentialgleichungen erster Ordnung
+\begin{align}
+\dot{x}_1(t)&=f_1(x_1,\dots,x_n)\nonumber\\
+&\vdots\nonumber\\
+\dot{x}_n(t)&=f_n(x_1,\dots,x_n),
+\label{eq:sys2reconstruct}
+\end{align}
+das als Lösung die $x_i(t)$ ergibt? D.h. wir suchen das zu den Signalen $x_i(t)$ gehörige Anfangswertproblem. 
+
+
+\begin{example}{Rekonstruktion eines Systems von 2 gekoppelten  Differentiagleichung 1. Ordnung}
+Wir haben 2 Messsignale $y_1(t)$ und $y_2(t)$ gegeben. Nehmen wir für den Moment mal an, sie lägen analytisch vor, nämlich $y_1(t)=\cos(t)$ und $y_1(t)=\sin(t)$.Dann berechnen wir $\dot y_1(t)=\sin(t)$ und $\dot y_2(t)=-\cos(t)$ Das ergibt das Gleichungssystem
+\begin{align*}
+\dot{y}_1(t)&=y_2(t)\\
+\dot{y}_2(t)&=-y_1(t)
+\end{align*}
+So einfach haben wir es i.a. nicht. Die allgemeine Vorgehensweise für die Rekonstruktion obigen Systems wäre
+\begin{enumerate}
+    \item Bilde $\frac{d y_1(t)}{dt}$ und $\frac{d y_2(t)}{dt}$ - meist wird das nur numerisch möglich sein.
+    \item Suche zwei Funktionen $f_1(y_1, y_2)$ und $f_2(y_1, y_2)$.
+    \item Löse das System 
+    \begin{align*}
+        \dot{y}_1(t)&=f_1(y_1, y_2)\\
+        \dot{y}_2(t)&=f_2(y_1, y_2)
+    \end{align*}
+\end{enumerate}
+Versuchen Sie genau mit dieser Vorgehensweise den harmonischen Oszillator numerisch zu rekonstruieren.
+\end{example}
+Wie das Beispiel zeigt, liegt die Aufgabe darin geeignete $f_i(y_1,\dots  y_n)$ zu finden. Wenn wir genügend Datenpunkte vorliegen haben, dann gelingt dies eventuell mit der Methode wie sie in Anhang \ref{chap:Fit} beschrieben ist.

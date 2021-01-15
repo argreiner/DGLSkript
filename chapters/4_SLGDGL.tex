@@ -278,16 +278,14 @@ Matrixfunktion $\boldsymbol{\Phi}(t)$ gehorcht der Gleichung
   \label{eq:Fundamentalmatrix}
 \end{equation}
 $\boldsymbol{\Phi}(t)=e^{At}$ ist eine Fundamentalmatrix, welche die Bedingung
-$\boldsymbol{\Phi}(0)=\mathbbm{1}$ erfüllt. Für (\ref{eq:InhomSystem}) haben wir
-$\boldsymbol{\Phi}(t)=e^{At}\mathbf{C}$, mit einer beliebigen nichtsingulären
-Matrix $\mathbf{C}$.  Wenn aber mit $\boldsymbol{\Phi(t)}$ eine Fundamentalmatrix
-gefunden ist, dann ist es leicht ein System wie (\ref{eq:InhomSystem}) mit den
+$\boldsymbol{\Phi}(0)=\mathbbm{1}$ erfüllt. Wenn aber mit $\boldsymbol{\Phi(t)}$ eine Fundamentalmatrix gefunden ist, dann ist es leicht ein System wie (\ref{eq:InhomSystem}) mit den
 Anfangsbedingungen $\mathbf{x}(0)=\mathbf{x}_0$ zu lösen
 \begin{equation}
-  \mathbf{x}(t)=\boldsymbol{\Phi}(t)\boldsymbol{\Phi}^{-1}(0)\mathbf{x}_0
+  \mathbf{x}(t)=\boldsymbol{\Phi}(t)\mathbf{x}_0
   +\int\limits_0^t\boldsymbol{\Phi}(t)\boldsymbol{\Phi}^{-1}(\tau)\vec{\mathbf{b}}(\tau)d\tau
   \label{eq:LoesInhom}
 \end{equation}
+Dies erinnert an das Vorgehen bei der Variation der Konstanten.
 Setzen wir hier $\boldsymbol{\Phi}(t)=e^{\mathbf{A}t}$ ein, dann erhalten wir
 \[ \mathbf{x}(t)=e^{\mathbf{A}t}\mathbf{x}_0
    +e^{\mathbf{A}t}\int\limits_0^te^{-\mathbf{A}\tau}\;\vec{\mathbf{b}}(\tau)d\tau\]

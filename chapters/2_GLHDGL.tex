@@ -30,7 +30,7 @@ Inhomogenität $h(t)=\alpha f(t) + \beta g(t)$. Man beweise diese Aussage!
 %
 \section{Lösung der Gleichungen mit konstanten Koeffizienten}
 Zur Lösung der Gleichungen vom Typ (\ref{eq:DGLOrdnungN}) haben wir
-verschiedene Herangeshensweisen. Dabei gehen wir davon aus, dass es genau eine
+verschiedene Herangehensweisen. Dabei gehen wir davon aus, dass es genau eine
 Lösung von (\ref{eq:DGLOrdnungN}) mit $f(t)=0$, also der homogenen
 Differentialgleichung, gibt, die den Bedingungen 
 \begin{equation}
@@ -80,12 +80,12 @@ durch Koeffizientenvergleich.
   Mit $y(0)=b0$ haben wir $c_0=b_0$ und finden damit die $c_\nu$ aus
   (\ref{eq:Rekursion}) 
     \begin{equation}
-      c_{\nu}=(-1)^\nu\frac{a_0^\nu b_0}{\nu!}\qquad (\nu=0,1,2,\dots).
+      c_{\nu}=(-1)^\nu\frac{a_0^\nu b_0^{\phantom{\nu}}}{\nu!}\qquad (\nu=0,1,2,\dots).
     \label{eq:PotenzKoeffizienten}
   \end{equation}
   Mit den Koeffizienten (\ref{eq:PotenzKoeffizienten}) erhalten wir die Lösung
   \begin{equation}
-    y(t)=\sum\limits_{\nu=0}^{\infty}(-1)^\nu\frac{a_0^\nu b_0}{\nu!}t^\nu=b_0e^{-a_0t}
+    y(t)=\sum\limits_{\nu=0}^{\infty}(-1)^\nu\frac{a_0^\nu b_0^{\phantom{\nu}}}{\nu!} t^\nu=b_0e^{-a_0t}
     \label{eq:SoluPotenz}
   \end{equation}
 \end{example}
@@ -145,8 +145,8 @@ wir suchen das Fundamentalsystem von Lösungen zu (\ref{eq:DGLOrdnungN}).
 \begin{example}{Fundamentalsystem der Gleichung 2. Ordnung}
   Wir wissen, dass für die Gleichung 2. Ordnung 
   \[\ddot{y}(t)+a_0y(t)=0 \]
-  zwei Bedingungen vorliegen müssen, damit die Lösung eindeutig angegebn werden
-  kann. Also nehmen wir die Bedingunen
+  zwei Bedingungen vorliegen müssen, damit die Lösung eindeutig angegeben werden
+  kann. Also nehmen wir die Bedingungen
   \begin{align}
   y(0)=&b_0\mbox{ und }\dot{y}(0)=0\mbox{ oder}\nonumber\\
   y(0)=&0\mbox{ und }\dot{y}(0)=b_1\nonumber\\
@@ -281,7 +281,7 @@ können sie damit lösen. Wir erhalten
 \end{equation}
 Da die Exponentialfunktion keine Nullstellen hat, schließen wir aus
 (\ref{eq:WronskianGeneral}), dass wenn $W(t)$ an irgendeiner Stelle von null
-verschieden ist, sie üeberall von null verschieden ist. Wir sehen also, da
+verschieden ist, sie überall von null verschieden ist. Wir sehen also, da
 $W(t)$ im gegebenen Fall nicht null werden kann, dass immer eine Lösung
 existiert.
 \begin{note}{}
