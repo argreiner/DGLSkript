@@ -1,14 +1,14 @@
 \chapter{Numerische Lösungsmethoden}
 Nichtlineare Differentialgleichungen sind im Allgemeinen nicht analytisch
-lösbar. D.h.\ es ist nicht möglich eine geschlossene Lösung anzugeben. Daher
+lösbar, d.h.\ es ist nicht möglich eine geschlossene Lösung anzugeben. Daher
 ist es sinnvoll, sich mit numerischen Lösungsmethoden zu beschäftigen.  Wir
-wollen hier nur eine begrenzte auswahl ansprechen. Für ingneieurstechnische
-Anwendungen steht ganz klar das Verhältnis zwischen Aufwand für deren
-Erarbeitung und Genauigkeit der Ergebnisse im Vordergrund. Deshalb gibt es
-keine absolute Aussage, welche Methode die beste ist.
+wollen hier nur eine begrenzte Zahl ansprechen. Bei der Auswahl muss zwischen
+dem Arbeitsaufwand und der Genauigkeit der Ergebnisse abgewogen werden. 
+Deshalb kann man nicht allgemein sagen, welche Methode die beste ist. 
 
-Wir gehen von einem Anfangswertproblem einer Differentialgleichung 1. Ordnung
-und 1. Grades aus, wobei hierin auch System erster Ordnung eingeschlossen
+
+Wir gehen von einem Anfangswertproblem einer Differentialgleichung 1.\ Ordnung
+und 1.\ Grades aus, wobei hierin auch System erster Ordnung eingeschlossen
 seien. Wir schreiben das Anfangswertproblem eines Systems, wie es in
 (\ref{eq:NLDGLSystem}) dargestellt ist als
 \begin{align}
@@ -17,7 +17,7 @@ seien. Wir schreiben das Anfangswertproblem eines Systems, wie es in
 \end{align}
 \section{Die Eulersche Methode}
 Wir nehmen an $y(t)$ sei gekannt, dann können wir $y(t+\Delta t)$ in eine
-Potenzreihe entwickeln und erhalten bei Vernachlässigung aller Terme 2. und
+Potenzreihe entwickeln und erhalten bei Vernachlässigung aller Terme 2.\ und
 höherer Potenzen in $\Delta t$ 
 \begin{equation}
   y(t+\Delta t) = y(t)+\Delta t f(y(t),t)+O(\Delta t^2),
@@ -49,7 +49,7 @@ abziehen. Damit erhalten wir für den Fehler
   \label{eq:LokalerFehler}
 \end{equation}
 Dies ist der Fehler pro Zeitschritt, auch lokaler Diskretisierungfehler genannt.
-\section{Runge Kutta Methode}
+\section{Runge-Kutta-Methode}
 Wir gehen von einer zentralen finiten Differenzenformel aus. Das bedeutet, dass
 die finite Differenz die Ableitung zum Zeitpunkt $t_i+\frac{\Delta t}{2}$
 nähert. Wir erhalten
@@ -65,7 +65,7 @@ Vorwärtsintegration um einen halben Zeitschritt $\frac{\Delta t}{2}$, somit
   y_{i+1} =& y_{i}+\Delta t f(\hat{y}_{i+1/2},t_{i+1/2})
 \end{align*}
 Dies ist das sogenannte Runge-Kutta-Schema 2. Ordnung. Wir sehen, dass wir
-hier, im Gegensatz zum Euler-Methode die Funktion $f$ zweimal auswerten müssen.
+hier, im Gegensatz zur Euler-Methode die Funktion $f$ zweimal auswerten müssen.
 
 Ein verbessertes Schema ist die Runge-Kutta-Methode 4. Ordnung. Wie der Name
 sagt, müssen wir hier die  Funktion $f$ viermal auswerten. Wir erhalten
@@ -87,7 +87,7 @@ y(t_{n+s})=y(t_{n+s-1})+\int\limits_{t_{n+s}}^{t_{n+s-1}}f(y(t'),t')dt'
 Das Integral gilt es nun zu nähern. Wir haben ja bereits Werte für $y(t_i)$ zu
 den Zeitpunkten $t_n$  bis $t_{n+s-1}$ berechnet. Wir nehmen  diese um eine
 Interpolationsfunktion aufzustellen, die wir nun in den Grenzen von $t_{n+s-1}$
-bis $t_{n+s}$ integrieren können. Wir nähern $f(y(t),t)$ z.B. durch ein
+bis $t_{n+s}$ integrieren können. Wir nähern $f(y(t),t)$ z.B.\ durch ein
 Polynom $p(t)$ der Ordnung $s-1$, das wir dergestalt konstruiert haben, dass es an
 den Interpolationspunkten mit $f(y(t),t)$ übereinstimmt
 
@@ -109,18 +109,18 @@ oder
 \[f(x+h)=f(x)+ f(x)' h+\frac{1}{2!} f(x)'' h^2+\ldots+\frac{1}{(n-1)!} f(x)^{(n-1)} h^ {n-1} +O(h^n)\]
 wir bezeichnen die Funktionswerte auf dem Gitter mit 
 \[\mathbf{Z}=\left\{ z_k\right\}_{k=-\infty}^{\infty}\]
-Dann bekommen wir die folgende Liste von operatoren
+Damit definieren wir eine Reihe von Operatoren,
 
 \begin{tabular}{ll}
 Shiftoperator:&	$(\mathcal{E}\ z)_k=z_{k+1}$\\
-Vorwärts Differenzoperator:&	$(\Delta_+\ z)_k=z_{k+1}-z_{k}$\\
-Rückwärts Differenzoperator:&	$(\Delta_-\ z)_k=z_{k}-z_{k-1}$\\
+Vorwärts-Differenzoperator:&	$(\Delta_+\ z)_k=z_{k+1}-z_{k}$\\
+Rückwärts-Differenzoperator:&	$(\Delta_-\ z)_k=z_{k}-z_{k-1}$\\
 Zentraler Differenzoperator:&	$(\Delta_0\ z)_k=z_{k+\frac{1}{2}}-z_{k-\frac{1}{2}}$\\
 Mittelwertoperator:&	$(\gamma_0\ z)_k=\frac{1}{2}(z_{k+\frac{1}{2}}+z_{k-\frac{1}{2}})$\\
 Differentialoperator:&	$(\mathcal{D}\ z)_k=(z^\prime)_k$
 \end{tabular}
 
-Eine schematische Darstellung ist in in Fig.\ \ref{fig:opaction} dargestellt.
+Siehe die schematische Darstellung in Abb.\ \ref{fig:opaction}.
 \begin{figure}[!ht]
 	        \begin{center}
                 \includegraphics[width=.9\textwidth]{fig/FiniteDifferenceOperators.pdf}
@@ -128,24 +128,24 @@ Eine schematische Darstellung ist in in Fig.\ \ref{fig:opaction} dargestellt.
         \end{center}
 \end{figure} 
 
-Durch eine Reihenentwicklung des Shiftoperators erhalten wir den Asudruck
+Durch eine Reihenentwicklung des Shiftoperators erhalten wir den Ausdruck
 für den Differentialoperator
 \[
 \mathcal{E}z(x)=z(x+h)=\sum_{j=0}^\infty \frac{1}{j!}
 \left[{\frac{d^jz(x)}{dx^j}}\right]h^j=
 \left[{\sum_{j=0}^\infty}\frac{1}{j!}(hD)^j\right]z(x)=e^{hD}z(x)
 \]
-womit wir shreiben können
+womit wir schreiben können
 \[ D=\frac{\ln(\mathcal{E})}{h}\]
 Beachte, dass Funktionen von Operatoren nur über deren Reihenentwicklung
-definiert sind.  Es ist möglich alle Finiten Differenzenopertoren durch den
+definiert sind.  Es ist möglich alle finiten Differenzenoperatoren durch den
 Shiftoperator auszudrücken:
 
 \begin{tabular}{ll}
 	Shiftoperator:&   $(\mathcal{E}\ z)_k=z_{k+1} $\\
-	Vorwärts Differenzoperator:&       $(\Delta_+\
+	Vorwärts-Differenzoperator:&       $(\Delta_+\
 	z)_k=z_{k+1}-z_{k}=\left( (\mathcal{E}-\mathcal{I})\ z \right)_k$\\
-	Rückwärts Differenzoperator:&     $(\Delta_-\ z)_k=z_{k}-z_{k-1}=
+	Rückwärts-Differenzoperator:&     $(\Delta_-\ z)_k=z_{k}-z_{k-1}=
 	\left( (\mathcal{I}-\mathcal{E}^{-1})\ z \right)_k$\\
 	Zentraler Differenzoperator:&       $(\Delta_0\
 	z)_k=z_{k+\frac{1}{2}}-z_{k-\frac{1}{2}}=\left(
@@ -176,7 +176,7 @@ Gitter, wie z.B. in Fig.\ \ref{fig:gridfd2d} dargestellt.
         \end{center}
 \end{figure}
 
-Erste und zweite Ableitung auf em Gitter lauten (verify through Taylor expansion!):
+Die ersten und zweiten Ableitungen auf dem Gitter lauten (verify through Taylor expansion!):
 \begin{eqnarray*}
 	\left(\frac{\partial f}{\partial x}\right)_{i,k}&=&\frac{f_{i+1,k}-f_{i-1,k}}{2\Delta x}\\
 	\left(\frac{\partial f}{\partial y}\right)_{i,k}&=&\frac{f_{i,k+1}-f_{i,k-1}}{2\Delta y}\\
@@ -194,5 +194,5 @@ Wie lautet die diskrete Form der Laplacegleichung
 \frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial x^2}
 \right)u(x,y)=0
 \]
-mittels der Finiten Differenzen Methode?
+gemäß der Methode der finiten Differenzen?
 \end{example}

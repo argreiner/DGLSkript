@@ -17,10 +17,10 @@ Ordnung und ersten Grades zurückführen können. Wir schreiben
   \quad\text{ oder allgemein }\quad\dot{\mathbf{q}}=L\cdot\mathbf{q}
 \]
 $L$ bezeichnet hierbei die Koeffizientenmatrix, wir haben es mit einem linearen
-System von Diffeentialgleichungen zu tun.
+System von Differentialgleichungen zu tun.
 
 Jetzt erweitern wir das Konzept auf nichtlineare Differentialgleichungen,
-genauer auf ein System nichtliearer Differentialgleichungen erster Ordnung und
+genauer auf ein System nichtlinearer Differentialgleichungen erster Ordnung und
 ersten Grades
 \begin{align*}
 \dot q_1 =& \alpha q_1 + \beta q_1q_2\\
@@ -71,7 +71,7 @@ Beispiel!
 \section{Ordnungsparametergleichungen}
 \Comment{Das hier ist optional}
 Wir betrachten folgendes System gewöhnlicher Differentialgleichungen erster
-Ordnung und ersten grades in den Variablen $u(t)$ und $s(t)$.
+Ordnung und ersten Grades in den Variablen $u(t)$ und $s(t)$.
 \begin{align} 
   \dot{u}&=\alpha u-us
   \label{eq:unstable}\\
@@ -81,7 +81,7 @@ Ordnung und ersten grades in den Variablen $u(t)$ und $s(t)$.
 Wir nehmen an $\alpha\ge0$ und $\beta>0$. Wir nennen $u$ die instabile und $s$
 die stabile Mode - das erklären wir später genauer. Erstmal wollen wir die $s$
 durch die $u$ ausdrücken, indem wir so tun, als wären letztere bekannt. Dann
-erhalten wir - Variation der Konstanten anwenden - folgende Lösung
+erhalten wir --- Variation der Konstanten anwenden --- folgende Lösung
 \begin{equation}
   s(t)=\int\limits_{-\infty}^{t}e^{-\beta(t-\tau)}u(\tau)^2d\tau
   \label{eq:stabelsolu}
@@ -102,12 +102,12 @@ klein angenommen werden kann, dann liegt es nahe das Integral in
   s(t)=\frac{1}{\beta}u^2(t),
   \label{eq:sapprox}
 \end{equation}
-was wir auh sofort aus (\ref{eq:stable}) erhalten würden, wenn wir $\dot s=0$
+was wir auch sofort aus (\ref{eq:stable}) erhalten würden, wenn wir $\dot s=0$
 setzten.
 
 Unter welchen Bedingungen sich das  Integral in (\ref{eq:sofueliminated})
 vernachlässigen lässt, müssen wir hier noch genauer untersuchen. Wir betrachten
-das maximum des Ausdrucks $Max(u(\tau)\dot u(\tau))=(|u||\dot u|)_{max}$ in
+das Maximum des Ausdrucks $Max(u(\tau)\dot u(\tau))=(|u||\dot u|)_{max}$ in
 (\ref{eq:sofueliminated}) und schreiben dieses vor das Integral anstatt
 $(u(\tau)\dot u(\tau))$ und integrieren. Dann ist unsere Näherung sicherlich
 gut, wenn gilt
